@@ -21,7 +21,7 @@
 #
 
 UName*It is a name space management system for Unix and Windows
-machines. I generates name space data for all the machines within an
+machines. It generates name space data for all the machines within an
 organization. UName*It also comes with the Internet Software Consortium
 DHCP server and it manages the data used by this DHCP server. 
 	It is highly recommended that you read all the sections
