@@ -1,0 +1,224 @@
+5steFC5L2QyUsUU.65b.VU 5steFC5L2QyUsUU.65b.VU {unameit_args args {
+    return $args
+} UName*It 0.0.0 {} 848707777}
+5stidC5L2QyUsUU.65b.VU 5stidC5L2QyUsUU.65b.VU {unameit_bad_error {code args} {
+    append result "Code: $code\n"
+    if {![lempty $args]} {
+	append result "Args: $args"
+    }
+} UName*It 0.0.0 {} 848707777}
+5stmwC5L2QyUsUU.65b.VU 5stmwC5L2QyUsUU.65b.VU {unameit_bad_error_proc proc {
+    concat "Procedure: $proc"
+} UName*It 0.0.0 {} 848707777}
+5strIC5L2QyUsUU.65b.VU 5strIC5L2QyUsUU.65b.VU {unameit_bad_net_size {item addr1_attr addr1 addr2_attr addr2} {
+    append result "[unameit_display_item $item]\n"
+    append result "[unameit_display_attr $item $addr1_attr]: "
+    append result "[unameit_display_value $item $addr1_attr $addr1]\n"
+    append result "[unameit_display_attr $item $addr2_attr]: "
+    append result "[unameit_display_value $item $addr2_attr $addr2]\n"
+} UName*It 0.0.0 {} 848707777}
+5stvbC5L2QyUsUU.65b.VU 5stvbC5L2QyUsUU.65b.VU {unameit_class class {
+    unameit_display_item $class
+} UName*It 0.0.0 {} 848707777}
+5stzwi5L2QyUsUU.65b.VU 5stzwi5L2QyUsUU.65b.VU {unameit_class_attr {class attr} {
+    append result "[unameit_display_item $class]"
+    append result "[unameit_display_attr $class $attr]"
+} UName*It 0.0.0 {} 848707777}
+5su2GC5L2QyUsUU.65b.VU 5su2GC5L2QyUsUU.65b.VU {unameit_class_attr_value_context {class attr value context} {
+    append result "Class: [unameit_display_item $class]\n"
+    append result "Field: [unameit_display_attr $class $attr]\n"
+    append result "Value: $value\n"
+    append result "Context: $context"
+} UName*It 0.0.0 {} 848707777}
+5su6eC5L2QyUsUU.65b.VU 5su6eC5L2QyUsUU.65b.VU {unameit_class_item_attr_item_supers {class attr supers} {
+    append result "Class: [unameit_display_item $class]\n"
+    append result "Attribute: [unameit_display_item $attr]\n"
+    foreach super $supers {
+	append result "Superclass: [unameit_display_item $super]\n"
+    }
+    return $result
+} UName*It 0.0.0 {} 848707777}
+5suAzi5L2QyUsUU.65b.VU 5suAzi5L2QyUsUU.65b.VU {unameit_code_gen_loop args {
+    foreach uuid $args {
+	append result "[unameit_display_item $uuid]\n"
+    }
+    return $result
+} UName*It 0.0.0 {} 848707777}
+5suFJC5L2QyUsUU.65b.VU 5suFJC5L2QyUsUU.65b.VU {unameit_constrained {item attr value values} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr]\n"
+    append result "Value: $value\n"
+    append result "Should be one of:\n"
+    foreach val $values {
+	append result "$val\n"
+    }
+    return $result
+} UName*It 0.0.0 {} 848707777}
+5suJcC5L2QyUsUU.65b.VU 5suJcC5L2QyUsUU.65b.VU {unameit_dupaddr {item1 item2 attr value} {
+    append result "[unameit_display_item $item1]\n"
+    append result "[unameit_display_attr $item1 $attr]\n"
+    append result "[unameit_display_value $item1 $attr $value]\n"
+    append result "conflicts with\n"
+    append result "[unameit_display_item $item2]\n"
+    append result "[unameit_display_attr $item2 $attr]"
+} UName*It 0.0.0 {} 848707777}
+5suNxi5L2QyUsUU.65b.VU 5suNxi5L2QyUsUU.65b.VU {unameit_ecworm {item attr cattrs} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr]\n"
+    append result "computed by\n"
+    foreach a [lrange $cattrs 1 end] {
+	append result "[unameit_display_attr $item $a]\n"
+    }
+    return $result
+} UName*It 0.0.0 {} 848707777}
+5suSJi5L2QyUsUU.65b.VU 5suSJi5L2QyUsUU.65b.VU {unameit_item item {
+    unameit_display_item $item
+} UName*It 0.0.0 {} 848707777}
+5suWfC5L2QyUsUU.65b.VU 5suWfC5L2QyUsUU.65b.VU {unameit_item_args {item args} {
+    append result "[display_proc $item]\n"
+    append result $args
+} UName*It 0.0.0 {} 848707777}
+5sub.i5L2QyUsUU.65b.VU 5sub.i5L2QyUsUU.65b.VU {unameit_item_attr {item attr} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr]"
+} UName*It 0.0.0 {} 848707777}
+5sugaC5L2QyUsUU.65b.VU 5sugaC5L2QyUsUU.65b.VU {unameit_item_attr_attr {item attr1 attr2} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr1]\n"
+    append result "Field: [unameit_display_attr $item $attr2]"
+} UName*It 0.0.0 {} 848707777}
+5sul3i5L2QyUsUU.65b.VU 5sul3i5L2QyUsUU.65b.VU {unameit_item_attr_ecode {item attr ecode} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr]\n"
+    append result "Error Code: $ecode"
+} UName*It 0.0.0 {} 848707777}
+5supPC5L2QyUsUU.65b.VU 5supPC5L2QyUsUU.65b.VU {unameit_item_attr_item {item1 attr item2} {
+    append result "[unameit_display_item $item1]\n"
+    append result "Field: [unameit_display_attr $item1 $attr]\n"
+    append result "Value: [unameit_display_item $item2]"
+} UName*It 0.0.0 {} 848707777}
+5sutiC5L2QyUsUU.65b.VU 5sutiC5L2QyUsUU.65b.VU {unameit_item_attr_item_attr_item {item attr1 item1 attr2 item2} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr1]\n"
+    append result "Value: [unameit_display_item $item1]\n"
+    append result "Field: [unameit_display_attr $item $attr2]\n"
+    append result "Value: [unameit_display_item $item2]"
+} UName*It 0.0.0 {} 848707777}
+5suy1i5L2QyUsUU.65b.VU 5suy1i5L2QyUsUU.65b.VU {unameit_item_attr_value {item attr value} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr]\n"
+    append result "Value: [unameit_display_value $item $attr $value]"
+} UName*It 0.0.0 {} 848707777}
+5sv0NC5L2QyUsUU.65b.VU 5sv0NC5L2QyUsUU.65b.VU {unameit_item_attr_value_attr_value {item attr1 val1 attr2 val2} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr1]\n"
+    append result "Value: [unameit_display_value $item $attr1 $val1]"
+    append result "Field: [unameit_display_attr $item $attr2]\n"
+    append result "Value: [unameit_display_value $item $attr2 $val2]"
+} UName*It 0.0.0 {} 848707777}
+5sv4ii5L2QyUsUU.65b.VU 5sv4ii5L2QyUsUU.65b.VU {unameit_item_attr_value_limit {item attr value limit} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr]\n"
+    append result "Value: [unameit_display_value $item $attr $value]\n"
+    append result "Limit: $limit"
+} UName*It 0.0.0 {} 848707777}
+5sv9/i5L2QyUsUU.65b.VU 5sv9/i5L2QyUsUU.65b.VU {unameit_item_attr_value_rangelist {item attr value rlist} {
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr]\n"
+    append result "Value: [unameit_display_value $item $attr $value]\n"
+    foreach range $rlist {
+	append result "Range: $range\n"
+    }
+    return $result
+} UName*It 0.0.0 {} 848707777}
+5svDLC5L2QyUsUU.65b.VU 5svDLC5L2QyUsUU.65b.VU {unameit_item_class {item class} {
+    append result "[unameit_display_item $item]\n"
+    append result "Class: [unameit_display_item $class]"
+} UName*It 0.0.0 {} 848707777}
+5svHgi5L2QyUsUU.65b.VU 5svHgi5L2QyUsUU.65b.VU {unameit_item_class_class {item class1 class2} {
+    append result "[unameit_display_item $item]\n"
+    append result "Class: [unameit_display_item $class1]"
+    append result "Class: [unameit_display_item $class2]"
+} UName*It 0.0.0 {} 848707777}
+5svLzi5L2QyUsUU.65b.VU 5svLzi5L2QyUsUU.65b.VU {unameit_item_item {item1 item2} {
+    append result "[unameit_display_item $item1]\n"
+    append result "[unameit_display_item $item2]"
+} UName*It 0.0.0 {} 848707777}
+5svQJC5L2QyUsUU.65b.VU 5svQJC5L2QyUsUU.65b.VU {unameit_item_loop {attr items} {
+    set result "Items in loop:\n"
+    foreach item $items {
+	append result "[unameit_display_item $item]\n"
+    }
+    append result "[unameit_display_item [lindex $items 0]]\n"
+    append result "[unameit_display_attr [lindex $items 0] $attr]"
+} UName*It 0.0.0 {} 848707777}
+5svUei5L2QyUsUU.65b.VU 5svUei5L2QyUsUU.65b.VU {unameit_not_subclass {class superclass query_frag} {
+    append result "[unameit_display_item $class]\n"
+    append result "Superclass: [unameit_display_item $superclass]\n"
+    append result "Query Fragment: $query_frag"
+} UName*It 0.0.0 {} 848707778}
+5svZ.C5L2QyUsUU.65b.VU 5svZ.C5L2QyUsUU.65b.VU {unameit_null_primary_ip {item attr address} {
+    #The second display of the address assumes that the primary IP
+    #canonicalization is the same as the secondary ip address canonicalization.
+    append result "[unameit_display_item $item]\n"
+    append result "Field: [unameit_display_attr $item $attr]\n"
+    append result "Secondary address: [unameit_display_value $item $attr $address]"
+} UName*It 0.0.0 {} 848707778}
+5svdHC5L2QyUsUU.65b.VU 5svdHC5L2QyUsUU.65b.VU {unameit_opinval {class attr op} {
+    append result "[unameit_display_item $class]\n"
+    append result "[unameit_display_attr $class $attr]\n"
+    append result "Operator: $op"
+} UName*It 0.0.0 {} 848707778}
+5svhci5L2QyUsUU.65b.VU 5svhci5L2QyUsUU.65b.VU {unameit_qbe_conflict {class attr context} {
+    append result "Class: [unameit_display_item $class]\n"
+    append result "Field: [unameit_display_attr $class $attr]\n"
+    append result "Query Fragment: $context"
+} UName*It 0.0.0 {} 848707778}
+5svlyC5L2QyUsUU.65b.VU 5svlyC5L2QyUsUU.65b.VU {unameit_qbe_domain {item class query_frag} {
+    append result "[unameit_display_item $item]\n"
+    append result "Class: [unameit_display_item $class]\n"
+    append result "Query Fragment: $query_frag"
+} UName*It 0.0.0 {} 848707778}
+5svqFC5L2QyUsUU.65b.VU 5svqFC5L2QyUsUU.65b.VU {unameit_qbe_not_uuid {class attr literal context} {
+    append result "Class: [unameit_display_item $class]\n"
+    append result "Field: [unameit_display_attr $class $attr]\n"
+    append result "Value: $literal\n"
+    append result "Query Fragment: $context"
+} UName*It 0.0.0 {} 848707778}
+5svuai5L2QyUsUU.65b.VU 5svuai5L2QyUsUU.65b.VU {unameit_range_uniqueness {attr ilist} {
+    foreach item $ilist {
+	append result "Item: [unameit_display_item $item]\n"
+	append result "Field: [unameit_display_attr $item $attr]\n"
+    }
+    return $result
+} UName*It 0.0.0 {} 848707778}
+5svywC5L2QyUsUU.65b.VU 5svywC5L2QyUsUU.65b.VU {unameit_ref_integrity args {
+    set count 0
+    foreach tuple $args {
+	lassign $tuple left attr right
+	append result "From: [unameit_display_item $left]\n"
+	append result "Field: [unameit_display_attr $left $attr]\n"
+	append result "To: [unameit_display_item $right]\n"
+	if {$count >= 5} {
+	    append result ...
+	    break
+	}
+    }
+    return $result
+} UName*It 0.0.0 {} 848707778}
+5sw1Fi5L2QyUsUU.65b.VU 5sw1Fi5L2QyUsUU.65b.VU {unameit_rowcount {actual max} {
+    append result "Actual rowcount: $actual\n"
+    append result "Maximum rowcount: $max"
+} UName*It 0.0.0 {} 848707778}
+5sw5Yi5L2QyUsUU.65b.VU 5sw5Yi5L2QyUsUU.65b.VU {unameit_uniqueness args {
+    set result ""
+    foreach item_alist $args {
+	lassign $item_alist item alist
+	append result "[unameit_display_item $item]\n"
+	foreach attr $alist {
+	    append result "Field: [unameit_display_attr $item $attr]\n"
+	}
+	append result "\n"
+    }
+    set result
+} UName*It 0.0.0 {} 848707778}

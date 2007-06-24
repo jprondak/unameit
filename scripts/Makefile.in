@@ -1,0 +1,71 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+UNAMEIT_EXES = \
+	unameit_load
+
+LOAD_SCRIPTS = \
+	dat_to_heap.tcl		\
+	dump_common.tcl 	\
+	heap.tcl		\
+	heap_to_dat.tcl		\
+	load.tcl		\
+	load_adaptive.tcl     	\
+	load_aliases.tcl      	\
+	load_commands.tcl	\
+	load_common.tcl		\
+	load_dns.tcl		\
+	load_domains.tcl 	\
+	load_generate.tcl     	\
+	load_group_users.tcl  	\
+	load_groups.tcl       	\
+	load_gui.tcl       	\
+	load_hosts.tcl		\
+	load_netgroups.tcl	\
+	load_networks.tcl	\
+	load_persons.tcl	\
+	load_services.tcl 	\
+	load_setup.tcl 		\
+	load_users.tcl		\
+	networks.tcl		\
+	read_aliases.tcl 
+
+SHLIBS = ndbmtcl$(TCL_SHLIB_SUFFIX) 
+
+.KEEP_STATE:
+
+client server: $(SHLIBS)
+
+install-server::
+	$(INSTALL_DATA) rc.local.unameit $(UNAMEIT_LIBRARY)
+	for i in $(LOAD_SCRIPTS); do\
+		$(INSTALL_DATA) $$i $(UNAMEIT_LOADLIB);\
+        done
+	for i in $(SHLIBS); do\
+		$(INSTALL_PROGRAM) $$i $(UNAMEIT_TCLLIB);\
+        done
+	for i in $(UNAMEIT_EXES); do\
+		$(INSTALL_PROGRAM) $$i $(UNAMEIT_SBIN)/exe/$$i;\
+        done
+
+clean::
+	$(RM) $(SHLIBS)

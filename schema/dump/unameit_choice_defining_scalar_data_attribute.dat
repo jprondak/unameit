@@ -1,0 +1,1 @@
+5sgGEC5L2QyUsUU.65b.VU 5sgGEC5L2QyUsUU.65b.VU {5sfnmC5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {sh csh ksh bash tcsh} Shell Error Yes shell UName*It 2.0.0 {} 851048651}

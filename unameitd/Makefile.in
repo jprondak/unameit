@@ -1,0 +1,69 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+SRCS	= main.c
+OBJS	= $(SRCS:%.c=%.o)
+
+TCL_INC = master.tcl getopt.tcl
+TCL_DEP = $(TCL_INC:%=$(TOP)/library/%)
+
+LDLIBS += -ludb $(UCONN_LDLIBS) -luuid -lcanon -lradix -lether \
+	-lsqlxone -lsqlxutil \
+	$(TCLX_LIB_SPEC) $(TCL_LIB_SPEC) $(TCL_LIBS)
+
+LDFLAGS += $(UCONN_LDFLAGS) -L$(TOP)/libudb -L$(TOP)/libcanon \
+	-L$(TOP)/libuuid -L$(TOP)/libether -L$(TOP)/libradix \
+	-L$(UNISQLX)/lib 
+
+LDDEPS  += $(UCONN_LDDEPS) \
+	$(TOP)/libcanon/libcanon.a \
+	$(TOP)/libuuid/libuuid.a \
+	$(TOP)/libradix/libradix.a \
+	$(TOP)/libether/libether.a \
+	$(TOP)/libudb/libudb.a
+
+CPPFLAGS += -I$(UNISQLX)/include $(KRB_CPPFLAGS)
+
+.KEEP_STATE:
+
+all: server
+
+server: unameitd
+
+unameitd: $(OBJS) $(LDDEPS)
+	$(LINK.c) -o $@ $(OBJS) $(LDLIBS)
+
+bootstrap.h: bootstrap.tcl $(TCL_DEP) version.tcl
+
+main.o : bootstrap.h
+
+version.tcl: $(TOP)/version
+	@echo Making version.tcl from version file
+	@echo "proc unameit_get_server_version {}\
+	    {return `cat $(TOP)/version`}" > version.tcl.tmp
+	@mv version.tcl.tmp version.tcl
+
+clean::
+	$(RM) unameitd bootstrap.h version.tcl
+
+install-server::
+	$(INSTALL_PROGRAM) unameitd $(UNAMEIT_SBIN)/exe/unameitd

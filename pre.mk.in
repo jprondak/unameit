@@ -1,0 +1,193 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+# These environment variables are included by all the Makefiles including
+# the top level Makefile.
+#
+
+@SET_MAKE@
+SHELL		=	/bin/sh
+TOP		= @top_srcdir@
+
+prefix		=	@prefix@
+# exec_prefix isn't currently used. We don't separate architecture dependent
+# and independent parts. Too much of a hassle for customers.
+#exec_prefix	=	@exec_prefix@
+#
+# Use these macros for installing. These macros will be compiled into
+# configuration routines and will be available from TCL; the value of
+# UNAMEIT will be removed.
+#
+UNAMEIT		=	$(prefix)
+UNAMEIT_BIN	=	$(UNAMEIT)/bin
+UNAMEIT_LBIN	=	$(UNAMEIT)/lbin
+UNAMEIT_LSBIN	=	$(UNAMEIT)/lsbin
+UNAMEIT_INSTALL	=	$(UNAMEIT)/install
+UNAMEIT_CONFIG	=	$(UNAMEIT)/config
+UNAMEIT_SBIN	=	$(UNAMEIT)/sbin
+UNAMEIT_LIBRARY	=	$(UNAMEIT)/lib
+UNAMEIT_TCLLIB  = 	$(UNAMEIT)/lib/unameit
+UNAMEIT_TOILIB	=	$(UNAMEIT)/lib/toi
+UNAMEIT_NISLIB	=	$(UNAMEIT)/lib/nis
+UNAMEIT_BACKEND =	$(UNAMEIT)/lib/backend
+UNAMEIT_BOOTLIB =	$(UNAMEIT)/lib/boot
+UNAMEIT_UNISQLX =	$(UNAMEIT)/lib/unisqlx
+UNAMEIT_LOADLIB =	$(UNAMEIT)/lib/load
+MAN_DIR		=	$(UNAMEIT)/man
+MAN1_DIR	=	$(MAN_DIR)/man1
+MAN1M_DIR	=	$(MAN_DIR)/man1m
+MAN4_DIR	=	$(MAN_DIR)/man4
+
+
+#
+# This macro is used to compile in the above macros (see unameit_dirs
+# target in the library directory). The value of $(UNAMEIT) is removed
+# from each of the following macros. Do NOT remove UNAMEIT from the list.
+#
+# Add any directories to this macro (name and definition), to access
+# them by name at runtime. They are accessed by the command 
+# 'unameit_filename', which will return a filename or directory
+# name suitable for the platform. In TCL, the command is part of the 
+# loadable Config package.
+# TBD - make a macro for this
+#
+UNAMEIT_DIR_LIST = 						\
+  UNAMEIT 		$(UNAMEIT)				\
+  UNAMEIT_BACKEND 	$(UNAMEIT_BACKEND)			\
+  UNAMEIT_BIN 		$(UNAMEIT_BIN)				\
+  UNAMEIT_BOOTLIB 	$(UNAMEIT_BOOTLIB)			\
+  UNAMEIT_CONFIG 	$(UNAMEIT_CONFIG)			\
+  UNAMEIT_INSTALL	$(UNAMEIT_INSTALL)			\
+  UNAMEIT_LBIN 		$(UNAMEIT_LBIN)				\
+  UNAMEIT_LOADLIB 	$(UNAMEIT_LOADLIB)			\
+  UNAMEIT_LSBIN 	$(UNAMEIT_LSBIN)			\
+  UNAMEIT_NISLIB 	$(UNAMEIT_NISLIB)			\
+  UNAMEIT_SBIN 		$(UNAMEIT_SBIN)				\
+  UNAMEIT_TCLLIB 	$(UNAMEIT_TCLLIB)			\
+  UNAMEIT_TOILIB 	$(UNAMEIT_TOILIB)			\
+  UNAMEIT_UNISQLX 	$(UNAMEIT_UNISQLX)
+
+#
+# Locations of TCL, TK
+#
+LIB_RUNTIME_DIR	= @TCL_EXEC_PREFIX@/lib
+
+# Compiler environment
+CC		=	@CC@
+CPPFLAGS	=	-I$(TOP)/include -I@TCL_PREFIX@/include \
+			$(CONFIGURE_DEFS) @DNS_ONLY@ \
+			-DTCL_MEM_DEBUG
+CFLAGS		=	-Wall @CFLAGS@
+ARFLAGS		=	cq
+RANLIB   	=	@RANLIB@
+LN_S		=	@LN_S@
+CONFIGURE_DEFS	=	@DEFS@
+LDFLAGS		=	${TCL_LD_FLAGS} ${TCL_LD_SEARCH_FLAGS} @LDFLAGS@
+
+INSTALL         =       @INSTALL@
+INSTALL_PROGRAM =       @INSTALL@ -m 755
+INSTALL_DATA    =       @INSTALL_DATA@
+
+DNS_EXT		=	@DNS_EXT@
+
+KRB_DIR		=	@KRB@
+KRB_CPPFLAGS	=	-I$(KRB_DIR)/include
+KRB_LDFLAGS	=	-L$(KRB_DIR)/lib
+KRB5_LDLIBS	=	-lkrb5 -lcrypto -lcom_err
+KRB4_LDLIBS	=	-lkrb4 -ldes425 $(KRB5_LDLIBS)
+
+# Tcl
+TCL_CC			= @TCL_CC@
+TCL_CFLAGS		= @TCL_CFLAGS@
+TCL_DEFS		= @TCL_DEFS@
+TCL_LIB_FILE		= @TCL_LIB_FILE@
+TCL_LIBS		= @TCL_LIBS@
+TCL_PREFIX		= @TCL_PREFIX@
+TCL_EXEC_PREFIX		= @TCL_EXEC_PREFIX@
+TCL_SHLIB_CFLAGS	= @TCL_SHLIB_CFLAGS@
+TCL_SHLIB_CXXFLAGS	= @TCL_SHLIB_CXXFLAGS@
+TCL_SHLIB_LD		= @TCL_SHLIB_LD@
+TCL_SHLIB_LD_LIBS	= @TCL_SHLIB_LD_LIBS@
+TCL_SHLIB_SUFFIX	= @TCL_SHLIB_SUFFIX@
+TCL_DL_LIBS		= @TCL_DL_LIBS@
+TCL_LD_FLAGS		= @TCL_LD_FLAGS@
+TCL_LD_SEARCH_FLAGS	= @TCL_LD_SEARCH_FLAGS@
+TCL_LIB_HNAME		= @TCL_LIB_HNAME@
+TCL_COMPAT_OBJS		= @TCL_COMPAT_OBJS@
+TCL_COMPAT_SOBJS	= @TCL_COMPAT_SOBJS@
+TCL_RANLIB		= @TCL_RANLIB@
+TCL_BUILD_LIB_SPEC	= @TCL_BUILD_LIB_SPEC@
+TCL_LIB_SPEC		= @TCL_LIB_SPEC@
+TCL_LIB_VERSIONS_OK	= @TCL_LIB_VERSIONS_OK@
+TCL_SHARED_LIB_SUFFIX	= @TCL_SHARED_LIB_SUFFIX@
+TCL_UNSHARED_LIB_SUFFIX	= @TCL_UNSHARED_LIB_SUFFIX@
+
+# Tk
+TK_DEFS			= @TK_DEFS@
+TK_LIB_FILE		= @TK_LIB_FILE@
+TK_LIBS			= @TK_LIBS@
+TK_PREFIX		= @TK_PREFIX@
+TK_EXEC_PREFIX		= @TK_EXEC_PREFIX@
+TK_XINCLUDES		= @TK_XINCLUDES@
+TK_XLIBSW		= @TK_XLIBSW@
+TK_BUILD_LIB_SPEC	= @TK_BUILD_LIB_SPEC@
+TK_LIB_SPEC		= @TK_LIB_SPEC@
+
+# incr Tcl and tk
+#ITCL_LIB_FILE		= @ITCL_LIB_FILE@
+#ITCL_BUILD_LIB_SPEC	= @ITCL_BUILD_LIB_SPEC@
+#ITCL_LIB_SPEC		= @ITCL_LIB_SPEC@
+#ITK_LIB_FILE		= @ITK_LIB_FILE@
+#ITK_BUILD_LIB_SPEC	= @ITK_BUILD_LIB_SPEC@
+#ITK_LIB_SPEC		= @ITK_LIB_SPEC@
+
+# TclX
+TCLX_DEFS		= @TCLX_DEFS@
+TCLX_LIBS		= @TCLX_LIBS@
+TCLX_BUILD_LIB_SPEC	= @TCLX_BUILD_LIB_SPEC@
+TCLX_LIB_SPEC		= @TCLX_LIB_SPEC@
+TCLX_LD_SEARCH_FLAGS	= @TCLX_LD_SEARCH_FLAGS@
+
+# TkX
+TKX_DEFS		= @TKX_DEFS@
+TKX_LIBS		= @TKX_LIBS@
+TKX_BUILD_LIB_SPEC	= @TKX_BUILD_LIB_SPEC@
+TKX_LIB_SPEC		= @TKX_LIB_SPEC@
+
+LATEX    	=	@LATEX@
+FIG2DEV  	=	@FIG2DEV@
+DVIPS    	=	@DVIPS@
+UNISQLX  	=	@UNISQLX@
+ESQL	 	=	$(UNISQLX)/bin/esqlx
+FRINK	 	=	@FRINK@
+
+# unameit libs
+UCONN_CPPFLAGS	= 
+UCONN_LDFLAGS	= -L$(TOP)/libconn -L$(TOP)/libuuid -L$(TOP)/libradix \
+	-L$(TOP)/libaddress
+UCONN_LDLIBS	= -lconn -luuid -lradix -laddress
+UCONN_LDDEPS	= $(TOP)/libconn/libconn.a 
+
+
+# Versions of data and schema
+DATA_VERSION	= 0.0.1
+SCHEMA_VERSION	= 8.0.1

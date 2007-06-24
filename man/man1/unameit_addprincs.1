@@ -1,0 +1,41 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH UNAMEIT_ADDPRINCS 1
+.SH NAME
+unameit_addprincs \- add principals to a local keytab file
+.SH SYNOPSIS
+.BI unameit_addprincs\  admin_principal
+.SH DESCRIPTION
+This command adds all the UName*It server principals and their passwords in
+the Kerberos database to the
+.B /etc/krb5.keytab
+file. You need to give this command an administrator principal that
+has enough authorization in Kerberos to extract the UName*It
+principals and passwords. This command will ask you for a password for
+this administrator principal when it is run.
+.PP
+The principals put in the keytab file are randomized on both the
+Kerberos server and in the keytab file so the password you initially
+entered for the UName*It principals in Kerberos will be changed. The
+keytab file and the Kerberos server database are kept in sync though.
+.SH SEE ALSO
+kadmin(8), kadmin.local(8)

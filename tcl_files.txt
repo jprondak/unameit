@@ -1,0 +1,10 @@
+./lib/libtcl.s*
+./lib/libtk.s*
+./lib/libtclx.s*
+./lib/tclX/pkgIndex.tcl
+./lib/libtkx.s*
+./lib/tkX/pkgIndex.tcl
+./bin/tclsh
+./bin/tcl
+./bin/wish
+./bin/wishx

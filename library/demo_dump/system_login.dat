@@ -1,0 +1,9 @@
+AlFyTcee2R041kU.65b.VU AlFyTcee2R041kU.65b.VU {7889 croot /bin Yes HRCvWJEBVIyw2 {} AkIKI6ee2R041kU.65b.VU csh ATtkK6ee2R041kU.65b.VU UName*It 1.0.13 {} 858888122}
+AlFwK6ee2R041kU.65b.VU AlFwK6ee2R041kU.65b.VU {0 root / No VWWODRhtqVDmU Super-User AkIZD6ee2R041kU.65b.VU /sbin/sh ATtt46ee2R041kU.65b.VU UName*It 1.0.13 {} 858888122}
+AlFsrcee2R041kU.65b.VU AlFsrcee2R041kU.65b.VU {0 root / No VWWODRhtqVDmU Super-User AkIKI6ee2R041kU.65b.VU /sbin/sh ATtkK6ee2R041kU.65b.VU UName*It 1.0.13 {} 858888122}
+AlFrHcee2R041kU.65b.VU AlFrHcee2R041kU.65b.VU {0 brute /bin No HRCvWJEBVIyw2 {} AkIKI6ee2R041kU.65b.VU bash ATtkK6ee2R041kU.65b.VU UName*It 1.0.13 {} 858888122}
+EqW6PeM62R0g7kU.65b.VU EqW6PeM62R0g7kU.65b.VU {5 uucp /usr/lib/uucp No * {System Account} AkI8Q6ee2R041kU.65b.VU /usr/lib/uucp ATtkK6ee2R041kU.65b.VU UName*It 2.0.6 {} 859401926}
+nNxFdeM72R0g7kU.65b.VU nNxFdeM72R0g7kU.65b.VU {4 audit /etc/security/audit Yes * {System Account} XPv3Ze6Y2R0cOEU.65b.VU /bin/csh ATtkK6ee2R041kU.65b.VU UName*It 2.0.9 {} 859402393}
+nNxDReM72R0g7kU.65b.VU nNxDReM72R0g7kU.65b.VU {4 adm /var/adm Yes * {System Account} AkILpcee2R041kU.65b.VU bash ATtkK6ee2R041kU.65b.VU UName*It 2.0.9 {} 859402394}
+Ck5sQ8M82R0g7kU.65b.VU Ck5sQ8M82R0g7kU.65b.VU {1 daemon / Yes * {System Account} AkIKI6ee2R041kU.65b.VU sh ATtkK6ee2R041kU.65b.VU UName*It 2.0.10 {} 859402495}
+Ck5qBeM82R0g7kU.65b.VU Ck5qBeM82R0g7kU.65b.VU {2 bin /usr/bin Yes * {System Account} AkITTcee2R041kU.65b.VU /usr/bin ATtkK6ee2R041kU.65b.VU UName*It 2.0.10 {} 859402495}

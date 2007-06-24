@@ -1,0 +1,13 @@
+Wo1YKZ5j2R00DUU.65b.VU Wo1YKZ5j2R00DUU.65b.VU {eJmCVYyj2R0BWUU.65b.VU comment Comment NULL Yes 1 128 Mixed {{regexp ENOTPRINT "^[^\001-\037\177-\377]*$"}} {} {} {} {}}
+eJmJwYyj2R0BWUU.65b.VU eJmJwYyj2R0BWUU.65b.VU {eJmIRYyj2R0BWUU.65b.VU name Name Error Yes 1 63 lower {} {} {} {} {}}
+eJmNo2yj2R0BWUU.65b.VU eJmNo2yj2R0BWUU.65b.VU {eJmME2yj2R0BWUU.65b.VU role_name Name Error No 2 16 lower {{regexp ENOTALPHA {^[a-zA-Z]*$}}} {} {} {} {}}
+5sUO9C5L2QyUsUU.65b.VU 5sUO9C5L2QyUsUU.65b.VU {5sUFUC5L2QyUsUU.65b.VU relname {Relative Name} Error Yes 1 255 lower {} UName*It 0.0.0 {} 848707759}
+5sVgpC5L2QyUsUU.65b.VU 5sVgpC5L2QyUsUU.65b.VU {5sVcTi5L2QyUsUU.65b.VU ifname {Interface Name} Error Yes 2 16 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} UName*It 0.0.0 {} 848707759}
+5sZTki5L2QyUsUU.65b.VU 5sZTki5L2QyUsUU.65b.VU {5sZPPC5L2QyUsUU.65b.VU os_name {OS Name} Error No 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} UName*It 0.0.0 {} 848707759}
+5sZY6i5L2QyUsUU.65b.VU 5sZY6i5L2QyUsUU.65b.VU {5sZPPC5L2QyUsUU.65b.VU os_release_name {OS Release} Error No 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} UName*It 0.0.0 {} 848707759}
+5saOmC5L2QyUsUU.65b.VU 5saOmC5L2QyUsUU.65b.VU {5saKQi5L2QyUsUU.65b.VU machine_name {Machine (uname -m)} Error No 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} UName*It 0.0.0 {} 848707759}
+5sb3pC5L2QyUsUU.65b.VU 5sb3pC5L2QyUsUU.65b.VU {5sb/WC5L2QyUsUU.65b.VU server_type_name {Type Name} Error No 1 63 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} UName*It 0.0.0 {} 848707759}
+5sd3ui5L2QyUsUU.65b.VU 5sd3ui5L2QyUsUU.65b.VU {5sd/ZC5L2QyUsUU.65b.VU unix_pathname {File Name} Error Yes 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} UName*It 2.0.0 {} 851048651}
+5seQpC5L2QyUsUU.65b.VU 5seQpC5L2QyUsUU.65b.VU {5seDoi5L2QyUsUU.65b.VU pname Name Error Yes 1 39 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTDASHGENALNUM {^([-_]?[a-zA-Z0-9])*$}}} UName*It 6.0.0 {} 869521493}
+5seVBC5L2QyUsUU.65b.VU 5seVBC5L2QyUsUU.65b.VU {5seDoi5L2QyUsUU.65b.VU pinst Instance Error Yes 0 39 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} UName*It 0.0.0 {} 848707760}
+sd.nj12U2R4AxEU.65b.VU sd.nj12U2R4AxEU.65b.VU {sd.jk12U2R4AxEU.65b.VU ipv4_range_prefix {Host Name Prefix} NULL Yes 1 47 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} UName*It 6.2.0 {} 875318890}

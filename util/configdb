@@ -1,0 +1,81 @@
+application upulld file Host default 24 parameter timeout system All module All
+application upull file Host default none parameter dns_install_type system All module All
+application All file Host default En_US parameter lang system All module unisqlx
+application unameitd file Host default 2000 parameter num_log_buffers system All editors {unameit-server unameit-client} editor_label {Unisqlx Num Log Buffers Kb} module unisqlx
+application unameitd file Host default {} parameter license_host_units system All editors {unameit-server unameit-client} editor_label {License Host Units} module All
+application All file Site default {} parameter service system All editors {unameit-server unameit-client} editor_label {Unameit Service} module All
+application upull file Host default /var/yp/src parameter nis_dir system All module All
+application upull file Host default none parameter nis_install_type system All module All
+file Site parameter password application All default {} editor_label {} help {
+} system All module All secret 1
+application All file Site default {} parameter server_host system All editors {unameit-server unameit-client} editor_label {Unameit Server} module All
+application All file Host default 32000 parameter dbsize system All editors {unameit-server unameit-client} editor_label {Unisqlx Database Size Kb} module unisqlx
+application upull file Host default {} parameter server_host system All editors {unameit-server unameit-client} editor_label {Upull Server} module All
+application All file Site default {} parameter server_realm system All module All
+application All file Site default {} parameter client_principal system All module All
+application unameitd file Host default 5 parameter active_requests system All module unisqlx
+application All file Site default {} parameter client_realm system All editors {unameit-server unameit-client} editor_label {NIS/DNS Domain} module trivial
+application unameitd file Site default {ukrbv ukrbiv} parameter authentications system All module All
+application upull file Host default -1 parameter etc_threshold system All module All
+application unameitd file Host default 256 parameter max_block_count system All module unisqlx
+application unameitd file Host default 8192 parameter initial_workspace_table_size system All module unisqlx
+application All file Host default {} parameter dbname system All editors {unameit-server unameit-client} editor_label {Unisqlx Database Name} module unisqlx
+application All file Host default {} parameter data system All editors {unameit-server unameit-client} editor_label {Unameit Data Directory} module All
+application upull file Site default {ukrbv ukrbiv trivial} parameter authentications system All module All
+application upull file Host default none parameter etc_install_type system All module All
+application All file Site default 4 parameter retries system All module All
+application unameitd file Host default {} parameter license_type system All editors {unameit-server unameit-client} editor_label {License Type} module All
+application All file Host default {} parameter srvtab system All editors {unameit-server unameit-client} editor_label Srvtab module All
+application unameitd file Host default 128 parameter max_block_size system All module unisqlx
+application unameit file Site default green parameter create_color system All module All
+application upull file Host default -1 parameter sybase_threshold system All module All
+application unameitd file Host default 32000 parameter num_data_buffers system All editors {unameit-server unameit-client} editor_label {Unisqlx Num Data Buffers Kb} module unisqlx
+application unameitd file Host default {} parameter license_start system All editors {unameit-server unameit-client} editor_label {License Begin Date} module All
+application upull file Host default {rpc protocols bootparams publickey netid timezone} parameter unhandled_nis_files system All module All
+application upulld file Host default 0 parameter foreground system All module All
+application upull file Host default {} parameter domain system All editors {unameit-server unameit-client} editor_label {NIS/DNS Domain} module All
+application unameitd file Host default {} parameter license_key system All editors {unameit-server unameit-client} editor_label {License Key} module All
+application upull file Site default {} parameter service system All editors {unameit-server unameit-client} editor_label {Upull Service} module All
+application All file Site default {} parameter client_instance system All module All
+application All file Site default 3 parameter backoff system All module All
+application unameit file Site default write_temp_ccache_password parameter login_type system All module All
+application All file Host default {} parameter dblogs system All editors {unameit-server unameit-client} editor_label {Unisqlx Database Logs} module unisqlx
+application upull file Host default none parameter sybase_install_type system All module All
+application All file Site default ukrbv parameter authentication system All module All
+application upulld file Site default {ukrbv ukrbiv trivial} parameter authentications system All module All
+application upull file Host default false parameter full_host_first system All module All
+application All file Site default 1.0 parameter Format system All module All
+application All file Site default {} parameter server_realm system All editors {unameit-server unameit-client} editor_label {NIS/DNS Domain} module trivial
+application All file Host default 0 parameter warn_outofspace_factor system All module unisqlx
+application upull file Host default -1 parameter dns_threshold system All module All
+application All file Host default root parameter login_type system All module All
+application upull file Host default /var/named parameter dns_dir system All module All
+application upulld file Site default trivial parameter authentication system All module All
+file Host parameter mode application All default standalone editor_label {} help {ferryboat
+
+
+} editors {} system All module unisqlx
+application All file Host default {} parameter keytab system All editors {unameit-server unameit-client} editor_label Keytab module All
+application unameitd file Host default 0 parameter foreground system All module All
+application All file Host default {} parameter client_realm system All editors {unameit-server unameit-client} editor_label {NIS/DNS Domain} module trivial
+application unameit file Site default yellow parameter update_color system All module All
+application upulld file Site default {} parameter service system All editors {unameit-server unameit-client} editor_label {Upull Service} module All
+application upull file Host default false parameter nis_relative system All module All
+application All file Site default {} parameter client_realm system All module All
+application upull file Host default -1 parameter nis_threshold system All module All
+application unameitd file Host default {} parameter license_end system All editors {unameit-server unameit-client} editor_label {License End Date} module All
+application All file Host default {} parameter client_realm system All module All
+application upull file Host default true parameter sybase_nullhost system All module All
+application upull file Site default trivial parameter authentication system All module All
+application All file Site default default parameter login_type system All module All
+application All file Host default 1.0 parameter Format system All module All
+application All file Site default {} parameter server_instance system All editors {unameit-server unameit-client} editor_label {Unameit Server FQDN} module All
+application All file Host default {} parameter databases system All editors {unameit-server unameit-client} editor_label {Unisqlx Database Directory} module unisqlx
+application All file Host default {} parameter client_instance system All editors {unameit-server unameit-client} editor_label {Local FQDN} module All
+application upull file Host default {} parameter server_instance system All editors {unameit-server unameit-client} editor_label {Upull Server FQDN} module All
+application unameitd file Host default 4000 parameter checkpoint_interval system All editors {unameit-server unameit-client} editor_label {Unisqlx Checkpoint Interval Kb} module unisqlx
+application unameitd file Host default 24 parameter timeout system All module All
+application upull file Host default {} parameter sybase_dir system All module All
+application All file Site default {} parameter ccache_name system All module All
+application unameitd file Host default {} parameter license_user_units system All editors {unameit-server unameit-client} editor_label {License User Units} module All
+application All file Host default 0 parameter media_failures_are_supported system All module unisqlx

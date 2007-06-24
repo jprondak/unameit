@@ -1,0 +1,7 @@
+set paths {}
+foreach f [glob lib/*] {
+	if [file isdirectory $f] {
+		lappend paths $f
+	}
+}
+return $paths

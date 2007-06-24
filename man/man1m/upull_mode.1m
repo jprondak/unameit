@@ -1,0 +1,608 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH UPULL_MODE 1m
+.SH NAME
+upull_mode \- edit the configuration file on a UName*It pull server
+.SH SYNOPSIS
+.B upull_mode
+[
+.B create
+|
+.B check
+|
+.B delete
+|
+.B edit
+|
+.B list
+]
+.SH DESCRIPTION
+This command edits the configuration file for a UName*It pull
+server. It is normally only run by root.
+.PP
+Sites may wish to have multiple UName*It servers running at
+one time. One server may be the production server, another a test
+server, etc. Each of these servers has a set of parameters describing
+it. These parameters include such aspects as the port number the
+server listens on, where the server dumps its backend data, what the
+default authorization protocol is for the server, etc. Each of these servers
+shares the same binaries (usually in
+.BR /opt/unameit )
+and reads their parameters from a configuration file.
+.PP
+The server you wish to talk to is specified by the UNAMEIT_MODE
+environment variable. To run
+.IR unameit (1),
+you must specify UNAMEIT_MODE.
+.PP
+For each program in UName*It, a set of configuration files
+is read in a specified order. Which configuration files are read
+depends on whether you are root or not. If you are not root, then the
+file
+.IB unameitdir /config/ mode .conf
+is read first followed by
+.IB home /.unameit/config/ mode .conf.
+.I unameitdir
+is the installation directory where UName*It is installed, 
+.I mode
+is the mode UNAMEIT_MODE is set to and
+.I home
+is the home directory of the user running the command.
+The second configuration file parameters takes precedence over the
+first files parameters.
+.PP
+If you are root, then the files
+.IB unameitdir /config/ mode .conf
+is read followed by
+.BI /etc/unameit/config/ mode .conf
+(that is, you can envision root's home as
+.B /etc/unameit/config).
+The idea here is that there are set of site parameters that will be
+set up in the
+.I unameitdir
+directory. Individual people or hosts may wish to override these
+parameters so the
+.IB home /.unameit/config/ mode .conf
+and
+.BI /etc/unameit/config/ mode .conf
+files are used to override these defaults.
+.PP
+You can edit the
+.BI /etc/unameit/config/ mode .conf
+file by using the
+.B upull_mode
+command. If you run
+.RB `` upull_mode\ edit ''
+as root
+an editor is brought up on
+.BI /etc/unameit/config/ mode .conf\fR.
+The EDITOR and VISUAL environment variables are used to determine
+which editor to run or 
+.IR vi (1)
+is used if they are not set.
+Unfortunately, there is no command for editing
+.IB home /.unameit/config/ mode .conf.
+for non-root users. They will have to edit this file manually to set
+parameters.
+.SH COMMANDS
+The following commands are available to
+.BR upull_mode .
+The mode these commands work on are specified by the UNAMEIT_MODE
+environment variable.
+.TP
+.B create
+Creates a new mode configuration file. A template for the newly
+created file is contained in
+.IB unameitdir /install\fR.
+A dialog box is displayed asking you to initially edit the fields of the
+configuration file.
+.TP
+.B check
+This command checks the configuration file for errors.
+.TP
+.B delete
+This command deletes an existing configuration file.
+.TP
+.B edit
+This command edits an existing configuration file.
+.TP
+.B list
+This command prints out the different modes that are available.
+.SH FILE FORMAT
+The configuration files used by UName*It have a format invented by
+ESM. Comments begin with # and continue to the end of the line. The
+configuration file is divided into a number of sections delimited by
+.sp
+.RS
+.BI Applications\  application...
+.RE
+.sp
+where
+.I application
+is a list of applications this section applies to or the word ``All''.
+.PP
+For each 
+.B Application
+section, a subsection named
+.sp
+.RS
+.BI Modules\  modules...
+.RE
+.sp
+can be specified to set parameters for submodules of an
+application. Again, the word ``All'' can be substituted instead.
+.PP
+After these two sections, keywords are specified as
+.sp
+.RS
+.I keyword\  values...
+.RE
+.sp
+where 
+.I values
+is usually one value but may be more.
+.PP
+Here is an example:
+.sp
+.RS
+.nf
+Applications All
+Modules ukrbiv
+	keytab	 		/etc/unameit-srvtab
+	keytab.label		Srvtab
+Modules ukrbv
+	keytab	 		/etc/krb5.keytab
+
+Applications unameitd
+	authentications		ukrbv ukrbiv 
+.fi
+.RE
+.sp
+This example says that all the applications should use a keytab of
+.B /etc/unameit-srvtab 
+if they are using version 4 of Kerberos and 
+.B /etc/krb5.keytab
+if they are using version 5 of Kerberos. The next sections says that 
+.IR unameitd (1m)
+will accept both Kerberos 4 and Kerberos 5 authentications
+.RI ( unameitd (1m)
+looks at the 
+.I authentications
+keyword to see what authentication types to accept).
+.PP
+The
+.I keytab.label
+field in the example is special. Whenever a keyword contains a period,
+then the keyword refers to a field on the login screen when
+.IR unameit (1)
+first comes up. Because UName*It programs have pluggable
+authentication protocols, you specify the types of authentication
+recognized and the labels of the authentication fields in the login
+dialog box by using configuration files. The authentication types and
+field names are not hard coded into UName*It.
+.PP
+The
+.I keytab.label
+field says to label the 
+.I keytab 
+Kerberos field on the login dialog box with the string ``Srvtab'' for
+Kerberos 4. For Kerberos 5, a
+.I keytab.label
+is not defined so the label on the login dialog box will be ``Keytab''
+(by default, the name of the keyword is used with leading
+capitalization).
+.PP
+The identifier after the period
+.RI ( i.e. ,
+the
+.IR .label ),
+actually is one of four types of modifiers you can tack on the end of
+keywords that represents fields in the login dialog box. The four
+modifiers are:
+.TP
+.I .label
+Use the label specified as the name of the field in the login dialog
+box.
+.TP
+.I .readonly
+Put this field in the login dialog box, but make it read only. The
+user will not be able to change it.
+.TP
+.I .hidden
+Don't display this field in the login dialog box.
+.TP
+.I .secret
+When the user types the value of this field in the login dialog box,
+make every character he types print as `*'. This is useful for
+password fields.
+.PP
+Whether a keyword belongs in the global configuration file or the host
+specific configuration file depends on whether the value is site wide
+or host specific. Also, more specific values override less specific
+ones, so a keyword for 
+.I upull
+will override a keyword for
+.I All
+regardless of the order in the configuration file. However, the last
+read configuration file always takes precedence.
+.SH KEYWORDS
+Here is a list of the keywords recognized by the various programs:
+.TP
+domain
+The NIS domain.
+.TP
+realm
+Default Kerberos realm.
+.TP
+service
+The service to listen on.
+.TP
+login
+The default login name to use when logging in to UName*It. Users may
+wish to override this in their
+.IR home /.unameit/config/ mode .conf
+file.
+.TP
+instance
+The default instance name to use when logging in to UName*It.
+.TP
+server_host
+The host to connect to.
+.TP
+foreground
+A boolean value. If it is 1, the daemon runs in the foreground.
+.TP
+timeout
+The number of idle hours before the UName*It server logs the
+connection out.
+.TP
+retries
+The number of times 
+.IR unameit (1)
+will retry trying to contact the UName*It server before giving
+up. Each time it retries, it waits for double the amount of seconds.
+.TP
+backoff
+The number of seconds to wait before retrying the server. This amount
+is doubled during each retry.
+.TP
+authentication
+The authentication to use for this program. Current valid types are
+``ukrbiv'' (Kerberos 4), ``ukrbv'' (Kerberos 5) and ``trivial'' (no
+authentication).
+.TP
+ccache_type
+Credential cache type. Ignore.
+.TP
+login_type
+Where to get the credentials from. Can be 
+.I write_temp_ccache_keytab 
+(aka
+.IR host ),
+.I write_temp_ccache_password
+(aka
+.IR client ),
+.IR write_permanent_ccache_keytab ,
+.IR write_permanent_ccache_password ,
+.IR write_default_ccache_keytab ,
+.I write_default_ccache_password 
+or
+.IR read_default_ccache .
+You can ignore this field. You can see the default template file for more
+explanation of this keyword.
+.TP
+keytab
+The location of the keytab file for this protocol.
+.TP
+authentications
+The authentications types accepted by a server daemon.
+.TP
+create_color
+The color to use for created objects in
+.IR unameit (1).
+.TP
+update_color
+The color to use for updated objects in
+.IR unameit (1).
+.TP
+enable_logging
+If this parameter is present,
+.IR unameitd (1m)
+will log the "preview" information of all client transactions to a log file.
+The log file
+.RI log. major.minor
+is written is in the directory containing the data checkpoints and the
+.RI data. version
+file. The log file is closed after each checkpoint, and a new file with
+a higher minor number is created.  The log files are not automatically
+deleted,  you should arrange to delete them after any appropriate archiving
+has taken place.  Take care not to delete the currently active log file.
+.TP
+data
+Where to dump all the backend files.
+.TP
+license_key
+The UName*It license key.
+.TP
+license_type
+The UName*It license type. Can be ``prod'' or ``eval''.
+.TP
+license_host_units
+The number of host units the mode is licensed for.
+.TP
+license_user_units
+The number of user units the mode is licensed for.
+.TP
+license_start
+The starting date for the license.
+.TP
+license_end
+The ending date of the license.
+.TP
+mode
+The mode of the UniSQL/X database. Always ``standalone''.
+.TP
+dbname
+The name of the UniSQL/X database.
+.TP
+dblogs
+Where to store the log archives for UniSQL/X.
+.TP
+dbsize
+The number of kilobytes in a database extension.
+.TP
+databases
+Where to store the data archives for UniSQL/X.
+.TP
+leave_dumpdir
+A boolean. If true, then the 
+.BI dump. version
+directory normally deleted by
+.IR uparsedb (1m)
+is left around rather than being deleted. This is useful for debugging
+the backend.
+.TP
+nis_dir
+The directory where the NIS files go. The default if not specified is
+.BR /var/yp/src .
+.TP
+dns_dir
+The directory where the DNS files go. The default if not specified is
+.BR /var/named .
+.TP
+sybase_dir
+The directory where the Sybase interfaces file goes. The default if
+not specified is 
+.BR ~sybase .
+.TP
+dns_install_type
+The method used to install DNS zone files.
+The installation
+.I type
+can be
+.IR safe ,
+.I unsafe
+or
+.IR none .
+If
+.I type
+is
+.IR safe ,
+then the files are copied to a directory named
+.B new
+under
+.I dns_dir
+first, then the directory named
+.IB dns_dir /current
+is moved to a directory named
+.IB dns_dir /old
+and 
+.IB dns_dir /new
+is moved to
+.IB dns_dir /current.
+This leaves a small time window when the system could crash and the
+directory
+.IB dns_dir /current
+wouldn't exist, but the chances of this are small. It has an
+advantage over 
+.I unsafe
+in that all the files in the target directory are always from a single
+consistent database version.
+.IP
+If 
+.I type
+is 
+.IR unsafe ,
+then all the DNS files are first moved to files in
+.I dns_dir
+with the string ``.new'' appended to their file names. After this is
+done, all the old files are linked to their names with an ``.old''
+suffix and the ``.new'' files are moved to their regular names. This
+method has the problem that if the system crashes during the small
+time window when the moves are happening, some of the files on the
+system can be from two different versions of pull. It does have the
+advantage though that no subdirectories are used for the installed
+files.
+.IP
+If
+.I type
+is
+.IR none ,
+then the files are simply not installed.
+The default for
+.I dns_install_type
+is
+.IR none .
+.TP
+nis_install_type
+The method used to install the NIS files. The default is 
+.IR none .
+.TP
+etc_install_type
+The method used to install the
+.B /etc
+files. The default is
+.IR none .
+The type
+.I safe
+is not valid here, because installing into subdirectories under
+.B /etc
+doesn't make any sense.
+.TP
+sybase_install_type
+The method used to install the Sybase 
+.I interfaces 
+file. The default is
+.IR none .
+.TP
+nis_relative
+A boolean value that specifies
+whether NIS files are put in a subdirectory whose name
+is the name of the domain of the NIS files. A host can be a NIS server
+for many NIS domains, so we need to separate the NIS files out into
+separate directories. If this option is turned on, then this is
+done. For example, if
+the
+.I type
+is
+.I safe
+and
+.I nis_relative
+is turned on, then the directory the NIS files are installed to is
+named
+.IB nis_dir / domain_name /current/\fR,\fP
+otherwise the directory installed to is
+.IB nis_dir /current\fR.\fP
+If the
+.I type
+is 
+.I unsafe
+and 
+.I nis_relative
+is turned on, then the directory the NIS files are installed to is
+named
+.IB nis_dir / domain_name\fR,\fP
+otherwise the directory installed to is
+simply
+.IR nis_dir .
+The boolean value can be specified with virtually anything including
+.IR false , 
+.IR off , 
+.IR no , 
+etc. The default is 
+.I false
+since rarely is a host a NIS server for multiple domains.
+.TP
+dns_threshold
+This specifies the maximum percentile by which the new data to be installed
+may be smaller (in each of line and character count) than the original.
+If the new file is too small, it will not be installed.
+If the percentile is -1, then the file is always
+installed, regardless of the differences.  The threshold is designed to
+reduce the likelihood of accidental propagation of test datasets.  File
+size comparisons alone will not protect against maliciously changed file
+content.
+The
+.I percentile
+can be specified as a number or a number following by a `%'.
+.TP
+nis_threshold
+A percentile as above, except for NIS. Default is -1.
+.TP
+etc_threshold
+A percentile as above, except for
+.B /etc
+files. Default is -1.
+.TP
+install_etc_files
+A list of files to install in 
+.BR /etc .
+Normally, every 
+.B /etc 
+file generated by UName*It is installed. This option allows you to
+only install the passwd file, for example. Do not leave this field
+empty or nothing will be installed! Comment it out instead.
+.TP
+install_nis_maps
+Install only the files listed in the NIS map directories. The same caveat
+about uncommenting this keyword applies.
+.TP
+sybase_nullhost
+A boolean specifying that when outputting the Sybase
+.B interfaces
+file, use
+.I nullhost
+as the host in the 
+.B interfaces
+file. Sybase has a bug in the 
+.B interfaces 
+file where multi-homed hosts
+cannot
+listen on any interface because you must specify a particular IP
+address. To get around this, we define a host named
+.I nullhost
+that uses the IP address 0.0.0.0 which is the same as INADDR_ANY.
+The default is 
+.IR true .
+.TP
+unhandled_nis_files
+A list of files to copy from the
+.B /etc
+directory to the NIS map directory when you create the NIS maps on the
+system. The NIS Makefile (that is distributed with UName*It) normally
+looks for all the source files in
+.BR  /var/yp/src .
+It even looks for files like ``bootparams'' and ``publickey'' in this
+directory even though UName*It currently doesn't manage these
+files. If you set this option to a list of files, then those files are
+copied from
+.B /etc
+to the NIS directory when the NIS map files are created and this Makefile
+doesn't need to be hacked up to look for the files in
+.BR /etc .
+The default for this option is the list
+.br
+.sp 1
+rpc protocols bootparams publickey netid timezone
+.br
+.sp 1
+Any values you set for this option
+.I override
+the defaults so if you want the defaults you must list them too.
+Uncomment this keyword if you wish to use the defaults.
+.TP
+full_host_first
+A boolean specifying whether to print the fully qualified host name in the
+.I hosts
+file first, then the unqualified name; otherwise, switch the
+order. The default is
+.IR false .
+This only affects the hosts file for 
+.B /etc
+and NIS.
+.SH SEE ALSO
+unameit(1), unameit_mode(1m), upull(1m)
+.SH BUGS
+There currently isn't a list of which programs understand which
+keywords. This should be documented.
+.PP
+Some of the keywords are not documented because they are so arcane.

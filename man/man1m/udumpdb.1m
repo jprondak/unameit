@@ -1,0 +1,88 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH UDUMPDB 1m
+.SH NAME
+udumpdb \- initiate a UName*It database dump
+.SH SYNOPSIS
+.B udumpdb
+.LP
+.B unameit_shutdown
+.SH DESCRIPTION
+This command asks the UName*It server to dump all the database records
+needed for a backend run to external ASCII files. These ASCII files
+can be used to restore the database at a later time.
+It is run by the backend script
+.IR ubackend (1m)
+and is not typically run directly.
+.LP
+When invoked as 
+.B unameit_shutdown
+a dump is
+performed and the server halts also.
+.SH FILES
+The location of the backend generated files is specified by the 
+.I data
+keyword in the UName*It configuration files. See
+.IR upull_mode (1)
+and
+.IR unameit_mode (1m).
+This location is specified by ellipses below.
+.LP
+.PD 0
+.TP 25
+\&.../data/data.version
+This file contains the version of the directory containing the ASCII
+dumps.
+.TP 25
+.RI .../data/data. version
+These directories contains the full output of the database in flat
+files. This data is parsed by
+.IR uparsedb (1m)
+to create the
+.RI dump. version
+and
+.RI gen. version
+directories.
+.TP 25
+\&.../data/schema.version
+This file contains the version number of the current schema directory.
+.TP 25
+.RI .../data/schema. version
+This file contains the schema for the data directories.
+\fIThese directories should not be deleted.\fP
+These directories are needed if you are going to restore the whole
+database. The schema for the database resides in
+.RI schema. version
+and the data resides in
+.RI data. version .
+A new
+.RI schema. version
+file is created each time you modify the schema.
+The
+.RI schema. version
+file number is not related to the
+.RI data. version
+file number.
+.SH SEE ALSO
+upull(1), 
+ubackend(1m), unameitd(1m), unameit_mode(1m), uparsedb(1m), upulld(1m),
+upull_mode(1)

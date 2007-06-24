@@ -1,0 +1,2 @@
+glob bin/*.dll bin/krb5.exe bin/kinit.exe
+

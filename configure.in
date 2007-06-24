@@ -1,0 +1,257 @@
+dnl $Id: $
+dnl
+dnl Copyright (c) 1997 Enterprise Systems Management Corp.
+dnl
+dnl This file is part of UName*It.
+dnl
+dnl UName*It is free software; you can redistribute it and/or modify it under
+dnl the terms of the GNU General Public License as published by the Free
+dnl Software Foundation; either version 2, or (at your option) any later
+dnl version.
+dnl
+dnl UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+dnl WARRANTY; without even the implied warranty of MERCHANTABILITY or
+dnl FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+dnl for more details.
+dnl
+dnl You should have received a copy of the GNU General Public License
+dnl along with UName*It; see the file COPYING.  If not, write to the Free
+dnl Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+dnl 02111-1307, USA.
+dnl
+
+dnl
+dnl Process this file with autoconf to produce a configure script.
+dnl
+
+#
+# This is the unameit version. It is used in the version file and
+# also compiled into config.h
+#
+
+#
+# Make sure we are in the right directory
+#
+AC_INIT(include/config.h.in)
+AC_CONFIG_HEADER(include/config.h)
+
+#
+# Add -with-dns arg
+AC_ARG_WITH(dns,
+[  --with-dns              Compile the DNS version of UName*It],
+[case $withval in
+    y*)
+	DNS_ONLY=-DDNS_ONLY
+	DNS_EXT=_dns
+	;;
+esac])
+AC_SUBST(DNS_EXT)
+AC_SUBST(DNS_ONLY)
+    
+# Read in parts list
+. ./parts_list
+
+# Read in the version
+UNAMEIT_VERSION=`cat version`
+export UNAMEIT_VERSION
+AC_SUBST(UNAMEIT_VERSION)
+
+#
+#
+# Import Tcl variables
+#
+tcl_libdir=/opt/${tcl}/lib
+
+if test -f $tcl_libdir/tclConfig.sh; then
+    . $tcl_libdir/tclConfig.sh;
+else
+    echo "Warning: Could not find $tcl_libdir/tclConfig.sh" 1>&2
+fi
+
+AC_SUBST(TCL_CC)
+AC_SUBST(TCL_CFLAGS)
+AC_SUBST(TCL_DEFS)
+AC_SUBST(TCL_LIB_FILE)
+AC_SUBST(TCL_LIBS)
+AC_SUBST(TCL_PREFIX)
+AC_SUBST(TCL_EXEC_PREFIX)
+AC_SUBST(TCL_SHLIB_CFLAGS)
+AC_SUBST(TCL_SHLIB_CXXFLAGS)
+AC_SUBST(TCL_SHLIB_LD)
+AC_SUBST(TCL_SHLIB_LD_LIBS)
+AC_SUBST(TCL_SHLIB_SUFFIX)
+AC_SUBST(TCL_DL_LIBS)
+AC_SUBST(TCL_LD_FLAGS)
+AC_SUBST(TCL_LD_SEARCH_FLAGS)
+AC_SUBST(TCL_LIB_HNAME)
+AC_SUBST(TCL_COMPAT_OBJS)
+AC_SUBST(TCL_COMPAT_SOBJS)
+AC_SUBST(TCL_RANLIB)
+AC_SUBST(TCL_LIB_SPEC)
+AC_SUBST(TCL_LIB_VERSIONS_OK)
+AC_SUBST(TCL_SHARED_LIB_SUFFIX)
+AC_SUBST(TCL_UNSHARED_LIB_SUFFIX)
+#
+export TCL_CC TCL_CFLAGS TCL_DEFS TCL_LIB_FILE TCL_LIBS TCL_PREFIX
+export TCL_EXEC_PREFIX TCL_SHLIB_CFLAGS TCL_SHLIB_CXXFLAGS TCL_SHLIB_LD
+export TCL_SHLIB_LD_LIBS TCL_SHLIB_SUFFIX TCL_DL_LIBS TCL_LD_FLAGS
+export TCL_LD_SEARCH_FLAGS TCL_LIB_HNAME TCL_COMPAT_OBJS TCL_COMPAT_SOBJS
+export TCL_RANLIB TCL_LIB_SPEC TCL_LIB_VERSIONS_OK
+export TCL_SHARED_LIB_SUFFIX TCL_UNSHARED_LIB_SUFFIX
+
+# Set up default compiler flags
+if test -z "${CC:+1}"; then
+    CC="$TCL_CC"
+fi
+AC_SUBST(CC)
+AC_SUBST(CFLAGS)
+AC_SUBST(LDFLAGS)
+#
+# Set default link libraries.
+#
+LIBS="$TCL_LIBS"
+
+#
+# Import Tk variables
+#
+if test -f $tcl_libdir/tkConfig.sh; then
+    . $tcl_libdir/tkConfig.sh
+else
+    echo "Warning: Could not find $tcl_libdir/tkConfig.sh" 1>&2
+fi
+AC_SUBST(TK_MAJOR_VERSION)
+AC_SUBST(TK_DEFS)
+AC_SUBST(TK_LIB_FILE)
+AC_SUBST(TK_LIBS)
+AC_SUBST(TK_PREFIX)
+AC_SUBST(TK_EXEC_PREFIX)
+AC_SUBST(TK_XINCLUDES)
+AC_SUBST(TK_XLIBSW)
+AC_SUBST(TK_LIB_SPEC)
+export TK_DEFS TK_LIB_FILE TK_LIBS TK_PREFIX TK_EXEC_PREFIX TK_XINCLUDES
+export TK_XLIBSW TK_LIB_SPEC TK_MAJOR_VERSION
+#
+# Import tclx variables
+#
+if test -f $tcl_libdir/tclxConfig.sh; then
+	. $tcl_libdir/tclxConfig.sh;
+else
+    echo "Warning: Could not find $tcl_libdir/tclxConfig.sh" 1>&2
+fi
+AC_SUBST(TCLX_DEFS)
+AC_SUBST(TCLX_LIBS)
+AC_SUBST(TCLX_LIB_SPEC)
+# Fix up TCLX_LD_SEARCH_FLAGS, to allow use with other systems.
+TCLX_LD_SEARCH_FLAGS="`echo $TCLX_LD_SEARCH_FLAGS |\
+	sed -e \"s,$tcl_libdir,\\\${LIB_RUNTIME_DIR},\"`"
+AC_SUBST(TCLX_LD_SEARCH_FLAGS)
+export TCLX_DEFS TCLX_LIBS TCLX_LIB_SPEC TCLX_LD_SEARCH_FLAGS
+#
+# Import tkx variables
+#
+if test -f $tcl_libdir/tkxConfig.sh; then
+	. $tcl_libdir/tkxConfig.sh;
+else
+    echo "Warning: Could not find $tcl_libdir/tkxConfig.sh" 1>&2
+fi
+AC_SUBST(TKX_DEFS)
+AC_SUBST(TKX_LIBS)
+AC_SUBST(TKX_LIB_SPEC)
+export TKX_DEFS TKX_LIBS TKX_LIB_SPEC
+#
+# Checks for programs.
+#
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_RANLIB
+AC_PROG_MAKE_SET
+#
+AC_PATH_PROG(perl, perl, /opt/perl/bin/perl)
+PERL=$perl
+AC_SUBST(PERL)
+#
+AC_PATH_PROG(frink, frink, /opt/bin/frink)
+FRINK=$frink
+AC_SUBST(FRINK)
+#
+#
+# Set Kerberos and UniSQL/X variables
+#
+KRB=/opt/$krb5
+AC_SUBST(KRB)
+#
+UNISQLX=/opt/$unisqlx
+AC_SUBST(UNISQLX)
+#
+# Checks for header files.
+#
+AC_CHECK_HEADERS(\
+    arpa/inet.h netinet/in.h netinet/tcp.h sys/param.h sys/sockio.h \
+    sys/socket.h sys/stat.h sys/time.h sys/types.h sys/uio.h \
+    crypt.h ctype.h fcntl.h netdb.h syslog.h shadow.h unistd.h \
+)
+
+#
+# Check functions.
+#
+AC_CHECK_FUNCS(fcntl ioctlsocket getpagesize sysconf syslog lckpwdf)
+#
+# Figure out how to get ether address
+#
+ETHER_API=
+AC_CHECK_HEADER(sys/dlpi.h, ETHER_API=dlpi,)
+if test -z "$ETHER_API"; then
+    AC_CHECK_HEADER(net/nit.h, ETHER_API=nit,)
+    if test ! -z "$ETHER_API"; then
+    AC_EGREP_CPP(nit4,
+[#include <net/nit_if.h>
+#ifdef NIOCBIND
+nit4
+#endif], ETHER_API=nit4, ETHER_API=nit3)
+    fi
+fi
+AC_SUBST(ETHER_API)
+#
+# Does the compiler have a long long type
+#
+AC_TRY_COMPILE(, [long long bigint = ~0;], [AC_DEFINE(HAVE_LONG_LONG)],)
+#--------------------------------------------------------------------
+dnl
+dnl generate the make files,  etc.
+dnl most makefile include pre.mk.in and post.mk.in
+dnl
+define(ESM_MAKEFILE_SOURCE, $1:pre.mk.in:$1.in:post.mk.in)
+
+AC_OUTPUT(
+ESM_MAKEFILE_SOURCE(Makefile)
+ESM_MAKEFILE_SOURCE(backend/Makefile)
+ESM_MAKEFILE_SOURCE(include/Makefile)
+ESM_MAKEFILE_SOURCE(libcache_mgr/Makefile)
+ESM_MAKEFILE_SOURCE(libcanon/Makefile)
+ESM_MAKEFILE_SOURCE(libconn/Makefile)
+ESM_MAKEFILE_SOURCE(libether/Makefile)
+ESM_MAKEFILE_SOURCE(libordered_list/Makefile)
+ESM_MAKEFILE_SOURCE(libradix/Makefile)
+ESM_MAKEFILE_SOURCE(libaddress/Makefile)
+ESM_MAKEFILE_SOURCE(library/Makefile)
+ESM_MAKEFILE_SOURCE(libschema_mgr/Makefile)
+ESM_MAKEFILE_SOURCE(libudb/Makefile)
+ESM_MAKEFILE_SOURCE(libuuid/Makefile)
+ESM_MAKEFILE_SOURCE(schema/Makefile)
+ESM_MAKEFILE_SOURCE(sci/Makefile)
+ESM_MAKEFILE_SOURCE(scripts/Makefile)
+ESM_MAKEFILE_SOURCE(ubackend/Makefile)
+ESM_MAKEFILE_SOURCE(udumpdb/Makefile)
+ESM_MAKEFILE_SOURCE(unameit/Makefile)
+ESM_MAKEFILE_SOURCE(unameitcl/Makefile)
+ESM_MAKEFILE_SOURCE(unameitd/Makefile)
+ESM_MAKEFILE_SOURCE(unameitkey/Makefile)
+ESM_MAKEFILE_SOURCE(uparsedb/Makefile)
+ESM_MAKEFILE_SOURCE(upasswd/Makefile)
+ESM_MAKEFILE_SOURCE(upull/Makefile)
+ESM_MAKEFILE_SOURCE(upulld/Makefile)
+ESM_MAKEFILE_SOURCE(util/Makefile)
+ESM_MAKEFILE_SOURCE(man/man1/Makefile)
+ESM_MAKEFILE_SOURCE(man/man1m/Makefile)
+include/version.h
+)

@@ -1,0 +1,54 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+clean::
+	$(RM) core *.o *.a *.o *.dvi
+
+distclean::
+
+depend:: $(SRCS)
+	makedepend -- $(CPPFLAGS) $(CFLAGS) -- $(SRCS)
+
+install:: install-client install-server
+install-client::
+install-server::
+
+.SUFFIXES: .fig .ps .ec .o .tcl .c @TCL_SHLIB_SUFFIX@
+
+%@TCL_SHLIB_SUFFIX@: %.c
+	$(COMPILE.c) $(TCL_SHLIB_CFLAGS) $<
+	$(TCL_SHLIB_LD) -o $@ $*.o
+
+.fig.ps:
+	$(FIG2DEV) -L ps $< > $*.ps
+%.o: %.c
+	$(COMPILE.c) -o $@ $<
+%.c: %.ec
+	UNISQLX=$(UNISQLX) SHLIB_PATH=$(UNISQLX)/lib LD_LIBRARY_PATH=$(UNISQLX)/lib $(ESQL) $(ESQLFLAGS) -o $@ $<
+%.h: %.tcl
+	$(TCL_EXEC_PREFIX)/bin/tcl $(TOP)/util/dumpprocs $< > $*.tmp1
+	$(FRINK) -W -m $*.tmp1 > $*.tmp
+	$(TCL_EXEC_PREFIX)/bin/tcl $(TOP)/util/tcl2c $* $*.tmp > $*.tmp1
+	mv $*.tmp1 $@
+	$(RM) $*.tmp
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.

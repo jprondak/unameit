@@ -1,0 +1,83 @@
+#! /sbin/sh
+#
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+PATH=/usr/bin:/usr/sbin
+UNAMEIT=/opt/unameit
+
+if [ -f $UNAMEIT/bin/unameit_mode ]; then
+    #
+    # List of modes for which we run UName*It servers.
+    #
+    SERVER_MODES="`$UNAMEIT/bin/unameit_mode list`"
+    #
+    # List of modes for which we run pull servers.
+    #
+    UPULLD_MODES="$SERVER_MODES"
+fi
+
+case $1 in 
+'start_msg')
+        echo 'Start UName*It subsystem'
+        ;;
+'stop_msg')
+        echo 'Stop UName*It subsystem'
+        ;;
+'start')
+	for mode in $SERVER_MODES
+	do
+	    UNAMEIT_MODE=$mode; export UNAMEIT_MODE
+	    if [ -f $UNAMEIT/sbin/unameitd ]; then
+		echo "$mode UName*It server starting"
+		$UNAMEIT/sbin/unameitd 
+	    fi
+	done
+	#
+	for mode in $UPULLD_MODES
+	do
+	    UNAMEIT_MODE=$mode; export UNAMEIT_MODE
+	    if [ -f $UNAMEIT/sbin/upulld ]; then
+		echo "$mode UName*It Pull server starting"
+		$UNAMEIT/sbin/upulld 
+	    fi
+	done
+	;;
+'stop')
+	for mode in $SERVER_MODES
+	do
+	    UNAMEIT_MODE=$mode; export UNAMEIT_MODE
+	    if [ -f $UNAMEIT/sbin/unameitd ]; then
+		echo "$mode UName*It server stopping"
+		$UNAMEIT/sbin/unameit_shutdown 2>/dev/null || : ignore
+	    fi
+	done
+	#
+	pids=`ps -e | awk '/upulld/ {print $1}'`
+	if test "$pids"; then
+	    kill $pids
+	fi
+	;;
+*)
+	echo "usage: $0 {start|stop}"
+	;;
+esac

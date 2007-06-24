@@ -1,0 +1,75 @@
+#! /bin/sh
+#
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+# Create a database using information from the configuration files.
+# 
+# Start up TCL with this file as input. 
+# TCL treats the following line as a continuation of this comment \
+exec tcl -n "$0" "$@"
+
+package require Config
+proc gc {param} {
+    global unameitConfig 
+    unameit_config_ne unameitConfig $param unisqlx
+}
+
+unameit_getconfig unameitConfig unameitd
+
+# set environment for unisqlx
+unameit_configure_unisqlx unameitConfig
+
+set CREATE [unameit_filename UNAMEIT_UNISQLX utilities createdb]
+set CHECK [unameit_filename UNAMEIT_UNISQLX utilities spacedb_sa]
+set DB_NAME [gc dbname]
+set DB_DATA [gc databases]
+set DB_LOGS [gc dblogs]
+set DB_SIZE [gc dbsize]
+
+set PS [unameit_config_pagesize]
+
+#
+# Create directory if needed
+#
+file mkdir $DB_DATA $DB_LOGS
+
+if {![catch {exec $CHECK $DB_NAME}]} {
+    error "Database '$DB_NAME' already exists"
+}
+
+puts "creating database $DB_NAME in $DB_DATA"
+puts "putting logfiles in $DB_LOGS"
+puts "database size: $DB_SIZE pages of $PS bytes"
+puts "please be patient..."
+
+#
+# Build an empty database
+#
+exec $CREATE -ps $PS -p $DB_SIZE -f $DB_DATA -l $DB_LOGS $DB_NAME
+
+#
+# Initialize it 
+#
+puts "initializing database..."
+exec unameit_init $DB_NAME
+exit 0

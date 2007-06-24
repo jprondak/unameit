@@ -1,0 +1,103 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH UNAMEITCL 1
+.SH NAME
+unameitcl - Tcl client for the UName*It server
+.SH SYNOPSIS
+.B unameitcl
+[
+.I filename
+]
+.SH DESCRIPTION
+This command is the Tcl command line interface to the UName*It
+server. It is essentially a
+.IR tclsh (1)
+shell with built-in extensions, such as, an I/O library to connect to
+the UName*It server, built-in commands for sending data to the
+UName*It server and TclX.  It can be used interactively 
+or as a shell script interpreter using the #! notation. You must run
+.IR kinit (1)
+before running this program.
+.PP
+.B unameitcl
+also has two subinterpreters built into it. The first subinterpreter
+is called the Cache Manager. The cache manager stores the results of
+queries and fetches of objects in its internal memory. When you get an
+attribute of an object, the results are first looked for in the cache
+manager and then the results are fetched from the database if they are
+not in the cache. The cache manager also maintains the connection
+between
+.IR unameitd (1m)
+and
+.IR unameitcl (1).
+.PP
+The next subinterpreter is the Schema Manager. The schema manager
+answers questions about various aspects of the schema. It may make
+calls to the cache manager to get information about the schema if it
+is not cached internally.
+.PP
+The APIs of the two subinterpreters are exported to the Master
+Interpreter. The master interpreter is the interpreter you are talking
+to at the Tcl prompt. Therefore, you can make calls to the cache
+manager and schema manager by just calling the function name. The
+functions in the cache manager and schema manager are too numerous to
+mention here, but you can inspect the functions using the regular Tcl
+interpreter commands (see the Tcl manual pages
+.IR interp (n) 
+and
+.IR info (n)).
+.PP
+Here is an example on creating a new user using
+.BR unameitcl .
+.RS
+$ unameitcl
+.br
+%# Make call to schema manager to print out attrs of person class
+.br
+%\fIunameit_get_settable_attributes person\fP
+.br
+fullname name owner person_phone preferred_mailbox mailbox_route person_expiration comment
+.br
+%# Run query to get uuid of esm.com cell
+.br
+%\fIset q_array(Class) cell\fP
+.br
+%\fIset q_array(name) {= esm.com}\fP
+.br
+%# Call unameit_query in cache manager
+.br
+%\fIset esm_com_uuid [unameit_query [array get q_array]]\fP
+.br
+f9rvEjxr2Qy34.U.65Leek
+.br
+%# Make cache manager call to create new item
+.br
+%\fIunameit_create person [uuidgen] fullname {John Q.  Public} name john_q_public owner $esm_com_uuid person_phone +1-415-555-1212\fP
+.br
+%# Commit the cache to make the change in the database
+.br
+%\fIunameit_commit\fP
+.br
+%
+.RE
+.SH SEE ALSO
+kinit(1), tclsh(1), unameit(1), unameitd(1m), info(n), interp(n)

@@ -1,0 +1,356 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+		Changes from version 2.5.2 to version 2.5.3
+
+CONFIGURATION:
+    The user and host <mode>.conf files are now:
+
+	${HOME}/.unameit/${UNAMEIT_MODE}.conf
+
+    and
+
+	/etc/unameit/${UNAMEIT_MODE}.conf
+
+    respectively.  Previously they were one level deeper in a "config"
+    subdirectory.  You will want to move, copy or link the config files
+    to their new locations.
+
+SCHEMA:
+    Allow hyphens and undescores in Principal names.  This makes it possible
+    to add host_principal objects for services such as "unameit-<mode>"
+    (used by UName*It servers and root clients).
+
+    Restrict host_principal owner to be in same organization as host.  The
+    previous same cell restriction was too tight.
+
+    Please run "$UNAMEIT/boot/upgrade" to upgrade your schema.
+
+CLIENTS:
+    More detailed "Preview" window in "unameit".
+
+    Graphical client "unameit" and "unameitcl" transmit transaction summary
+    (as in "Preview" window of "unameit") for logging on server.
+
+    Constraints which use the "contains" operator on set/sequence
+    pointer attributes now match objects that point to *at least all of*
+    of the specified items, rather than the previous *at least one of*
+    of the specified items.  (Note: "contains" is the implicit operator
+    for UI set/sequence queries).
+
+UI:
+    Creation of new windows was failing.
+
+    Display "traverse" as a pull right menu if and only if
+    the field is empty and the pointer domain has subclasses.
+
+    Modal dialogues did not always steal the keyboard focus.
+
+    Fixed possible core dump in TOI ("unameit") client due to object
+    sorting function being non monotone in some situations.
+
+    Fixed Tk bug with background colour names containing white space.
+
+UNAMEIT SERVER:
+    New configuration option "enable_logging" controls whether server
+    actually logs the transaction.
+
+    The "comment" field can now have "inherited" attribute records,
+    allowing custom labels or syntax in subclasses.
+
+PULL SERVER:
+    Fixed bug when pull server is started before first backend
+    run or first slave server pull.
+
+LICENSE:
+    UName*It server license information is now located in /etc/unameit/license
+    on the server host. This is the same format as the information previously
+    in the configuration file. It may be copied verbatim from an e-mailed 
+    license, as only the items beginning with 'license_' are used.
+
+UNAMEIT SERVER and PULL SERVER:
+
+    Fixed race condition in returning "short" results to clients.
+    Problem would occasionally result in broken connection with a loaded
+    server, (most likely during pull authentication).
+
+UPGRADE:
+    Fixed bug in conversion from release 2.2.2 for user_login records
+    with mail forwarding to multiple external addresses.
+
+BACKEND:
+    Updated internet root name server list for sites with no internal
+    root DNS name server.
+
+UPASSWD:
+    Added "uchsh" link for "upasswd"
+
+    Fixed bug where NIS shell was set to (e.g.) "csh" instead of
+    /bin/csh when changing the password.
+
+LOADUP:
+    Added a script to load host data from a DNS server. The domain given
+    in the input file setup is used as the domain to load. The DNS server
+    is contacted directly to get the information to load.
+
+		Changes from version 2.5 to version 2.5.2
+
+LICENSE:
+    2.5.1 Uses UName*It license keys that are not compatible with
+    previous releases.  Please contact us for a new license key.
+    The UniSQL/X license keys from previous release continue to work.
+
+CONFIGURATION:
+
+    By popular request DNS is no longer required (or explicitly used)
+    by UName*It.  This means that we cannot automatically and reliably
+    determine the fully qualified names of servers and clients,
+    and hence cannot contruct V5 service principals just from the service
+    and host names.
+    
+    The solution taken was to explicitly configure the instance and realm
+    of each server and client.  "unameit_mode create" and "upull_mode create"
+    will now query for additional parameters:
+
+	"Local FQDN"	is the fully qualified name of the current host,
+			used to build kerberos instances of servers
+			and "root" clients running on this host.
+
+	"Server FQDN"   is the fully qualified name used to build the
+			kerberos instance of the UName*It server,
+			must equal to the "Local FQDN" configured on
+			the server.
+
+	"Upull Server FQDN"
+			is the fully qualified name of the "upstream"
+			Pull server used by this host,  must equal to the
+			"Local FQDN" configured on that server.
+
+			NOTE:  One can no longer specify a list of
+			pull servers in "Upull Server",  since we cannot
+			determine the kerberos instance and realm dynamically.
+
+    The kerberos realm is by default initialized to the empty string,
+    which translates to the default realm of current host.
+
+    In a multi realm environment, for all servers outside the "local" realm,
+    the server realm must be configured explicitly
+    (by editing the configuration file).
+
+BACKEND:
+
+    Fixed bug in "pull_main.tcl" when netgroups need to be split due
+    to NIS DBM limitations.
+
+    Fixed bug where "uparsedb" was not deleting old data and gen
+    directories.
+
+    Mail address cache in tcldump was broken.  Fixed.  Impact should
+    be slightly better performance (previously always missed cache).
+
+    Added user_login automounts to automount file for region of user.
+    (To preclude it from being obscured by intermediate domain in cell).
+
+    Don't bother to forward person mail to accounts which in turn
+    forward to /dev/null
+
+    Various performance fixes.
+
+DATA CACHE FUNCTIONS:
+    Compare elements of distinct classes if they have same name attributes.
+    Previously was just comparing the class names.  Results in improved
+    sorting when elements multiple classes are displayed together.
+
+    "unameit_sort_uuids" may not be able to the hardwired elements
+    of internal meta-schema classes.  These are only needed by the
+    server to validate schema changes,  and are not accessible via the
+    GUI.  Should not be a problem.
+
+SCHEMA BROWSING FUNCTIONS:
+    Fixed "unameit_get_attribute_type" to return just the type without
+    multiplicity.  Renamed to "unameit_attribute_type" just avoid any
+    undetected problems with the change in semantics.
+
+    Added "unameit_is_pointer" for use in all those places where we
+    we switched on the parsed result of "unameit_get_attribute_type".
+
+UPGRADE:
+    New integrated upgrade "shell" script.  Takes care of migrating schema
+    and data from all 2.x releases in use at customer sites.
+
+SCHEMA:
+    Bumped schema major number to 5.0.1
+    Relaxed overly restrictive syntax for external mail addresses.
+
+SCI:
+    No longer need scierror,  now rely on unameitcl for error decoding.
+
+    Use new "unameit_attribute_type" function as necessary.
+
+    Use "unameit_is_pointer" where desirable.
+
+UNAMEIT_LOAD:
+    (Updated from 2.2.2,  not shipped with 2.5).
+
+    Use new config files for server name, port etc.
+
+    No longer duplicate data in ".dat" files if "Generate Load Script"
+    is run multiple times on the same cache.
+
+    Added support for loadup of /etc/services
+
+    Can now load aliases file into new mail schema.
+
+    Now match "First Last, junk" in gecos with "Last, First" in
+    "persons" file or database.
+
+    Fixed load of automounts.
+
+    Take care not to clobber server's data directory when load
+    is run in the wrong directory.
+
+    Rexec as "wishx" for gui command,  all other commands use "tcl"
+
+    "load_adaptive" no longer finds the script to load from the
+    environment.  The server now can now pass additional arguments
+    to "boot" scripts:  e.g. unameitd <script> <arg1> ...
+
+    Improved netmask processing for hosts and networks
+
+    Application login load does not use/need automount information.
+
+    Group members are *not* constrained to be only
+    user_logins or only application_logins (according to group class).
+
+    Improved and re-arranged GUI buttons.
+
+    Autogenerate networks for additional interfaces of multi-homed
+    hosts.
+
+UDUMPDB:
+    Return success if server appears to be already down.
+
+UNAMEIT:
+    Put mode name on all toplevels except error dialogues.
+
+    Use config options to set "queryMaxRows" and "queryTimeOut".
+    (Default to 256 and 10 resp. if missing).
+
+    Old client will exit running against new server.  Old cache
+    manager interface not compatible with downloaded code.
+
+UNAMEITCL:
+    Scripts can arrange to print stack traces on error exit
+    by unsetting the global array element TCLXENV(noDump).
+
+UNAMEITD:
+    Errors in authentication module initialization now detected before
+    the server detaches from the controlling terminal.
+
+    Now server rereads the toi.tcl file whenever the mtime changes.
+
+    Fixed bug in percentile code in about box.
+
+UPULL:
+    Upulld no longer typically a large number of mmapped files.
+    (Now at most one per connected client).
+
+		Changes from version 2.2.2 to version 2.5
+
+- Kerberos 5 is now used for authentication instead of Kerberos 4.
+
+- The installation and configuration has changed. There can now be more than
+  one UName*It server running, each in a different "mode". You specify which
+  server you want to connect to by setting the UNAMEIT_MODE environment
+  variable.
+
+- The mailing list schema has been changed. You can now mail to external
+  mail delivery agents such as HP OpenMail. Persons now have mail handles
+  and you can send mail to a person's mail handle. All the person's mail
+  can go to the mail handle machine, to a user login associated with a person
+  or mail can go separately to the mail handle machine and the user login
+  depending on whether you send mail to the mail handle or the user login name.
+	The mailing list schema has been simplified also. File drops, program
+  drops and external addresses are now separate objects. The ramification of
+  this is that if you update one of these objects, it is updated on all the
+  mailing lists containing it. This did not used to be the case.
+	Mailing lists are now pre-expanded rather than sent to a knowledgeable
+  mailhost that knows how to expand the mailing list. This limits the global
+  dependency between machines and allows UName*It to be more easily installed
+  in an environment not currently running UName*It. Also, each aliases file
+  now gets all the mailing lists in the database (most end up in NIS).
+
+- Netgroups have been simplified. There are no longer automatic netgroups
+  so pull processing is much quicker. Also, you can specify a region or cell
+  as the right hand side of a netgroup and all the hosts or users in that
+  region will be included in that netgroup. This facility takes the place
+  of the automatic netgroups which were removed.
+	Also, subnetgroups are now added in the Host Netgroup Member or
+  User Netgroup Member form. They used to be added in the Host Netgroup or
+  User Netgroup form. This was an inconsistency. Also, all netgroups are
+  output to the netgroup file now, some with fully qualified names.
+
+		Changes from version 2.2.1 to 2.2.2
+
+- Fixed bug in checking attribute domain during schema validation.
+
+- Fixed a couple of bugs in obscure error messages in the server.
+
+- The "Connection to server is broken" error message now longer asks
+  you if you want to send a bug report.
+
+- Text and text list boxes now have popups that you can edit with the
+  edit button.
+
+- Fixed a bug in queries that caused a core dump when doing nested queries.
+  This bug could only be tickled by using unameitcl.
+
+			Changes from version 2.2 to 2.2.1
+
+- Regional pull server pull over all the pull files. They now generate
+  Unix files for their machine from the local data rather than repulling
+  the data from the remote pull server.
+
+- Duplicate fields are now detected in the "displayed attribute" list
+  in the UName*It Data Class form.
+
+- The region and host form now has field to create a wildcard MX record
+  for the region.
+
+- Speeded up pull netgroup and group generation.
+
+- Added unameit_deletedb command for deleting the database and added
+  manual page for unameit_makedb.
+
+- Added Forward button in addition to Back button.
+
+			Changes from version 2.1 to version 2.2
+
+- The load up scripts now load Persons in a separate step rather than
+  loading them with User Logins.
+
+- Fixed a bug in loading User Groups where User Groups were being
+  checked for a collisions at the organization rather than cell level.
+
+- The structure of the lib directory has been broken down into several
+  subdirectories to avoid putting unrelated files in the same
+  directory.

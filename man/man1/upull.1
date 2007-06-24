@@ -1,0 +1,202 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH UPULL 1
+.SH NAME
+upull - UName*It pull client
+.SH SYNOPSIS
+.B upull
+.SH DESCRIPTION
+This program is the UName*It pull client. It contacts the UName*It
+pull server daemon
+.IR upulld (1m)
+and constructs Unix configuration files such as
+.BR /etc/hosts ,
+NIS files and DNS files.
+The files are installed into the system directories in a manner
+dictated by the
+UName*It configuration
+files.
+If the host running this command is a
+pull server host, then the
+.BI gen. version
+files are pulled over from the parent pull server if they are out of
+date. Consequently, this command will probably run much longer on a
+pull server host then it will on regular hosts. Also, name space
+information is only grabbed up the name space tree until the NIS
+server is reached. 
+This command will probably run longer on non-NIS server hosts than
+hosts using a NIS server since all the information normally contained
+in NIS plus the regular information must be retrieved and processed.
+This command is often run from
+.IR cron (1m).
+.PP
+When connecting, this command tries to contact the pull server hosts
+given in the UName*It configuration files.
+When
+.B upull
+connects, it looks in the file
+.B .../uuid
+(where ... is the directory given by
+the 
+.I data
+keyword in the UName*It configuration files)
+to see which host UName*It thinks this machine corresponds to. If
+there is no
+.B uuid
+file, then it gives
+.IR upulld (1m)
+the IP address of the host and gets back a uuid which it writes to
+.BR .../uuid .
+Therefore, the first time you run a pull, the machine must be in the
+UName*It database with the correct IP address. Once the
+.B uuid
+file is written, it is never changed. The uuid always references this
+host. Uuids for objects never change, which is their whole point.
+.PP
+If the version of the pull files on the pull server machine are not
+more recent than the version on the machine running the pull, then
+.B upull
+simply exits.
+.PP
+The NIS domain name is in the host-specific configuration file. This
+variable is normally set to the output of the
+.IR domainname (1)
+command.
+If the 
+.I domain
+is empty or ``noname'' then no NIS server
+is assumed. Otherwise, the 
+.I domain
+should equal the NIS domain name
+that UName*It thinks this machine is using. If they disagree,
+.B upull
+will create files in 
+.BI .../ version
+but it will not install any of the files to the system.
+.PP
+The host name and IP address returned by
+.IR upulld (1m)
+and the current machine's host name and IP address are compared.
+If they
+disagree,
+.B upull
+will create the files in
+.BI .../ version
+but will not install anything to the system.
+If you change the machine name in UName*It, you
+.I must
+change the machine name on the host too manually.
+.PP
+If a pull server does a pull, it may get new pull data. If it does,
+any pull clients currently pulling from that pull server will get old
+pull data. This is OK, but it means that
+.IR upulld (1m)
+may be distributing different versions of the pull data at the same
+time. Therefore, the last three versions of the
+.BI gen. version
+files are saved on pull servers for safety's sake.
+.PP
+.SH FILES
+The ... indicates the directory specified by the
+.I data
+keyword in the UName*It configuration files.
+.PD 0
+.TP 25
+\&.../uuid
+This file stores the uuid of the current host. It is created once and
+not modified thereafter.
+.TP 25
+\&.../version
+This file stores the current version of the files last pulled.
+.TP 25
+\&.../data/
+This directory only exists on pull servers and it contains the data
+the pull servers export and is the data that the
+.BR /etc ,
+NIS and DNS files are generated from.  See
+.IR upulld (1m) 
+and
+.IR uparsedb (1m).
+.TP 25
+.RI .../ version /
+This directory contains all the
+.BR /etc ,
+NIS, DNS and Sybase files that are generated. A new directory is created each
+time a new version of the data is downloaded from the
+.IR upulld (1m)
+server. When the files are installed to the Unix system directories,
+they are copied from this directory hierarchy by
+.BR upull .
+.TP 25
+.RI .../ version /etc/
+The
+.B /etc
+files such as
+.B /etc/passwd
+and
+.B /etc/group
+are created here.
+.TP 25
+.RI .../gen. version /path_list
+This file stores a list of the pull servers the gen data has passed
+through from the global pull server on downward. Actually, the uuids
+of the pull server hosts are stored. It is used for detecting loops in
+the pull hierarchy.
+.TP 25
+.RI .../ version /nis/
+The files created on a NIS server are put here.
+This directory will only be
+created on NIS server hosts.
+.TP 25
+.RI .../ version /dns/
+The files created on a DNS server are put here. This directory will
+only be created on DNS server hosts.
+.TP 25
+.RI .../ version /sybase/
+The sybase
+.I interfaces
+file is put in this directory. This file will only be created on hosts
+pointed to by a Sybase interface.
+.TP 25
+.RI /etc/unameit/config/ mode .conf
+This file contains options on where, when, how and which Unix files to
+install.
+See the documentation in that file, which is created by 
+.IR upull_mode (1)
+or 
+.IR unameit_mode (1m).
+.TP 25
+\&.../data/pull_main.tcl
+This is the smarts for
+.BR upull .
+It is downloaded by
+.B upull
+when it first starts up and is executed. You can change the behavior
+of all the pull servers by simply modifying this file on the UName*It
+server machine, without reinstalling the
+.B upull
+binary. This file is propagated from pull server to pull server down
+the
+pull server hierarchy.
+.PD 0
+.SH SEE ALSO
+upulld(1m), upull_mode(1)

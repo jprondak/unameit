@@ -1,0 +1,4 @@
+# $Id: cdtoc,v 1.2.12.1 1997/08/28 18:25:46 viktor Exp $
+PRODNAME=UName*It
+PRODVERS=%version%
+PRODDIR=%os_version%

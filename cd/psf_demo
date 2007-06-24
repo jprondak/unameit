@@ -1,0 +1,150 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+distribution
+    layout_version	1.0
+vendor
+    tag			ESM
+    title		Enterprise Systems Management Corp.
+    description		"Enterprise Systems Management Corporation creates 
+and sells software to manage sites of Unix and Windows 
+workstations. Its premier product, UName*It, manages DNS 
+and NIS in addition to other name space management systems."
+end
+vendor
+    tag			SUN
+    title		Sun Microsystems
+end
+vendor
+    tag			MIT
+    title		Massachusetts Institute of Technology
+end
+product
+    tag			UNameItClient
+    revision		%version%
+    title		ESM UName*It Client Software
+    description		"This is the client software for the UName*It
+name space management system."
+    vendor_tag		ESM
+    copyright		</opt/cd/copyright/copyright.unameit
+    category		system_management
+    category_title	"Systems Management Software"
+    is_locatable	true
+    directory		/opt/unameit
+    architecture	Series_700/800_HP-UX_10.20
+    machine_type	9000/7*|9000/8*
+    os_name		HP-UX
+    os_release		?.10.*
+    os_version		[A-Z]
+    fileset
+	tag		commands
+	title		UName*It client commands
+	revision	%version%
+        directory	/var/tmp/%version%/client/bin=/opt/unameit/bin
+	file		*
+        directory	/var/tmp/%version%/client/config=/opt/unameit/config
+	file		*
+        directory	/var/tmp/%version%/client/install=/opt/unameit/install
+	file		*
+        directory	/var/tmp/%version%/client/lbin=/opt/unameit/lbin
+	file		*
+        directory	/var/tmp/%version%/client/lib=/opt/unameit/lib
+	file		*
+	preinstall	preinstall.client
+	configure	configure.client
+	unconfigure	unconfigure.client
+        directory	/var/tmp/%version%/client/sbin=/opt/unameit/sbin
+	file		*
+	prerequisite	ESMTcl
+    end
+    fileset
+	tag		man
+	title		Manual pages for UName*It client software
+	revision	%version%
+	directory	/var/tmp/%version%/client/man=/opt/unameit/man
+	file		*
+    end
+end
+product
+    tag			UNameItServer
+    revision		%version%
+    title		ESM UName*It Server Software
+    description		"This is the server software for the UName*It
+name space management system."
+    vendor_tag		ESM
+    copyright		</opt/cd/copyright/copyright.unameit
+    category		system_management
+    category_title	"Systems Management Software"
+    is_locatable	true
+    directory		/opt/unameit
+    architecture	Series_700/800_HP-UX_10.20
+    machine_type	9000/7*|9000/8*
+    os_name		HP-UX
+    os_release		?.10.*
+    os_version		[A-Z]
+    fileset
+	tag		commands
+	title		UName*It server commands
+	revision	%version%
+        directory	/var/tmp/%version%/server/lib=/opt/unameit/lib
+	file		*
+	preinstall	preinstall.server
+	configure	configure.server
+	unconfigure	unconfigure.server
+        directory	/var/tmp/%version%/server/sbin=/opt/unameit/sbin
+	file		*
+	prerequisite	UNameItClient
+    end
+    fileset
+	tag		man
+	title		Manual pages for UName*It server software
+	revision	%version%
+	directory	/var/tmp/%version%/server/man=/opt/unameit/man
+	file		*
+    end
+end
+product
+    tag			ESMTcl
+    revision		%tcl_version%
+    title		Tcl software from ESM
+    description		"This is Tcl software distributed with UName*It.
+It is not the complete Tcl distribution."
+    vendor_tag		SUN
+    copyright		</opt/cd/copyright/copyright.tcl
+    category		language
+    category_title	"Languages"
+    is_locatable	true
+    directory		/opt/unameit
+    architecture	Series_700/800_HP-UX_10.20
+    machine_type	9000/7*|9000/8*
+    os_name		HP-UX
+    os_release		?.10.*
+    os_version		[A-Z]
+    fileset
+	tag		commands
+	title		Tcl commands
+	revision	%tcl_version%
+	directory	/var/tmp/%version%/tcl/bin=/opt/unameit/lib/tcl/bin
+	file		*
+	directory	/var/tmp/%version%/tcl/lib=/opt/unameit/lib/tcl/lib
+	file		*
+    end
+end

@@ -1,0 +1,163 @@
+#! /bin/sh
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+### Hard code path in case user's path is incomplete or set to
+### something weird.
+PATH=/bin:/usr/bin:/usr/sbin:/usr/ucb:/usr/etc
+
+die() {
+    echo $1 1>&2
+    exit 1
+}
+
+get_unameit_path () {
+    prompt=$1
+    var=$2
+    while : forever; do
+        echo $prompt
+        read $var
+	path=`eval echo '$'$var`
+        if [ ! -d $path/config -o ! -f $path/sbin/exe/unameitd ]; then
+    	    echo "$path does not contain the UName*It server software" 1>&2
+	else
+	    break
+	fi
+    done
+}
+
+create_path () {
+    prompt=$1
+    var=$2
+    while true; do
+        echo $prompt
+        read $var
+	path=`eval echo '$'$var`
+        if [ ! -d $path ]; then
+	    mkdir -p $path
+	fi
+	if [ ! -d $path ]; then
+    	    echo "Cannot create $path" 1>&2
+	else
+	    break
+	fi
+    done
+}
+
+### Grab the hostname of the machine.
+lfile=/etc/unameit/license
+ufile=/etc/unameit/unisqlx_keys
+hostname="`uname -n`"
+
+if [ ! -f $lfile ]; then
+    echo "You do not have a UName*It license key file ($lfile)." 1>&2
+    die 'Please install a license key and try again.'
+fi
+if [ ! -f $ufile ]; then
+    echo "You do not have a UniSQL/X database key license file ($ufile)." 1>&2
+    die 'Please install a UniSQL/X database key file and try again.'
+fi
+
+type="`awk '/license_type/ {print $NF; exit}' $lfile`"
+case "$type" in
+    prod)
+	;;
+    eval)
+
+    ### Print out license terms
+    cat <<EOF
+    By using this product, you agree to the following: This product
+      is distributed "as-is".  Use of this product is entirely at
+      your own risk.  You assume all liability.  Enterprise Systems
+       Management Corporation and its licensors make no warranty.
+
+    This product and related documentation are protected by copyright
+      and distributed under a temporary license restricting its use,
+     copying, and distribution.  Decompilation, reverse engineering,
+       or extraction of source code are strictly prohibited.  This
+        product is not licensed for production use, but rather for
+      internal evaluation purposes only.  No part of this product or
+     related documentation may be reproduced in any form by any means
+        without prior written authorization of Enterprise Systems
+           Management Corporation and its licensors, if any.
+
+      Upon expiration of the license, you agree to remove this product
+     		completely from all systems and media.
+
+EOF
+	echo 'Do you agree to this license? (If so, type "yes") \c'
+	read answer
+	[ "$answer" != yes ] && exit 1
+	echo ''
+	;;
+    *)
+	die "Your license file appears to be invalid"
+	;;
+esac
+
+### Ask the questions
+get_unameit_path 'Where did you install the UName*It executables? \c' UNAMEIT
+export UNAMEIT; PATH=$PATH:$UNAMEIT/bin:$UNAMEIT/sbin
+
+echo ''
+create_path 'Where would you like to put the database files (50 meg needed)? \c' \
+    db_location
+echo ''
+echo 'You can delete this directory manually when done with the demo.'
+echo 'Use pkgrm on Solaris or swremove on HP/UX to remove product executables.'
+echo ''
+
+### Put the UniSQL/X database and the pull dump files in $db_location.
+
+### Perform substitutions on the unameit.conf files.
+# Use # for sed on the next line to deal with '/' in db_location.
+sed -e "s#%hostname%#$hostname#
+s#%db_location%#$db_location#" \
+< $UNAMEIT/install/unameit_etc_demo.conf > /etc/unameit/demo.conf ||\
+    die  "Failed to set up /etc/unameit/demo.conf"
+
+sed -e "s#%hostname%#$hostname#
+s#%db_location%#$db_location#" \
+< $UNAMEIT/install/unameit_shared_demo.conf > $UNAMEIT/config/demo.conf ||\
+    die "Failed to set up $UNAMEIT/config/demo.conf"
+
+### Make the database
+UNAMEIT_MODE=demo; export UNAMEIT_MODE
+
+echo 'Extracting the initial database data...\c'
+unameit_makedata demo > /dev/null ||\
+    die "Extracting the initial database data failed."
+echo done.
+
+echo 'Making the database...\c'
+unameit_makedb 2>&1 > /dev/null || die "Making the database failed"
+echo done.
+
+echo 'Loading the demo data into the database...\c'
+unameitd -R all 2>&1 > /dev/null || die "Loading the demo data failed."
+echo done.
+
+### Start the database
+echo 'Starting up the daemons...\c'
+unameitd || die "Could not start UName*It daemon."
+upulld
+echo done.

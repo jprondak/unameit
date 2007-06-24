@@ -1,0 +1,160 @@
+5sw9uC5L2QyUsUU.65b.VU 5sw9uC5L2QyUsUU.65b.VU {E1STNOTALNUM {Value must start with a letter or digit} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5swEDi5L2QyUsUU.65b.VU 5swEDi5L2QyUsUU.65b.VU {E1STNOTE {Value must start with an 'E'} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5swIWi5L2QyUsUU.65b.VU 5swIWi5L2QyUsUU.65b.VU {E1STNOTLETTER {Value must start with a letter} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5swMsC5L2QyUsUU.65b.VU 5swMsC5L2QyUsUU.65b.VU {E1STNOTSLASH {Value must start with a '/'} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5swRBi5L2QyUsUU.65b.VU 5swRBi5L2QyUsUU.65b.VU {EADDRRESERVED {Network address reserved} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5swVUi5L2QyUsUU.65b.VU 5swVUi5L2QyUsUU.65b.VU {EATTRDOMAINLOSEDATA {Domain change would clobber existing data} 5svLzi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5swZqC5L2QyUsUU.65b.VU 5swZqC5L2QyUsUU.65b.VU {EATTRHASINSTANCES {Attribute has instances} 5svLzi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5swe9i5L2QyUsUU.65b.VU 5swe9i5L2QyUsUU.65b.VU {EBADENUM {Attribute value is not one of the valid enumeration values} 5suFJC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5swiVC5L2QyUsUU.65b.VU 5swiVC5L2QyUsUU.65b.VU {EBADERROR {Called error that does not exist} 5stidC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5swmoC5L2QyUsUU.65b.VU 5swmoC5L2QyUsUU.65b.VU {EBADERRORCALL {Error called incorrectly} 5stidC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5swr7i5L2QyUsUU.65b.VU 5swr7i5L2QyUsUU.65b.VU {EBADERRORPROC {Error procedure has a bug} 5stmwC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5swvTC5L2QyUsUU.65b.VU 5swvTC5L2QyUsUU.65b.VU {EBADMASK {Bad subnet mask} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5swzmC5L2QyUsUU.65b.VU 5swzmC5L2QyUsUU.65b.VU {EBADMLADDR {Illegal address in mailing list} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sx25i5L2QyUsUU.65b.VU 5sx25i5L2QyUsUU.65b.VU {EBADMLFILE {Illegal file in mailing list} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sx6RC5L2QyUsUU.65b.VU 5sx6RC5L2QyUsUU.65b.VU {EBADMLPROG {Illegal program in mailing list} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxAmi5L2QyUsUU.65b.VU 5sxAmi5L2QyUsUU.65b.VU {EBADMOUNTOPT {Bad mount option} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxF6C5L2QyUsUU.65b.VU 5sxF6C5L2QyUsUU.65b.VU {EBADNETSIZE {Top level IP network size wrong for class} 5strIC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxJPC5L2QyUsUU.65b.VU 5sxJPC5L2QyUsUU.65b.VU {EBADPRINTCAP {Illegal printcap field} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxNki5L2QyUsUU.65b.VU 5sxNki5L2QyUsUU.65b.VU {EBADPROMOTION {Bad promotion value} 5suWfC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5sxS1i5L2QyUsUU.65b.VU 5sxS1i5L2QyUsUU.65b.VU {EBADPUNCT {Illegal punctuation} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxWNC5L2QyUsUU.65b.VU 5sxWNC5L2QyUsUU.65b.VU {EBADQBESYNTAX {Bad QBE syntax} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxaii5L2QyUsUU.65b.VU 5sxaii5L2QyUsUU.65b.VU {EBADQUERY {Invalid stored query} 5sul3i5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5sxf2C5L2QyUsUU.65b.VU 5sxf2C5L2QyUsUU.65b.VU {EBADREALM {Server realm not same as principal's realm} 5steFC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxjLC5L2QyUsUU.65b.VU 5sxjLC5L2QyUsUU.65b.VU {EBADVLIST {Malformed validation list value} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxngi5L2QyUsUU.65b.VU 5sxngi5L2QyUsUU.65b.VU {EBADVLISTREGEXP {Bad regular expression in validation list} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxrzi5L2QyUsUU.65b.VU 5sxrzi5L2QyUsUU.65b.VU {ECELLMOVE {Item may not be moved to a new cell} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sxwJC5L2QyUsUU.65b.VU 5sxwJC5L2QyUsUU.65b.VU {ECLASSHASINSTANCES {Cannot delete class with instances} 5suSJi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sy.ei5L2QyUsUU.65b.VU 5sy.ei5L2QyUsUU.65b.VU {ECLASSNQUERY {Class not queryable} 5steFC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5sy2xi5L2QyUsUU.65b.VU 5sy2xi5L2QyUsUU.65b.VU {ECODEGENLOOP {Circular references in newly created items in cache} 5suAzi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sy7HC5L2QyUsUU.65b.VU 5sy7HC5L2QyUsUU.65b.VU {ECOLLISIONOWNERMISSING {Missing 'owner' attribute in promoted collision rule} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syBci5L2QyUsUU.65b.VU 5syBci5L2QyUsUU.65b.VU {ECOLLISIONRULEINUSE {Collision rule applies to existing data} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syFvi5L2QyUsUU.65b.VU 5syFvi5L2QyUsUU.65b.VU {ECOLON {Value may not contain ':'} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syKFC5L2QyUsUU.65b.VU 5syKFC5L2QyUsUU.65b.VU {ECOMPATTR {Cannot get value of computed attribute} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syOai5L2QyUsUU.65b.VU 5syOai5L2QyUsUU.65b.VU {ECOMPUTED {Cannot set computed attribute} 5sub.i5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5sySwC5L2QyUsUU.65b.VU 5sySwC5L2QyUsUU.65b.VU {ECONN {Connection broken} 5steFC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syXDC5L2QyUsUU.65b.VU 5syXDC5L2QyUsUU.65b.VU {ECWORM {Computed invariant would change} 5suNxi5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707778}
+5sybYi5L2QyUsUU.65b.VU 5sybYi5L2QyUsUU.65b.VU {EDEFAULTMASKFIXED {Cannot autogenerate variable length subnets} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syfri5L2QyUsUU.65b.VU 5syfri5L2QyUsUU.65b.VU {EDIRECTUNIQ {Uniqueness violation} 5sw5Yi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sykBC5L2QyUsUU.65b.VU 5sykBC5L2QyUsUU.65b.VU {EDOMAIN {Class of value incompatible with attribute} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syoUC5L2QyUsUU.65b.VU 5syoUC5L2QyUsUU.65b.VU {EDOMAINCONFLICT {Domain of attribute conflicts with superclasses} 5su6eC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syspi5L2QyUsUU.65b.VU 5syspi5L2QyUsUU.65b.VU {EDOT {Value may not contain '.'} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5syx9C5L2QyUsUU.65b.VU 5syx9C5L2QyUsUU.65b.VU {EDUPADDR {Duplicate IP address} 5suJcC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sz/SC5L2QyUsUU.65b.VU 5sz/SC5L2QyUsUU.65b.VU {EDUPNET {Duplicate network first and last address} 5svLzi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sz3ni5L2QyUsUU.65b.VU 5sz3ni5L2QyUsUU.65b.VU {EDUPREGION {Cell or region with same FQDN exists} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5sz87C5L2QyUsUU.65b.VU 5sz87C5L2QyUsUU.65b.VU {EEMPTY {Illegal empty value} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5szCQC5L2QyUsUU.65b.VU 5szCQC5L2QyUsUU.65b.VU {EEXCLUSIVE {Fields are mutually exclusive} 5sugaC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5szGli5L2QyUsUU.65b.VU 5szGli5L2QyUsUU.65b.VU {EFIXEDMASK {Mask inconsistent with parent network} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707778}
+5szL5C5L2QyUsUU.65b.VU 5szL5C5L2QyUsUU.65b.VU {EFIXEDSCHEMA {Attributes of class may be changed or overridden} 5svLzi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5szPOC5L2QyUsUU.65b.VU 5szPOC5L2QyUsUU.65b.VU {EIEIO {Old MacDonald had a farm.} 5steFC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5szTji5L2QyUsUU.65b.VU 5szTji5L2QyUsUU.65b.VU {EINDIRUNIQ {Uniqueness violation} 5sw5Yi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5szY3C5L2QyUsUU.65b.VU 5szY3C5L2QyUsUU.65b.VU {EIO {Read from server failed} 5steFC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5szcMC5L2QyUsUU.65b.VU 5szcMC5L2QyUsUU.65b.VU {EITHER {One of the fields must be set} 5sugaC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5szghi5L2QyUsUU.65b.VU 5szghi5L2QyUsUU.65b.VU {ELASTSUBNET {Last subnet reserved} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5szl.i5L2QyUsUU.65b.VU 5szl.i5L2QyUsUU.65b.VU {ELISTTOOLONG {List length is above maximum} 5sv4ii5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5szpKC5L2QyUsUU.65b.VU 5szpKC5L2QyUsUU.65b.VU {ELISTTOOSHORT {List length is below minimum} 5sv4ii5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5sztfi5L2QyUsUU.65b.VU 5sztfi5L2QyUsUU.65b.VU {ELOOP {Reference loop} 5svQJC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5szy/C5L2QyUsUU.65b.VU 5szy/C5L2QyUsUU.65b.VU {EMAILCHARS {Illegal RFC822 delimiters, or other special characters} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.0IC5L2QyUsUU.65b.VU 5t.0IC5L2QyUsUU.65b.VU {EMOUNTOPTBOOL {Mount option is boolean} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.4di5L2QyUsUU.65b.VU 5t.4di5L2QyUsUU.65b.VU {EMOUNTOPTINT {Mount option needs an integer value} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.8wi5L2QyUsUU.65b.VU 5t.8wi5L2QyUsUU.65b.VU {ENETBOUNDS {Network first and last address are not compatible} 5sv0NC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.DGC5L2QyUsUU.65b.VU 5t.DGC5L2QyUsUU.65b.VU {ENETWORKCORRUPTED {Network tree corrupted} 5stvbC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5t.Hbi5L2QyUsUU.65b.VU 5t.Hbi5L2QyUsUU.65b.VU {ENEWFQDNCELL {Region would move into a new cell} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.Lui5L2QyUsUU.65b.VU 5t.Lui5L2QyUsUU.65b.VU {ENOADDRSLEFT {All available addresses allocated} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.QEC5L2QyUsUU.65b.VU 5t.QEC5L2QyUsUU.65b.VU {ENOATTR {Attribute invalid for item class} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.UZi5L2QyUsUU.65b.VU 5t.UZi5L2QyUsUU.65b.VU {ENOAUTOHOST {NFS server must be specified with automount map} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.Ysi5L2QyUsUU.65b.VU 5t.Ysi5L2QyUsUU.65b.VU {ENOAUTOMAP {Automount map must be specified with NFS server} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.dCC5L2QyUsUU.65b.VU 5t.dCC5L2QyUsUU.65b.VU {ENOCLASSINDEX {No class index in query array} 5steFC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.svC5L2QyUsUU.65b.VU 5t.svC5L2QyUsUU.65b.VU {ENOMASK {Parent network has no default mask} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t.xOi5L2QyUsUU.65b.VU 5t.xOi5L2QyUsUU.65b.VU {ENONAMEATTRS {Class does not have any name attributes} 5stvbC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t//kC5L2QyUsUU.65b.VU 5t//kC5L2QyUsUU.65b.VU {ENOPRIMARYIP {Interface primary IP address is not set} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/43i5L2QyUsUU.65b.VU 5t/43i5L2QyUsUU.65b.VU {ENOPRINCIPAL {Principal not in database} 5steFC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/8PC5L2QyUsUU.65b.VU 5t/8PC5L2QyUsUU.65b.VU {ENOROOTNET {Please create 'universe' network first} 5svDLC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/Cki5L2QyUsUU.65b.VU 5t/Cki5L2QyUsUU.65b.VU {ENOSUBNETS {New network would have no subnets} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/H4C5L2QyUsUU.65b.VU 5t/H4C5L2QyUsUU.65b.VU {ENOTADDRESS {Invalid address} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/LPi5L2QyUsUU.65b.VU 5t/LPi5L2QyUsUU.65b.VU {ENOTALNUM {Attribute value must be alphanumeric} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/PlC5L2QyUsUU.65b.VU 5t/PlC5L2QyUsUU.65b.VU {ENOTALPHA {Value may only contain letters} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/U4i5L2QyUsUU.65b.VU 5t/U4i5L2QyUsUU.65b.VU {ENOTALPUNCT {Value may only contain letters and punctuation} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/YQC5L2QyUsUU.65b.VU 5t/YQC5L2QyUsUU.65b.VU {ENOTAUTOINT {Attribute is not autogenerated} 5suWfC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5t/cli5L2QyUsUU.65b.VU 5t/cli5L2QyUsUU.65b.VU {ENOTDASHGENALNUM {Characters must be alphanumeric, hyphens or underscores} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/h5C5L2QyUsUU.65b.VU 5t/h5C5L2QyUsUU.65b.VU {ENOTDELETED {Cannot undelete: item not deleted} 5suSJi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/lQi5L2QyUsUU.65b.VU 5t/lQi5L2QyUsUU.65b.VU {ENOTDNSLABEL {Illegal characters in DNS name} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/pji5L2QyUsUU.65b.VU 5t/pji5L2QyUsUU.65b.VU {ENOTFQDN {Illegal or not fully qualified domain name} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/u3C5L2QyUsUU.65b.VU 5t/u3C5L2QyUsUU.65b.VU {ENOTGENALNUM {Characters must be alphanumeric or underscores} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t/yOi5L2QyUsUU.65b.VU 5t/yOi5L2QyUsUU.65b.VU {ENOTGRAPH {Illegal white space or non printable characters} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t00kC5L2QyUsUU.65b.VU 5t00kC5L2QyUsUU.65b.VU {ENOTINHERITED {Class not a subclass of defining class of attribute} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t053i5L2QyUsUU.65b.VU 5t053i5L2QyUsUU.65b.VU {ENOTINT {Integer value expected} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t09PC5L2QyUsUU.65b.VU 5t09PC5L2QyUsUU.65b.VU {ENOTLIST {Not a list} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t0Dki5L2QyUsUU.65b.VU 5t0Dki5L2QyUsUU.65b.VU {ENOTNETCLASS {Class not a network class} 5stvbC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5t0I4C5L2QyUsUU.65b.VU 5t0I4C5L2QyUsUU.65b.VU {ENOTNETNODE {Item not in network hierarchy} 5svDLC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5t0MNC5L2QyUsUU.65b.VU 5t0MNC5L2QyUsUU.65b.VU {ENOTNUMERIC {Value must be numeric} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t0Qii5L2QyUsUU.65b.VU 5t0Qii5L2QyUsUU.65b.VU {ENOTPAIRLIST {Argument list must be even list of attr/values} 5suWfC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5t0V2C5L2QyUsUU.65b.VU 5t0V2C5L2QyUsUU.65b.VU {ENOTPARENT {Address not consistent with parent network} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t0ZNi5L2QyUsUU.65b.VU 5t0ZNi5L2QyUsUU.65b.VU {ENOTPHONENUM {Malformed phone number} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t0djC5L2QyUsUU.65b.VU 5t0djC5L2QyUsUU.65b.VU {ENOTPOINTER {Attribute of class is not an object} 5stzwi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t0i2i5L2QyUsUU.65b.VU 5t0i2i5L2QyUsUU.65b.VU {ENOTPRINT {Illegal non printable characters} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t0mOC5L2QyUsUU.65b.VU 5t0mOC5L2QyUsUU.65b.VU {ENOTREFUUID {Attribute value is not a UUID} 5suy1i5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5t0qji5L2QyUsUU.65b.VU 5t0qji5L2QyUsUU.65b.VU {ENOTSUBCLASS {Class is not a subclass of attribute domain} 5svUei5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5t0v3C5L2QyUsUU.65b.VU 5t0v3C5L2QyUsUU.65b.VU {ENOTSUBNETTED {Parent network is not subnetted} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t0zOi5L2QyUsUU.65b.VU 5t0zOi5L2QyUsUU.65b.VU {ENOTTIME {Cannot parse time} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t11hi5L2QyUsUU.65b.VU 5t11hi5L2QyUsUU.65b.VU {ENOTUUID {Invalid item UUID} 5suSJi5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707779}
+5t161C5L2QyUsUU.65b.VU 5t161C5L2QyUsUU.65b.VU {ENOTWORDS {Words may only contain letters} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t1AMi5L2QyUsUU.65b.VU 5t1AMi5L2QyUsUU.65b.VU {ENOUPDATE {Class does not support updates} 5svDLC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707779}
+5t1EiC5L2QyUsUU.65b.VU 5t1EiC5L2QyUsUU.65b.VU {ENULL {NULL value illegal for attribute} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t1J1i5L2QyUsUU.65b.VU 5t1J1i5L2QyUsUU.65b.VU {ENULLPRIMARYIP {Illegal empty primary IP address, while secondary address exists} 5svZ.C5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t1NNC5L2QyUsUU.65b.VU 5t1NNC5L2QyUsUU.65b.VU {ENXATTR {Attribute does not exist} 5steFC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t1Rii5L2QyUsUU.65b.VU 5t1Rii5L2QyUsUU.65b.VU {ENXCLASS {Class not found} 5stvbC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t1W2C5L2QyUsUU.65b.VU 5t1W2C5L2QyUsUU.65b.VU {ENXCODE {Invalid error code} 5stidC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t1aLC5L2QyUsUU.65b.VU 5t1aLC5L2QyUsUU.65b.VU {ENXITEM {Item not found} 5suSJi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t1egi5L2QyUsUU.65b.VU 5t1egi5L2QyUsUU.65b.VU {ENXREFCLASS {Item class not found} 5svDLC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t1j0C5L2QyUsUU.65b.VU 5t1j0C5L2QyUsUU.65b.VU {ENXREFITEM {Referenced item not found} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t1nLi5L2QyUsUU.65b.VU 5t1nLi5L2QyUsUU.65b.VU {EOPINVAL {Operator invalid on attribute type} 5svdHC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t1rhC5L2QyUsUU.65b.VU 5t1rhC5L2QyUsUU.65b.VU {EOR {At least one of the fields must be set} 5sugaC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t1w0i5L2QyUsUU.65b.VU 5t1w0i5L2QyUsUU.65b.VU {EORGMOVE {Cell may not be moved into a new organization} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2.MC5L2QyUsUU.65b.VU 5t2.MC5L2QyUsUU.65b.VU {EPASSWDINCORRECT {Password incorrect} 5steFC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t22hi5L2QyUsUU.65b.VU 5t22hi5L2QyUsUU.65b.VU {EPATHNAMEILLEGAL {Illegal characters in path name} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t27.i5L2QyUsUU.65b.VU 5t27.i5L2QyUsUU.65b.VU {EPERM {Permission denied} 5suSJi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2BKC5L2QyUsUU.65b.VU 5t2BKC5L2QyUsUU.65b.VU {EPRIMARYSERVER {Primary server cannot also be secondary} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2Ffi5L2QyUsUU.65b.VU 5t2Ffi5L2QyUsUU.65b.VU {EPRINCIPALNOTUNIQUE {Principal not unique in database} 5steFC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2K/C5L2QyUsUU.65b.VU 5t2K/C5L2QyUsUU.65b.VU {EPRINTCAPOPTATTR {Printcap option stored in separate field} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2OKi5L2QyUsUU.65b.VU 5t2OKi5L2QyUsUU.65b.VU {EPRINTCAPOPTBOOL {Printcap option is boolean} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2SgC5L2QyUsUU.65b.VU 5t2SgC5L2QyUsUU.65b.VU {EPRINTCAPOPTINT {Missing numeric value from printcap} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2X/i5L2QyUsUU.65b.VU 5t2X/i5L2QyUsUU.65b.VU {EPRINTCAPOPTSTR {Missing string value from printcap} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2bLC5L2QyUsUU.65b.VU 5t2bLC5L2QyUsUU.65b.VU {EPROTATTR {Attribute is protected} 5sub.i5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t2feC5L2QyUsUU.65b.VU 5t2feC5L2QyUsUU.65b.VU {EPROTECTED {Attribute is protected} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2jzi5L2QyUsUU.65b.VU 5t2jzi5L2QyUsUU.65b.VU {EQBEBADTUPLE {Tuple in query is not a 1-tuple or 2-tuple} 5steFC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2oJC5L2QyUsUU.65b.VU 5t2oJC5L2QyUsUU.65b.VU {EQBECONFLICT {Incompatible constraints on query attribute} 5svhci5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t2sei5L2QyUsUU.65b.VU 5t2sei5L2QyUsUU.65b.VU {EQBEDECODE {Cannot decode query results} 5steFC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t2x.C5L2QyUsUU.65b.VU 5t2x.C5L2QyUsUU.65b.VU {EQBEDOMAIN {Object in query specification is not in the domain of the attribute} 5svlyC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t3/Ji5L2QyUsUU.65b.VU 5t3/Ji5L2QyUsUU.65b.VU {EQBENOTINT {Integer expected as attribute value} 5su2GC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t33fC5L2QyUsUU.65b.VU 5t33fC5L2QyUsUU.65b.VU {EQBENOTOBJ {Query path is through a non-object attribute} 5stzwi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t38.i5L2QyUsUU.65b.VU 5t38.i5L2QyUsUU.65b.VU {EQBENOTSET {Could not parse set value in query} 5su2GC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t3CKC5L2QyUsUU.65b.VU 5t3CKC5L2QyUsUU.65b.VU {EQBENOTSUBCLASS {QBE class must be subclass of class in metadata} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t3Gfi5L2QyUsUU.65b.VU 5t3Gfi5L2QyUsUU.65b.VU {EQBENOTUUID {Invalid item UUID} 5svqFC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t3Kyi5L2QyUsUU.65b.VU 5t3Kyi5L2QyUsUU.65b.VU {EQBENXITEM {Item not found} 5su2GC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t3PIC5L2QyUsUU.65b.VU 5t3PIC5L2QyUsUU.65b.VU {EQBEPARSE {Syntax error in query specification} 5steFC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t3Tdi5L2QyUsUU.65b.VU 5t3Tdi5L2QyUsUU.65b.VU {EQBETIMEOUT {Query timed out} 5steFC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t3XzC5L2QyUsUU.65b.VU 5t3XzC5L2QyUsUU.65b.VU {ERANGEFULL {No more values to autogenerate} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t3cIi5L2QyUsUU.65b.VU 5t3cIi5L2QyUsUU.65b.VU {EREADONLY {Inserts and updates not allowed for class} 5svDLC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t3geC5L2QyUsUU.65b.VU 5t3geC5L2QyUsUU.65b.VU {EREFINTEGRITY {Dangling references to deleted item} 5svywC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t3kxC5L2QyUsUU.65b.VU 5t3kxC5L2QyUsUU.65b.VU {EREFPERM {Permission denied} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t3pJC5L2QyUsUU.65b.VU 5t3pJC5L2QyUsUU.65b.VU {EROOTREGION {Region would be in root cell} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t3tcC5L2QyUsUU.65b.VU 5t3tcC5L2QyUsUU.65b.VU {EROOTSET {Root node of class already set} 5suSJi5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707780}
+5t3xxi5L2QyUsUU.65b.VU 5t3xxi5L2QyUsUU.65b.VU {EROWCOUNT {Query returned too many rows} 5sw1Fi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t40HC5L2QyUsUU.65b.VU 5t40HC5L2QyUsUU.65b.VU {ESHARP {Value may not contain the '#' character} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t44ci5L2QyUsUU.65b.VU 5t44ci5L2QyUsUU.65b.VU {ESUBNETTED {Parent network is subnetted} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t48yC5L2QyUsUU.65b.VU 5t48yC5L2QyUsUU.65b.VU {ETOOBIG {Attribute value exceeds maximum} 5sv4ii5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t4DHi5L2QyUsUU.65b.VU 5t4DHi5L2QyUsUU.65b.VU {ETOOLONG {Attribute character count exceeds maximum} 5sv4ii5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t4Hai5L2QyUsUU.65b.VU 5t4Hai5L2QyUsUU.65b.VU {ETOOSHORT {Attribute character count is below minimum} 5sv4ii5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t4Lyi5L2QyUsUU.65b.VU 5t4Lyi5L2QyUsUU.65b.VU {ETOOSMALL {Attribute value is below minimum} 5sv4ii5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707780}
+5t4QFi5L2QyUsUU.65b.VU 5t4QFi5L2QyUsUU.65b.VU {EUNITCOUNT {Cannot create more items, license exceeded} 5suSJi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707781}
+5t4UbC5L2QyUsUU.65b.VU 5t4UbC5L2QyUsUU.65b.VU {EUSAGE {Bad usage} 5steFC5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707781}
+5t4Ywi5L2QyUsUU.65b.VU 5t4Ywi5L2QyUsUU.65b.VU {EUSEDUUID {Cannot create item with duplicate UUID} 5suSJi5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707781}
+5t4dGC5L2QyUsUU.65b.VU 5t4dGC5L2QyUsUU.65b.VU {EWORM {Attribute may not be updated} 5sub.i5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707781}
+5t4hbi5L2QyUsUU.65b.VU 5t4hbi5L2QyUsUU.65b.VU {EWRONGCLASS {Undelete class not equal to item class} 5svHgi5L2QyUsUU.65b.VU Internal UName*It 0.0.0 {} 848707781}
+5t4lxC5L2QyUsUU.65b.VU 5t4lxC5L2QyUsUU.65b.VU {EXCELL {Attribute must point to item in same cell} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707781}
+5t4qEC5L2QyUsUU.65b.VU 5t4qEC5L2QyUsUU.65b.VU {EZEROTHSUBNET {Zero subnet not allowed} 5supPC5L2QyUsUU.65b.VU Normal UName*It 0.0.0 {} 848707781}
+.gMFYYzF2R0IRkU.65b.VU .gMFYYzF2R0IRkU.65b.VU {ENETGRCHARS {Illegal comma, '@', '#' or parentheses} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 0.1.0 {} 850160986}
+m5MZJ51B2R0v2.U.65b.VU m5MZJ51B2R0v2.U.65b.VU {EDUPELEMENT {Illegal duplicate element in sequence} 5supPC5L2QyUsUU.65b.VU Normal UName*It 3.0.0 {} 854653141}
+oE8/w7g92R0C.EU.65b.VU oE8/w7g92R0C.EU.65b.VU {EBACKSLASH {Value may not contain a '\'} 5suy1i5L2QyUsUU.65b.VU Normal UName*It 4.0.0 {} 859243380}
+wt1yR8Zn2R0v7kU.65b.VU wt1yR8Zn2R0v7kU.65b.VU {EXORG {Attribute must point to item in same organization} 5supPC5L2QyUsUU.65b.VU Normal UName*It 4.0.0 {} 859243380}

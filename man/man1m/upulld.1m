@@ -1,0 +1,111 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH UPULLD 1m
+.SH NAME
+upulld - UName*It pull server daemon
+.SH SYNOPSIS
+.B upulld
+.SH DESCRIPTION
+This program is the UName*It pull server daemon. It answers requests
+from pull clients, both regular pull hosts and regional pull servers,
+and gives them files from the directory specified by the
+.I data
+keyword in the UName*It configuration files.
+It basically only answers six commands:
+.TP
+.B unameit_get_uuid
+This command gives back the uuid of the machine
+.B upulld
+is running on.
+.TP
+.BI unameit_pull_get_host_uuid\  host
+This command translates a host name into the uuid for the host. The host name
+should be given in short form (without the domain).
+.TP
+.BI unameit_pull_uuid\  ip_address
+This command translates an IP address into the uuid of the host
+corresponding to that IP address. It is needed when initially creating
+the
+.B uuid
+file used by
+.IR upull (1).
+.TP
+.BI unameit_pull_whoami\  uuid
+This command gives back information on the current host. Normally, the
+.IR upull (1)
+command executes
+.B unameit_pull_whoami
+when it starts up to determine who UName*It thinks the host is. The
+uuid used is retrieved from the file
+.B .../uuid
+by the
+.IR upull (1)
+command. (The ... specified the 
+.I data
+directory in the UName*It configuration files).
+See
+.IR upull (1)
+for more information.
+.TP
+.B unameit_pull_version
+This command gives back the version on the pull server. If the pull
+server doesn't have any versions yet, it raises an exception.
+.TP
+.BI unameit_pull_readdir\  dir
+This command reads a directory on the
+.B upulld
+host and returns the files names in it. The results are suitable for
+Tcl's
+.B array set
+command.
+.TP
+.BI unameit_pull_read_file\  file
+Reads a file from the
+.B upulld
+host and returns it.
+.PP
+.B upulld
+can be viewed as a dumb, secure NFS server.
+.SH FILES
+.PD 0
+.TP 25
+\&.../data
+This directory contains the files that
+.B upulld
+will hand to the client that connects to it. If the file requested is
+not in this directory, you cannot copy it.
+.TP 25
+\&.../data/pull_main.tcl
+When
+.IR upull (1)
+is run, this file is downloaded from
+.B upulld
+and run. This way, the behavior of all
+.IR upull (1)
+clients can be changed just by replacing the
+.B pull_main.tcl
+file. This file must exist or
+.IR upull (1)
+will not run.
+.PD 0
+.SH SEE ALSO
+upull(1), uparsedb(1m), ubackend(1m)

@@ -1,0 +1,47 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH SCILISTATTRS 1
+.SH NAME
+scilistattrs - display UName*It class attributes
+.SH SYNOPSIS
+.B scilistattrs 
+.I class
+.SH DESCRIPTION
+.B scilistattrs
+enables a user to display the attributes 
+associated with the 
+.I class
+in the UName*It database.
+Each attribute will be followed by its type.  Each attribute/type pair
+will be output on 
+stdout followed by a newline.  Only user updatable attributes will 
+be displayed.  Computed and protected attributes will be suppressed.
+.PP
+.SH EXAMPLES
+csh% \fIscilistattrs cell\fR
+.br
+name String
+.br
+cellorg Object
+.SH SEE ALSO
+scicreate(1), scidelete(1), sciundelete(1), sciupdate(1),
+scinewuuid(1), scishow(1), scimatch(1)

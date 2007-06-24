@@ -1,0 +1,77 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH UNAMEIT_MODE 1m
+.SH NAME
+unameit_mode \- edit the configuratin files on the UName*It server machine
+.SH SYNOPSIS
+.B unameit_mode
+[
+.B create
+|
+.B check
+|
+.B delete
+|
+.B edit
+|
+.B list
+]
+.SH DESCRIPTION
+This command edits the configuration files on the UName*It
+server. It is normally only run by root.
+.PP
+This command is very similar to the
+.IR upull_mode (1)
+command except that it is only run on the UName*It server machine and
+it edits two files rather than one. The two files it edits are 
+.IB unameitdir /config/ mode.conf
+and
+.BI /etc/unameit/config/ mode .conf
+where 
+.I unameitdir
+is the location of the UName*It binaries (normally
+.BR /opt/unameit )
+and
+.I mode
+is the mode UNAMEIT_MODE is set to.
+The UName*It machine normally does not export
+.I unameitdir
+but rather has its own local copy of this file system. It is not a
+good idea to have the UName*It server machine export any file systems
+since this machine should be quite secure.
+.PP
+The 
+.B create
+command brings up a dialog box to answer initial configuration
+questions just like
+.IR upull_mode (1).
+See the 
+.IR upull_mode (1)
+mode manual page for the format of the configuration files and the
+keywords accepted.
+.SH SEE ALSO
+unameitd(1m), upull_mode(1)
+.SH BUGS
+Some of the keywords described in
+.IR upull_mode (1)
+should be described here since the keywords are only relevent to
+commands that execute on the UName*It server.

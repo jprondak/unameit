@@ -1,0 +1,323 @@
+# $Id: Makefile.yp.SunOS4,v 1.6 1997/03/25 02:44:47 simpson Exp $
+# This Makefile is the standard Sun YP Makefile with the following exceptions:
+#
+# This Makefile assumes the NIS files are installed using the "safe"
+# install type. i.e the entire built directory
+# is renamed to "/var/yp/src/current",  change this to "/var/yp/src" if
+# using the "unsafe" (or one file a time installation method).
+#
+#
+# 1) The YP maps are not generated from the files in the system directories
+#    (.e.g., /etc) but rather from the directory /var/yp/src/current/<file>.
+#
+# 2) Netgroups of the form foo--<num>.bar.com and with @ signs are 
+#    filtered out of the reverse netgroup maps. Netgroups of this form are 
+#    continuation netgroups or foreign netgroups that are not meant to be 
+#    output in the maps.
+#
+# 3) The automount maps auto.master and auto.home are now auto_master
+#    and auto_home,  to match the Solaris naming style.
+#
+#	@(#)make.script 1.36 90/12/20 SMI
+#
+# This file should reside in both /var/yp/Makefile and /usr/lib/NIS.Makefile.
+# It should only be executed from /var/yp.
+# Placement in /usr/lib is for the assistance of SysAdmins who have servers
+# with releases prior to SunOS 4.1.1 Rev B and thus do not have the 
+# "timezone", "auto_master" and "auto_home" NIS maps.  This will provide 
+# them easy access to a version of Makefile with those new maps.
+#
+# Set the following variable to "-b" to have NIS servers use the domain name
+# resolver for hosts not in the current domain. 
+#B=-b
+B=
+DOM:sh = domainname
+DIR = /var/yp/src/current
+ETCDIR = /etc
+NOPUSH = ""
+ALIASES = $(DIR)/aliases
+YPDIR=/usr/etc/yp
+YPDBDIR=/var/yp
+YPPUSH=$(YPDIR)/yppush
+MAKEDBM=$(YPDIR)/makedbm
+REVNETGROUP=$(YPDIR)/revnetgroup
+DELDUPHOSTS=/opt/unameit/lib/nis/ng_del_dup.awk
+#
+# Do not cut/paste,  next two lines contain <Space><Tab> pair
+#
+SPACE_OR_TAB=[ 	]
+NOT_SPACE_OR_TAB=[^ 	]
+REVSEDCMD= -n\
+	-e 's/\(${SPACE_OR_TAB}\)\(${NOT_SPACE_OR_TAB}\)/\1,\2/'\
+	-e 's/,[^,]*--[0-9][^,]*//g'\
+	-e 's/,[^,]*@[^,]*//g'\
+	-e '/\(${SPACE_OR_TAB}\),/s//\1/p'
+STDETHERS=$(YPDIR)/stdethers
+STDHOSTS=$(YPDIR)/stdhosts
+MKNETID=$(YPDIR)/mknetid
+MKALIAS=$(YPDIR)/mkalias
+
+CHKPIPE=  || (  echo "NIS make terminated:" $@ 1>&2; kill -TERM 0 )
+
+
+k:
+	@if [ ! $(NOPUSH) ]; then $(MAKE)  $(MFLAGS) -k all; \
+	else $(MAKE) $(MFLAGS) -k all NOPUSH=$(NOPUSH);fi
+
+all: passwd group hosts ethers networks rpc services protocols \
+	netgroup bootparams aliases publickey netid netmasks \
+	timezone auto_master auto_home auto_opt
+
+passwd.time: $(DIR)/passwd
+	@(awk 'BEGIN { FS=":"; OFS="\t"; }\
+		/^[a-zA-Z0-9_]/ { print $$1, $$0 }'\
+	    $(DIR)/passwd  $(CHKPIPE))|\
+	    $(MAKEDBM) - $(YPDBDIR)/$(DOM)/passwd.byname
+	@(awk 'BEGIN { FS=":"; OFS="\t"; }\
+		/^[a-zA-Z0-9_]/ { printf("%-10d ", $$3); print $$0 }'\
+	    $(DIR)/passwd $(CHKPIPE))|\
+	    $(MAKEDBM) - $(YPDBDIR)/$(DOM)/passwd.byuid
+	@touch passwd.time; 
+	@echo "updated passwd"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) passwd.byname; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) passwd.byuid; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed passwd"; fi
+
+group.time: $(DIR)/group
+	@(awk 'BEGIN { FS=":"; OFS="\t"; }\
+		{ print $$1, $$0 }'\
+	    $(DIR)/group $(CHKPIPE))|\
+	    $(MAKEDBM) - $(YPDBDIR)/$(DOM)/group.byname
+	@(awk 'BEGIN { FS=":"; OFS="\t"; }\
+		{ printf("%-10d ", $$3); print $$0 }'\
+	    $(DIR)/group $(CHKPIPE)) |\
+	    $(MAKEDBM) - $(YPDBDIR)/$(DOM)/group.bygid
+	@touch group.time; 
+	@echo "updated group"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) group.byname; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) group.bygid; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed group"; fi
+
+hosts.time: $(DIR)/hosts
+	@(sed -e "/^#/d" -e s/#.*$$// $(DIR)/hosts $(CHKPIPE)) | \
+	($(STDHOSTS) $(CHKPIPE)) | \
+	(awk '{for (i = 2; i <= NF; i++) print $$i, $$0}' $(CHKPIPE))| \
+	$(MAKEDBM) $(B) -l - $(YPDBDIR)/$(DOM)/hosts.byname 
+
+	@($(STDHOSTS) $(DIR)/hosts $(CHKPIPE))| \
+	(awk 'BEGIN { OFS="\t"; } $$1 !~ /^#/ { print $$1, $$0 }' $(CHKPIPE)) | \
+	$(MAKEDBM) $(B) - $(YPDBDIR)/$(DOM)/hosts.byaddr; 
+	@touch hosts.time; 
+	@echo "updated hosts"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) hosts.byname; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) hosts.byaddr; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed hosts"; fi
+
+ethers.time: $(DIR)/ethers
+	@($(STDETHERS) $(DIR)/ethers $(CHKPIPE)) \
+	|(awk '{print $$1, $$0; for (i = 3;i <= NF;i++) print $$i,$$0}' $(CHKPIPE)) \
+	| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/ethers.byaddr 
+
+	@(awk 'BEGIN { OFS="\t"; } $$1 !~ /^#/ { print $$2, $$0 }' \
+	   $(DIR)/ethers $(CHKPIPE)) | \
+	$(MAKEDBM) - $(YPDBDIR)/$(DOM)/ethers.byname;
+	@touch ethers.time; 
+	@echo "updated ethers"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) ethers.byname; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) ethers.byaddr; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed ethers"; fi
+
+networks.time: $(DIR)/networks
+	@(sed -e "/^#/d" -e s/#.*$$// $(DIR)/networks $(CHKPIPE)) |( awk \
+	    '{print $$1, $$0; for (i = 3;i <= NF;i++) print $$i,$$0}' \
+	    $(CHKPIPE) )| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/networks.byname; 
+	@(awk 'BEGIN { OFS="\t"; } $$1 !~ /^#/ { print $$2, $$0 }' \
+	   $(DIR)/networks $(CHKPIPE)) | $(MAKEDBM) - $(YPDBDIR)/$(DOM)/networks.byaddr;
+	@touch networks.time; 
+	@echo "updated networks"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) networks.byname; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) networks.byaddr; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed networks"; fi
+
+services.time: $(DIR)/services
+	@(awk 'BEGIN { OFS="\t"; } $$1 !~ /^#/ { print $$2, $$0 }' \
+	    $(DIR)/services $(CHKPIPE))| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/services.byname;
+
+	@touch services.time; 
+	@echo "updated services"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) services.byname; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed services"; fi
+
+rpc.time: $(DIR)/rpc
+	@(awk 'BEGIN { OFS="\t"; } $$1 !~ /^#/ { print $$2, $$0 }' \
+	    $(DIR)/rpc $(CHKPIPE))| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/rpc.bynumber;
+	@touch rpc.time; 
+	@echo "updated rpc"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) rpc.bynumber; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed rpc"; fi
+
+protocols.time: $(DIR)/protocols
+	@(awk 'BEGIN { OFS="\t"; } $$1 !~ /^#/ { print $$2, $$0 }' \
+	    $(DIR)/protocols $(CHKPIPE)) | $(MAKEDBM) - \
+	    $(YPDBDIR)/$(DOM)/protocols.bynumber; 
+
+	@(sed -e "/^#/d" -e s/#.*$$// $(DIR)/protocols $(CHKPIPE)) |( awk \
+	    '{print $$1,$$0; for (i = 3;i <= NF;i++) print $$i, $$0}' \
+	    $(CHKPIPE))| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/protocols.byname; 
+
+	@touch protocols.time; 
+	@echo "updated protocols"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) protocols.byname; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) protocols.bynumber; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed protocols"; fi
+
+netgroup.time: $(DIR)/netgroup
+	@(awk -f $(DELDUPHOSTS) $(DIR)/netgroup | \
+		$(MAKEDBM) - $(YPDBDIR)/$(DOM)/netgroup)
+	@($(REVNETGROUP) < $(DIR)/netgroup -u $(CHKPIPE))|\
+	    (sed $(REVSEDCMD) $(CHKPIPE)) |\
+	    $(MAKEDBM) - $(YPDBDIR)/$(DOM)/netgroup.byuser
+	@($(REVNETGROUP) < $(DIR)/netgroup -h $(CHKPIPE))|\
+	    (sed $(REVSEDCMD) $(CHKPIPE)) |\
+	    $(MAKEDBM) - $(YPDBDIR)/$(DOM)/netgroup.byhost
+	@touch netgroup.time; 
+	@echo "updated netgroup"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) netgroup; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) netgroup.byuser; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) netgroup.byhost; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed netgroup"; fi
+
+bootparams.time: $(DIR)/bootparams
+	@(sed -e '/^#/d' -e s/#.*$$// -e 's/[	 ][	 ]*$$//' \
+	    -e '/\\$$/s/\\$$/ /' $(DIR)/bootparams $(CHKPIPE))\
+	|( awk '/ $$/ {printf "%s", $$0} !/ $$/ {print}' $(CHKPIPE))\
+	|( sed -e 's/[	 ][	 ]*/ /g' $(CHKPIPE))\
+	| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/bootparams;
+	@touch bootparams.time; 
+	@echo "updated bootparams"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) bootparams; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed bootparams"; fi
+
+aliases.time: $(ALIASES)
+	@cp $(ALIASES) $(YPDBDIR)/$(DOM)/mail.aliases; 
+	@/usr/lib/sendmail -bi -oA$(YPDBDIR)/$(DOM)/mail.aliases; 
+	@$(MKALIAS) $(YPDBDIR)/$(DOM)/mail.aliases $(YPDBDIR)/$(DOM)/mail.byaddr; 
+	@rm $(YPDBDIR)/$(DOM)/mail.aliases; 
+	@touch aliases.time; 
+	@echo "updated aliases"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) mail.aliases; fi
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) mail.byaddr; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed aliases"; fi
+
+netmasks.time: $(DIR)/netmasks
+	@$(MAKEDBM) $(DIR)/netmasks $(YPDBDIR)/$(DOM)/netmasks.byaddr; 
+	@touch netmasks.time; 
+	@echo "updated netmasks"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) netmasks.byaddr; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed netmasks"; fi
+
+
+publickey.time: $(DIR)/publickey
+	@(sed "/^#/d" < $(DIR)/publickey $(CHKPIPE))| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/publickey.byname; 
+	@touch publickey.time; 
+	@echo "updated publickey"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) publickey.byname; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed publickey"; fi
+
+netid.time: $(DIR)/passwd $(DIR)/group $(DIR)/hosts $(DIR)/netid
+	@$(MKNETID) -q -p $(DIR)/passwd -g $(DIR)/group -h $(DIR)/hosts -m $(DIR)/netid > .ypjunk; 
+	@$(MAKEDBM) .ypjunk $(YPDBDIR)/$(DOM)/netid.byname; 
+	@rm -f .ypjunk; 
+	@touch netid.time; 
+	@echo "updated netid"; 
+	@if [ ! $(NOPUSH) ]; then $(YPPUSH) -d $(DOM) netid.byname; fi
+	@if [ ! $(NOPUSH) ]; then echo "pushed netid"; fi
+
+timezone.time:  $(DIR)/timezone
+	-@if [ -f $(DIR)/timezone ]; then \
+		sed -e "/^#/d" -e s/#.*$$// $(DIR)/timezone \
+		| awk '{for (i = 2; i<=NF; i++) print $$i, $$0}' \
+		| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/timezone.byname; \
+		touch timezone.time; \
+		echo "updated timezone"; \
+		if [ ! $(NOPUSH) ]; then \
+			$(YPPUSH) timezone.byname; \
+			echo "pushed timezone"; \
+		else \
+		: ; \
+		fi \
+	else \
+		echo "couldn't find $(DIR)/timezone"; \
+	fi
+
+auto_master.time:  $(ETCDIR)/auto_master
+	-@if [ -f $(ETCDIR)/auto_master ]; then \
+		sed -e "/^#/d" -e s/#.*$$// $(ETCDIR)/auto_master \
+		| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/auto_master; \
+		touch auto_master.time; \
+		echo "updated auto_master"; \
+		if [ ! $(NOPUSH) ]; then \
+			$(YPPUSH) auto_master; \
+			echo "pushed auto_master"; \
+		else \
+		: ; \
+		fi \
+	else \
+		echo "couldn't find $(ETCDIR)/auto_master"; \
+	fi
+
+auto_home.time:  $(DIR)/auto_home
+	-@if [ -f $(DIR)/auto_home ]; then \
+		sed -e "/^#/d" -e s/#.*$$// $(DIR)/auto_home \
+		| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/auto_home; \
+		touch auto_home.time; \
+		echo "updated auto_home"; \
+		if [ ! $(NOPUSH) ]; then \
+			$(YPPUSH) auto_home; \
+			echo "pushed auto_home"; \
+		else \
+		: ; \
+		fi \
+	else \
+		echo "couldn't find $(DIR)/auto_home"; \
+	fi
+
+auto_opt.time:  $(DIR)/auto_opt
+	-@if [ -f $(DIR)/auto_opt ]; then \
+		sed -e "/^#/d" -e s/#.*$$// $(DIR)/auto_opt \
+		| $(MAKEDBM) - $(YPDBDIR)/$(DOM)/auto_opt; \
+		touch auto_opt.time; \
+		echo "updated auto_opt"; \
+		if [ ! $(NOPUSH) ]; then \
+			$(YPPUSH) auto_opt; \
+			echo "pushed auto_opt"; \
+		else \
+		: ; \
+		fi \
+	else \
+		echo "couldn't find $(DIR)/auto_opt"; \
+	fi
+
+passwd: passwd.time
+group: group.time
+hosts: hosts.time
+ethers: ethers.time
+networks: networks.time
+rpc: rpc.time
+services: services.time
+protocols: protocols.time
+netgroup: netgroup.time
+bootparams: bootparams.time
+aliases: aliases.time
+publickey: publickey.time
+netid: netid.time
+netmasks: netmasks.time
+timezone: timezone.time
+auto_master: auto_master.time
+auto_home: auto_home.time
+auto_opt: auto_opt.time
+$(DIR)/netid:
+$(DIR)/timezone:
+$(ETCDIR)/auto_master:
+$(DIR)/auto_home:
+$(DIR)/auto_opt:

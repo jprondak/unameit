@@ -1,0 +1,81 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+DATAS = \
+	kdc.conf \
+	krb5.conf \
+	krb5_client.sh \
+	krb5_server.sh \
+	unameit.conf \
+	unameit_etc_demo.conf \
+	unameit_root.conf \
+	unameit_setup_kerberos5.tcl \
+	unameit_shared_demo.conf \
+	wrapper.sh 
+
+PROGRAMS = \
+	krb5kdc \
+	unameit_setup \
+	unameit_setup_demo \
+	unameit_setup_kerberos5 \
+	unameit_start
+
+TCL_EXES = \
+	unameit_addprincs \
+	unameit_config \
+	unameit_filename \
+	unameit_mode \
+	upull_mode
+
+TCL_SEXES = unameit_makedata 
+
+
+TCL_MODULES = \
+	unameit_mode_edit.tcl
+
+all:
+
+client:
+
+server:
+ 
+install-client::
+	for f in $(DATAS); do \
+		$(INSTALL_DATA) $$f $(UNAMEIT_INSTALL); \
+	done
+	for f in $(TCL_MODULES); do \
+		$(INSTALL_DATA) $$f $(UNAMEIT_TCLLIB); \
+	done
+	for f in $(PROGRAMS); do \
+		$(INSTALL_PROGRAM) $$f $(UNAMEIT_INSTALL); \
+	done
+
+	for command in $(TCL_EXES); do\
+	    $(INSTALL_PROGRAM) $$command.tcl $(UNAMEIT_BIN)/exe/$$command;\
+	done
+
+install-server::
+	for command in $(TCL_SEXES); do\
+	    $(INSTALL_PROGRAM) $$command.tcl $(UNAMEIT_SBIN)/exe/$$command;\
+	done
+
+install:: install-client install-server

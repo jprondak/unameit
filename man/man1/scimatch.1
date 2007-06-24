@@ -1,0 +1,145 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH SCIMATCH 1
+.SH NAME
+scimatch - Search the UName*It database
+.SH SYNOPSIS
+.B scimatch 
+[
+.B \-s
+]
+[
+.BI \-maxRows\  rows
+]
+[
+.BI \-timeOut\  time
+]
+[
+.B \-deleted
+]
+.I class 
+[
+.RI ' attribute 
+.I operator 
+[ 
+.I value
+]']
+.I ...
+.SH DESCRIPTION
+.PP
+.B scimatch
+outputs to stdout a list containing all database items
+from the given 
+.I class
+which match the specified attribute constraints.  By default
+scimatch returns the UUID of each item.  
+The options are as follows:
+.TP
+.B \-s
+A descriptive
+label is printed instead of the UUID.
+.TP
+.BI \-maxRows\  rows
+Limit the number of objects returned to
+.IR rows .
+.TP
+.BI \-timeOut\  time
+The query can only run for
+.I time
+seconds in the server before returning an error.
+.TP
+.B \-deleted
+Return the uuids of deleted as well as undeleted objects.
+.PP
+Each constraint argument should be of the form:
+.IR attribute\ operator\  [ value ].
+The following 
+.I operators
+are currently supported:
+.TP 10
+.B = !=
+Return items for which the specified attribute is (not) equal to the 
+.IR value.
+If the value part of the constraint is not specified it is assumed NULL.
+This allows one to query for NULL or NOT NULL values.
+.TP 10
+.B <= >= > <
+Return items for which the specified attribute is related as indicated to
+the
+.IR value.
+These operators are not available for Object attributes.
+.TP 10
+.B ~ !~
+Return items for which the specified attribute matches (does not match)
+the pattern specified by the
+.IR value.
+In the pattern the characters * and ? match any number of characters
+or any one character respectively.  The \\ character suppresses any
+special interpretation of the following character.  All other characters
+match themselves.  This operator is only available for String attributes.
+.TP 10
+.B contains
+Return items for which the specified attribute points to at least
+all of the items specified by
+.IR value.
+This operator is only available for Set or Sequence of Object attributes.
+.PP
+Constraints on Object attributes may use a \fIpath expression\fR to specify
+constraints on fields of the item referenced by the
+.I attribute.
+Path expressions may be nested.
+For example, if you are searching for automounts on the
+.I attribute 
+``nfs_server'' the command would look like:
+.in +.25i
+.sp +.2i
+\fIscimatch automount "nfs_server.Class server_alias"\\
+.br
+"nfs_server.server_type.name ~ mail*"\fR
+.sp +.2i
+.in -.25i
+The above example retrieves all 
+.I automounts 
+whose
+.I nfs_server
+field points to a
+.IR server_alias
+whose server_type has a name starting with the string mail.
+The pseudo-attribute \fIClass\fR above restricts the attribute values to
+those which are in the subclass \fIserver_alias\fR of the actual domain
+of the attribute (in this case \fIabstract_computer\fR).
+.SH EXAMPLES
+.PD 0
+csh% \fIscimatch computer "name = anaheim"\fR
+.br
+X8h7QgoI2QuHyEU.65Leek
+.br
+csh% \fIscimatch -s computer "name = anaheim"\fR
+.br
+anaheim
+.br
+csh% \fIscimatch -s host "name ~ l*" "ifname ="\fR
+.br
+localhost
+.SH SEE ALSO
+scicreate(1), scidelete(1), sciundelete(1), sciupdate(1),
+scilistattrs(1), scinewuuid(1), scishow(1)

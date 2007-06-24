@@ -1,0 +1,111 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+In the unameit/win directory are the tcl scripts which are used to build
+the unameit client on Windows. 
+
+First, copy win/makevc.conf to win/makevc_config.tcl and edit it to reflect
+the setup on your machine. Usually, only the TmpShare, TmpTop, 
+DestShare and DestTop variables need to be set.
+
+Second, run 
+
+	tcl <path>/makevc_run.tcl configure
+
+The tcl script makevc_run.tcl will:
+
+	1. source makevc_config.tcl
+	2. go through all of the subdirectories and process makevc.tcl
+
+Third, cd to the <TmpTop> directory and run
+
+	tcl <path>/makevc_run.tcl make
+
+Fourth, 
+
+	tcl <path>/makevc_run.tcl install
+
+Or you can combine these with
+
+	tcl <path>/makevc_run.tcl configure make install
+
+----------------------------------------------------------------------------
+
+MAKEVC.TCL FORMAT
+
+The makevc.tcl file will be sourced, and should contain 
+calls to the 'target' command e.g.
+
+    ----- start of example -----
+
+    target {
+	object_name unameit_win.exe 
+	object_type exe 
+	install_type client 
+	c_files {unameit_win.c winenv.c}
+	rc_files {setup.rc}
+	subsystem windows 
+    }
+
+    ----- end of example -----
+
+The argument to target is a balanced list of named parameters. Each
+parameter is a tcl list. The named parameters are:
+
+	object_name is the name of the object (e.g. trivial.dll)
+
+	install_type = {client | server}
+
+	directory_macro is the name of the destination (e.g. UNAMEIT_TOILIB)
+
+	object_type is one of the following
+	    tcl_module 
+	    wish_script 
+	    tcl_script 
+	    tcl_include
+	    dll 
+	    exe
+	    lib
+
+	new_name is the new name of the object if it is different 
+
+	c_files is a list of c files to compile
+
+	other_libraries is a list of libraries to link with
+
+	other_headers is a list of include directives
+
+	dependent_libraries is a list of unameit libraries to use
+
+	name is the target name, and should be globally unique, since it
+	is used to identify the resulting object in the install tree. If
+	not set, the basename of object_name will be used.
+
+A file called unameit_files.dat will be produced that contains relative
+paths for all targets in the install tree, using the target name as keys.
+At runtime, the command unameit_filename can be used to get the name
+of any target.
+
+Some of the information about the target types is used in installation. For
+example, a wish_script is copied to UNAMEIT_TCLLIB, as are tcl_modules and
+tcl_scripts. However, at installation time a shortcut is made for a wish_script
+to have wishx process the script. (Acutally, that is not automatic yet. TBD)

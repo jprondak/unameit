@@ -1,0 +1,247 @@
+Wo1YKZ5j2R00DUU.65b.VU Wo1YKZ5j2R00DUU.65b.VU {eJmCVYyj2R0BWUU.65b.VU comment Comment NULL Yes 1 128 Mixed {{regexp ENOTPRINT "^[^\001-\037\177-\377]*$"}} {} {} {} {}}
+eJmJwYyj2R0BWUU.65b.VU eJmJwYyj2R0BWUU.65b.VU {eJmIRYyj2R0BWUU.65b.VU name Name Error Yes 1 63 lower {} {} {} {} {}}
+eJmNo2yj2R0BWUU.65b.VU eJmNo2yj2R0BWUU.65b.VU {eJmME2yj2R0BWUU.65b.VU role_name Name Error No 2 16 lower {{regexp ENOTALPHA {^[a-zA-Z]*$}}} {} {} {} {}}
+5spMDi5L2QyUsUU.65b.VU 5spMDi5L2QyUsUU.65b.VU {5sp0OC5L2QyUsUU.65b.VU provider_support_number {Support Phone Number} NULL Yes 0 63 Mixed {{regexp ENOTPHONENUM {^[()0-9+, -]*$}}} UName*It 0.0.0 {} 848707760}
+5spdji5L2QyUsUU.65b.VU 5spdji5L2QyUsUU.65b.VU {5spUxC5L2QyUsUU.65b.VU pager_pin {PIN Number} NULL Yes 1 10 Mixed {{regexp ENOTNUMERIC {^[0-9]*$}}} UName*It 0.0.0 {} 848707760}
+5spi3C5L2QyUsUU.65b.VU 5spi3C5L2QyUsUU.65b.VU {5spUxC5L2QyUsUU.65b.VU pager_phone {Phone Number} NULL Yes 1 63 Mixed {{regexp ENOTPHONENUM {^[()0-9+, -]*$}}} UName*It 0.0.0 {} 848707760}
+5sqSSi5L2QyUsUU.65b.VU 5sqSSi5L2QyUsUU.65b.VU {5sqO4i5L2QyUsUU.65b.VU ip_service_name {Service Name} Error Yes 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp ESHARP {^[^#]*$}}} UName*It 0.0.0 {} 848707760}
+5srXqi5L2QyUsUU.65b.VU 5srXqi5L2QyUsUU.65b.VU {5srTSi5L2QyUsUU.65b.VU sybase_name Name Error Yes 1 64 UPPER {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTGENALNUM {^([_]?[0-9A-Za-z])*$}}} UName*It 0.0.0 {} 848707760}
+5ss8sC5L2QyUsUU.65b.VU 5ss8sC5L2QyUsUU.65b.VU {5ss4ZC5L2QyUsUU.65b.VU bsd_printcap_sd {Spool Directory} Error Yes 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} UName*It 2.0.0 {} 851048651}
+5ssqDC5L2QyUsUU.65b.VU 5ssqDC5L2QyUsUU.65b.VU {5sshYC5L2QyUsUU.65b.VU bsd_printcap1 {Printcap Line 1} NULL Yes 1 255 Mixed {{regsuball "[\t\040]+" {}} {regsuball {:+} {:}} {regsub {^:} {}} {regsub {:$} {}} {code {
+    foreach spec [split $value :] {
+	if {![regexp {^([a-z][a-z])(([#=])(.*))?$} $spec x cap x sep val]} {
+	    unameit_error EBADPRINTCAP $uuid $attr $spec
+	}
+	switch -- $cap {
+	    fo - hl - ic - rs - rw - sb - sc - sf - sh {
+		switch -- $sep "" {} default {
+		    unameit_error EPRINTCAPOPTBOOL $uuid $attr $spec
+		}
+	    }
+	    br - du - fc - fs - mc - mx - pc - pl - pw - px - py - xc - xs {
+		if {![cequal $sep #] || ![regexp {^[0-9]+$} $val]} {
+		    unameit_error EPRINTCAPOPTINT $uuid $attr $spec
+		}
+	    }
+	    af - cf - df - ff - gf - if - lf - lo - lp - ms - nf - of -
+	    rf - rg - st - tf - tr - vf {
+		if {![cequal $sep =]} {
+		    unameit_error EPRINTCAPOPTSTR $uuid $attr $spec
+		}
+	    }
+	    rm - rp - sd - tc {
+		unameit_error EPRINTCAPOPTATTR $uuid $attr $spec
+	    }
+	    default {
+		unameit_error EBADPRINTCAP $uuid $attr $spec
+	    }
+	}
+	switch -- $cap {
+	    fo - hl - ic - rs - rw - sb - sc - sf - sh {
+		switch -- $sep "" {} default {
+		    unameit_error EPRINTCAPOPTBOOL $uuid $attr $spec
+		}
+	    }
+	    br - du - fc - fs - mc - mx - pc - pl - pw - px - py - xc - xs {
+		if {![cequal $sep #] || ![regexp {^[0-9]+$} $val]} {
+		    unameit_error EPRINTCAPOPTINT $uuid $attr $spec
+		}
+	    }
+	    af - cf - df - ff - gf - if - lf - lo - lp - ms - nf - of -
+	    rf - rg - st - tf - tr - vf {
+		if {![cequal $sep =]} {
+		    unameit_error EPRINTCAPOPTSTR $uuid $attr $spec
+		}
+	    }
+	    rm - rp - sd - tc {
+		unameit_error EPRINTCAPOPTATTR $uuid $attr $spec
+	    }
+	    default {
+		unameit_error EBADPRINTCAP $uuid $attr $spec
+	    }
+	}
+    }
+}}} UName*It 2.0.0 {} 851048650}
+5ssuYi5L2QyUsUU.65b.VU 5ssuYi5L2QyUsUU.65b.VU {5sshYC5L2QyUsUU.65b.VU bsd_printcap2 {Printcap Line 2} NULL Yes 1 255 Mixed {{regsuball "[\t\040]+" {}} {regsuball {:+} {:}} {regsub {^:} {}} {regsub {:$} {}} {code {
+    foreach spec [split $value :] {
+	if {![regexp {^([a-z][a-z])(([#=])(.*))?$} $spec x cap x sep val]} {
+	    unameit_error EBADPRINTCAP $uuid $attr $spec
+	}
+	switch -- $cap {
+	    fo - hl - ic - rs - rw - sb - sc - sf - sh {
+		switch -- $sep "" {} default {
+		    unameit_error EPRINTCAPOPTBOOL $uuid $attr $spec
+		}
+	    }
+	    br - du - fc - fs - mc - mx - pc - pl - pw - px - py - xc - xs {
+		if {![cequal $sep #] || ![regexp {^[0-9]+$} $val]} {
+		    unameit_error EPRINTCAPOPTINT $uuid $attr $spec
+		}
+	    }
+	    af - cf - df - ff - gf - if - lf - lo - lp - ms - nf - of -
+	    rf - rg - st - tf - tr - vf {
+		if {![cequal $sep =]} {
+		    unameit_error EPRINTCAPOPTSTR $uuid $attr $spec
+		}
+	    }
+	    rm - rp - sd - tc {
+		unameit_error EPRINTCAPOPTATTR $uuid $attr $spec
+	    }
+	    default {
+		unameit_error EBADPRINTCAP $uuid $attr $spec
+	    }
+	}
+	switch -- $cap {
+	    fo - hl - ic - rs - rw - sb - sc - sf - sh {
+		switch -- $sep "" {} default {
+		    unameit_error EPRINTCAPOPTBOOL $uuid $attr $spec
+		}
+	    }
+	    br - du - fc - fs - mc - mx - pc - pl - pw - px - py - xc - xs {
+		if {![cequal $sep #] || ![regexp {^[0-9]+$} $val]} {
+		    unameit_error EPRINTCAPOPTINT $uuid $attr $spec
+		}
+	    }
+	    af - cf - df - ff - gf - if - lf - lo - lp - ms - nf - of -
+	    rf - rg - st - tf - tr - vf {
+		if {![cequal $sep =]} {
+		    unameit_error EPRINTCAPOPTSTR $uuid $attr $spec
+		}
+	    }
+	    rm - rp - sd - tc {
+		unameit_error EPRINTCAPOPTATTR $uuid $attr $spec
+	    }
+	    default {
+		unameit_error EBADPRINTCAP $uuid $attr $spec
+	    }
+	}
+    }
+}}} UName*It 2.0.0 {} 851048651}
+5sUO9C5L2QyUsUU.65b.VU 5sUO9C5L2QyUsUU.65b.VU {5sUFUC5L2QyUsUU.65b.VU relname {Relative Name} Error Yes 1 255 lower {} UName*It 0.0.0 {} 848707759}
+5sVgpC5L2QyUsUU.65b.VU 5sVgpC5L2QyUsUU.65b.VU {5sVcTi5L2QyUsUU.65b.VU ifname {Interface Name} Error Yes 2 16 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} UName*It 0.0.0 {} 848707759}
+5sZTki5L2QyUsUU.65b.VU 5sZTki5L2QyUsUU.65b.VU {5sZPPC5L2QyUsUU.65b.VU os_name {OS Name} Error No 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} UName*It 0.0.0 {} 848707759}
+5sZY6i5L2QyUsUU.65b.VU 5sZY6i5L2QyUsUU.65b.VU {5sZPPC5L2QyUsUU.65b.VU os_release_name {OS Release} Error No 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} UName*It 0.0.0 {} 848707759}
+5saOmC5L2QyUsUU.65b.VU 5saOmC5L2QyUsUU.65b.VU {5saKQi5L2QyUsUU.65b.VU machine_name {Machine (uname -m)} Error No 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} UName*It 0.0.0 {} 848707759}
+5sb3pC5L2QyUsUU.65b.VU 5sb3pC5L2QyUsUU.65b.VU {5sb/WC5L2QyUsUU.65b.VU server_type_name {Type Name} Error No 1 63 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} UName*It 0.0.0 {} 848707759}
+5sckAi5L2QyUsUU.65b.VU 5sckAi5L2QyUsUU.65b.VU {5scX5C5L2QyUsUU.65b.VU mount_point {Mount Point} Error Yes 1 128 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} UName*It 2.0.0 {} 851048651}
+5scoTi5L2QyUsUU.65b.VU 5scoTi5L2QyUsUU.65b.VU {5scX5C5L2QyUsUU.65b.VU mount_opts {Mount Options} Error Yes 0 255 lower {{regsuball "[\t\040]+" {}} {regsuball {,+} {,}} {regsub {^,} {}} {regsub {,$} {}} {regsub {^-+} {}} {code {
+    foreach opt_spec [split $value ,] {
+	set optval [lassign [split $opt_spec =] opt]
+	switch -- $opt {
+	    ro - rw - soft - hard - intr - nointr - bg - fg -
+	    suid - nosuid - remount - grpid - secure - posix -
+	    kerberos - noac {
+		if {![lempty $optval]} {
+		    unameit_error EMOUNTOPTBOOL $uuid $attr $opt_spec
+		}
+	    }
+	    retry - port - rsize - wsize - timeo - retrans -
+	    acregmin - acregmax - acdirmin - acdirmax - actimeo {
+		if {[llength $optval] != 1 ||
+		    ![regexp {^[0-9]+$} [lindex $optval 0]]} {
+		    unameit_error EMOUNTOPTINT $uuid $attr $opt_spec
+		}
+	    }
+	    default {
+		unameit_error EBADMOUNTOPT $uuid $attr $opt_spec
+	    }
+	}
+    }
+    switch -- $value "" {} default {set value "-$value"}
+}}} UName*It 2.0.0 {} 851048651}
+5sd3ui5L2QyUsUU.65b.VU 5sd3ui5L2QyUsUU.65b.VU {5sd/ZC5L2QyUsUU.65b.VU unix_pathname {File Name} Error Yes 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} UName*It 2.0.0 {} 851048651}
+5seQpC5L2QyUsUU.65b.VU 5seQpC5L2QyUsUU.65b.VU {5seDoi5L2QyUsUU.65b.VU pname Name Error Yes 1 39 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTDASHGENALNUM {^([-_]?[0-9A-Za-z])*$}}} {} 6.0.0 {} 869521493}
+5seVBC5L2QyUsUU.65b.VU 5seVBC5L2QyUsUU.65b.VU {5seDoi5L2QyUsUU.65b.VU pinst Instance Error Yes 0 39 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} UName*It 0.0.0 {} 848707760}
+5sg.pC5L2QyUsUU.65b.VU 5sg.pC5L2QyUsUU.65b.VU {5sfnmC5L2QyUsUU.65b.VU password Password Error Yes 1 32 Mixed {{code {
+    if {![cequal $value *]} {
+	if {[clength $value] < 6} {
+	    regsub -all {.} $value {*} value
+	    unameit_error ETOOSHORT $uuid $attr $value 6
+	}
+	regsub {^\*+} $value {} tmp
+	if {[clength $tmp] != 13 ||
+		![regexp {^[./0-9A-Za-z]+[.26AEIMQUYcgkosw]$} $tmp]} {
+	    set value [unameit_crypt $value]
+	}
+    }
+}}} UName*It 2.0.0 {} 851048651}
+5sgBsC5L2QyUsUU.65b.VU 5sgBsC5L2QyUsUU.65b.VU {5sfnmC5L2QyUsUU.65b.VU gecos Gecos NULL Yes 1 128 Mixed {{regexp ENOTPRINT "^[^\001-\037\177-\377]*$"} {regexp ECOLON {^[^:]*$}}} UName*It 0.0.0 {} 848707760}
+5sjS0i5L2QyUsUU.65b.VU 5sjS0i5L2QyUsUU.65b.VU {5sjNei5L2QyUsUU.65b.VU fullname {Full Name} Error Yes 0 63 Mixed {{regsuball "[\t\040]+" "\040"} {regsub "^\040" {}} {regsub "\040$" {}} {regsuball "\040([-.,])" {\1}} {code {
+    #
+    # Split into space separated components and check each component:
+    # Starts with a letter,
+    # Continues with a optional "'" or "-" or "." followed by
+    # more letters ends with an optional period and/or optional comma
+    #
+    foreach part [split $value " "] {
+	if {![regexp {^[A-Za-z]} $part]} {
+	    unameit_error E1STNOTLETTER $uuid $attr $part
+	}
+	if {![regexp {^[A-Za-z'.,-]*$} $part]} {
+	    unameit_error ENOTALPUNCT $uuid $attr $part
+	}
+	if {![regexp {[A-Za-z]\.?,?$} $part]} {
+	    unameit_error EBADPUNCT $uuid $attr $part
+	}
+    }
+}}} UName*It 2.0.0 {} 851048651}
+5sjnxC5L2QyUsUU.65b.VU 5sjnxC5L2QyUsUU.65b.VU {5sjami5L2QyUsUU.65b.VU shell_path {Shell Path} Error Yes 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} UName*It 2.0.0 {} 851048651}
+5spDTi5L2QyUsUU.65b.VU 5spDTi5L2QyUsUU.65b.VU {5sp0OC5L2QyUsUU.65b.VU provider_data_number {Data Phone Number} Error Yes 1 63 Mixed {{regexp ENOTPHONENUM {^[()0-9+, -]*$}}} UName*It 0.0.0 {} 848707760}
+5spHri5L2QyUsUU.65b.VU 5spHri5L2QyUsUU.65b.VU {5sp0OC5L2QyUsUU.65b.VU provider_operator_number {Operator Phone Number} NULL Yes 0 63 Mixed {{regexp ENOTPHONENUM {^[()0-9+, -]*$}}} UName*It 0.0.0 {} 848707760}
+5ssyuC5L2QyUsUU.65b.VU 5ssyuC5L2QyUsUU.65b.VU {5sshYC5L2QyUsUU.65b.VU bsd_printcap3 {Printcap Line 3} NULL Yes 1 255 Mixed {{regsuball "[\t\040]+" {}} {regsuball {:+} {:}} {regsub {^:} {}} {regsub {:$} {}} {code {
+    foreach spec [split $value :] {
+	if {![regexp {^([a-z][a-z])(([#=])(.*))?$} $spec x cap x sep val]} {
+	    unameit_error EBADPRINTCAP $uuid $attr $spec
+	}
+	switch -- $cap {
+	    fo - hl - ic - rs - rw - sb - sc - sf - sh {
+		switch -- $sep "" {} default {
+		    unameit_error EPRINTCAPOPTBOOL $uuid $attr $spec
+		}
+	    }
+	    br - du - fc - fs - mc - mx - pc - pl - pw - px - py - xc - xs {
+		if {![cequal $sep #] || ![regexp {^[0-9]+$} $val]} {
+		    unameit_error EPRINTCAPOPTINT $uuid $attr $spec
+		}
+	    }
+	    af - cf - df - ff - gf - if - lf - lo - lp - ms - nf - of -
+	    rf - rg - st - tf - tr - vf {
+		if {![cequal $sep =]} {
+		    unameit_error EPRINTCAPOPTSTR $uuid $attr $spec
+		}
+	    }
+	    rm - rp - sd - tc {
+		unameit_error EPRINTCAPOPTATTR $uuid $attr $spec
+	    }
+	    default {
+		unameit_error EBADPRINTCAP $uuid $attr $spec
+	    }
+	}
+	switch -- $cap {
+	    fo - hl - ic - rs - rw - sb - sc - sf - sh {
+		switch -- $sep "" {} default {
+		    unameit_error EPRINTCAPOPTBOOL $uuid $attr $spec
+		}
+	    }
+	    br - du - fc - fs - mc - mx - pc - pl - pw - px - py - xc - xs {
+		if {![cequal $sep #] || ![regexp {^[0-9]+$} $val]} {
+		    unameit_error EPRINTCAPOPTINT $uuid $attr $spec
+		}
+	    }
+	    af - cf - df - ff - gf - if - lf - lo - lp - ms - nf - of -
+	    rf - rg - st - tf - tr - vf {
+		if {![cequal $sep =]} {
+		    unameit_error EPRINTCAPOPTSTR $uuid $attr $spec
+		}
+	    }
+	    rm - rp - sd - tc {
+		unameit_error EPRINTCAPOPTATTR $uuid $attr $spec
+	    }
+	    default {
+		unameit_error EBADPRINTCAP $uuid $attr $spec
+	    }
+	}
+    }
+}}} UName*It 2.0.0 {} 851048651}
+NhXn5dh/2R0f1.U.65b.VU NhXn5dh/2R0f1.U.65b.VU {5sjNei5L2QyUsUU.65b.VU person_phone {Phone Number} NULL Yes 1 63 Mixed {{regexp ENOTPHONENUM {^[()0-9+, -]*$}}} UName*It 4.0.0 {} 859243381}
+sd.nj12U2R4AxEU.65b.VU sd.nj12U2R4AxEU.65b.VU {sd.jk12U2R4AxEU.65b.VU ipv4_range_prefix {Host Name Prefix} NULL Yes 1 47 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} UName*It 8.0.0 {} 875315091}

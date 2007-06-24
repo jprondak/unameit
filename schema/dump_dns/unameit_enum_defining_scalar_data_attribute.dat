@@ -1,0 +1,6 @@
+5sXDZC5L2QyUsUU.65b.VU 5sXDZC5L2QyUsUU.65b.VU {5sWthC5L2QyUsUU.65b.VU receives_mail {Receives Mail} NULL Yes {No Yes} UName*It 0.0.0 {} 848707757}
+5sbGki5L2QyUsUU.65b.VU 5sbGki5L2QyUsUU.65b.VU {5sb/WC5L2QyUsUU.65b.VU one_per_host {One Per Host} NULL No {No Yes} UName*It 0.0.0 {} 848707758}
+5sbksC5L2QyUsUU.65b.VU 5sbksC5L2QyUsUU.65b.VU {5sbcDi5L2QyUsUU.65b.VU server_type_one_per_host {One Per Host} NULL No {No Yes} UName*It 0.0.0 {} 848707758}
+ti6usbcq2R0BS.U.65b.VU ti6usbcq2R0BS.U.65b.VU {5sUFUC5L2QyUsUU.65b.VU wildcard_mx {Wildcard MX?} NULL Yes {No Yes} UName*It 3.0.0 {} 854653141}
+sd.SQX2U2R4AxEU.65b.VU sd.SQX2U2R4AxEU.65b.VU {5sUwyi5L2QyUsUU.65b.VU ipv4_net_type {Netmask Type} Error Yes {Fixed Variable} UName*It 6.2.0 {} 875318890}
+sd.sCX2U2R4AxEU.65b.VU sd.sCX2U2R4AxEU.65b.VU {sd.iF12U2R4AxEU.65b.VU ipv4_range_class {Device Class} NULL Yes {Any Computer Router Hub {Terminal Server}} UName*It 6.2.0 {} 875318890}

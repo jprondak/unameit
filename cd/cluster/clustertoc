@@ -1,0 +1,11 @@
+# $Id: clustertoc,v 1.2.12.1 1997/08/28 18:25:46 viktor Exp $
+CLUSTER=ESMunamit
+NAME=UName*It Distribution
+VENDOR=Enterprise Systems Management Corporation
+VERSION=%version%
+DESC=The UName*It Name Space Management System
+SUNW_CSRMEMBER=ESMtcl
+SUNW_CSRMEMBER=ESMkrb5
+SUNW_CSRMEMBER=ESMuclnt
+SUNW_CSRMEMBER=ESMusrv
+END

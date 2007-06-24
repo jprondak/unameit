@@ -1,0 +1,141 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+# Important targets are:
+#
+#	install		installs unameit executables and data files
+#
+#	runtime		installs wrappers and symbolic links to 
+#			third party software (krb5, tcl, unisqlx)
+#
+
+CLNT_DIRS = library include util libconn libcache_mgr libschema_mgr
+CLNT_DIRS += libordered_list libcanon
+CLNT_DIRS += libuuid libradix libaddress
+CLNT_DIRS += unameitcl unameit sci
+CLNT_DIRS += upull upulld upasswd unameit unameitkey
+CLNT_DIRS += scripts man/man1 man/man1m
+
+SRVR_DIRS = libudb libether scripts
+SRVR_DIRS += schema unameitd udumpdb uparsedb ubackend unameit
+SRVR_DIRS += library util backend man/man1m 
+
+SUBDIRS = $(CLNT_DIRS) $(SRVR_DIRS)
+
+all:: client server
+
+client:
+	for dir in $(CLNT_DIRS); \
+	do (cd $$dir; ${MAKE} client); done
+
+server: client
+	for dir in $(SRVR_DIRS); \
+	do (cd $$dir; ${MAKE} server); done
+
+#
+# The lsbin directory is included on clients since they made need
+# administrative programs from third-party software, e.g. kadmin.
+#
+client-make-dirs:
+	for dir in\
+	    $(UNAMEIT_INSTALL) \
+	    $(UNAMEIT_CONFIG) \
+	    $(UNAMEIT_BIN)/exe \
+	    $(UNAMEIT_SBIN)/exe \
+	    $(UNAMEIT_LBIN)/exe \
+	    $(UNAMEIT_LSBIN)/exe \
+	    $(UNAMEIT_TCLLIB) \
+	    $(UNAMEIT_TOILIB) \
+	    $(UNAMEIT_LOADLIB) \
+	    $(UNAMEIT_NISLIB) \
+	    $(MAN1_DIR) \
+	    $(MAN1M_DIR); \
+	do\
+	    if [ ! -d $$dir ]; then mkdir -p $$dir; fi;\
+	done
+
+server-make-dirs:
+	for dir in\
+	    $(UNAMEIT_SBIN)/exe \
+	    $(UNAMEIT_BOOTLIB) \
+	    $(UNAMEIT_BACKEND) \
+	    $(MAN1M_DIR);\
+	do\
+	    if [ ! -d $$dir ]; then mkdir -p $$dir; fi;\
+	done
+
+install-client:: client-make-dirs 
+	$(INSTALL_DATA) README $(prefix)
+	$(INSTALL_DATA) README.demo $(prefix)
+	$(INSTALL_DATA) version $(prefix)/VERSION
+	$(INSTALL_DATA) relnotes $(prefix)/RELEASE
+	$(INSTALL_DATA) parts_list $(prefix)
+	$(INSTALL_DATA) tcl_files.txt $(prefix)
+	$(INSTALL_DATA) tcl_shared_files.txt $(prefix)
+	$(INSTALL_DATA) krb5_files.txt $(prefix)
+	$(INSTALL_DATA) unisqlx_files.txt $(prefix)
+	for dir in $(CLNT_DIRS); \
+	do \
+	    (cd $$dir; ${MAKE} install-client); \
+	done
+
+install-server:: server-make-dirs
+	for dir in $(SRVR_DIRS); \
+	do \
+	    (cd $$dir; ${MAKE} install-server); \
+	done
+
+install:: install-client install-server
+
+runtime::
+	cd unameitkey; ${MAKE} runtime
+	cd/make_symlinks $(UNAMEIT) parts_list
+	util/unameit_setup $(UNAMEIT)
+
+clean::
+	for dir in $(SUBDIRS) unameitkey; do (cd $$dir; ${MAKE} clean); done
+
+distclean:: clean
+	for dir in $(SUBDIRS); do (cd $$dir; ${MAKE} distclean); done
+	find . -name cd -type d -prune -o \( -name .make.state -o\
+		  -name Makefile -o\
+		  -name .nse_depinfo \) -print | xargs $(RM)
+	$(RM) pre.mk post.mk config.status config.cache config.log
+
+depend::
+	for dir in $(SUBDIRS); \
+	do (cd $$dir; echo "depending in $$dir"; \
+		${MAKE} depend); done
+
+# Don't use "tags" because the Makefile rule looks for a file with this name.
+tags_files:
+	etags `find . \( -name '*.[hc]' -o -name '*.ec' \) -print`
+	etags -a --lang=none --regex='/proc[ \t]+\([^ \t]+\)/\1/' \
+		`find . \( -name '*.tcl' ! -name toi.tcl \) -print`
+	/opt/gnu/bin/ctags -w `find . \( -name '*.[hc]' -o -name '*.ec' \) \
+		-print`
+	/opt/gnu/bin/ctags -a --lang=none \
+		--regex='/proc[ \t]+\([^ \t]+\)/\1/' \
+		`find . \( -name '*.tcl' ! -name toi.tcl \) -print`
+
+commit:
+	cvs commit

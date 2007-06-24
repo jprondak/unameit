@@ -1,0 +1,209 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+*1. Branch off for development versus bugfix.
+
+*2. Make the GUI fully operational.
+
+	*display CWD
+
+	*commands to add
+		*mv WorkingDirectory to BackupDirectory 
+
+		*remake links
+
+		*stacktrace option
+
+	*check files before starting program
+	programs do that
+
+	*report status of operation on status line
+	uses dialog box
+
+	give last few lines of logfile in error message?
+	report name of logfile?
+
+	use environment variable for load.conf?
+
+	*add dump command and file (could be html dump)
+	Q: make table per class or per object?
+	Q: make file per class?
+	
+3. Rewrite the scripts to do the parsing of customer files in a
+clearly defined module, which can be configured to apply to a specific
+customer. This will allow more rapid customization of the scripts, and
+will allow the source code to be maintained by ESM.
+
+*4. Efficiency improvements. There are a couple of things that can be done
+to increase speed and decrease memory usage.
+
+	a) use ndbm interface for var_set
+	b) use ndbm interface to fully index, read, write intermediate
+	   files. Process .dat files for first input and final output,
+	   but use a heap-file for data, and ndbm to index it.
+
+5. 
+*a)Set up regression test suite for loadup scripts. Need a quick one
+for development and a big one for speed/memory/funky tests. 
+b)Also need a different one for each supported variation of parsing.
+
+*6. Look up persons during user_login creation.
+
+*7. Generate network for a host (use auto_NNN_NNN_NNN_NNN for the name) if
+the network does not exist.
+
+*8. Add catch around actual script and a runtime option to get a stack
+trace. Changed get_options to unset TCLXENV(noDump).
+
+9. OID dump -
+   a) Use user-friendly OIDs and convert entire data set. This need only 
+   be done during the final dump-to-ascii phase. NOTE: these do not need 
+   to be fully qualified and unique. We can discard classname part and
+   just use name attributes.
+
+   *b) Output dump in HTML. A browser can check a reference by clicking.
+
+10. Add ethers to the set of files read during load_hosts. Set the ifaddress
+of the host or the interface if it is found. 
+
+11. Add an argument to create which contains a string to be printed
+with the OID, e.g. "interface for host xyz" or "host.xyz.com".
+
+12. Look for mailing lists up the tree of domains. Also check the . cell?
+e.g. nobody? Or would this cause problems (it is a special case now).
+
+13. Add option to unameit_load which uses the configuration file for
+supplying arguments.
+
+*14. Either modify dump_common or heap_to_dat: make the copy checkpoint
+operation readonly.
+
+
+			OID GENERATION
+
+We begin by assuming that the database is hierarchical. Every class is
+either a root or the descendant of a root. Objects can be named using
+the class location in the hierarchy combined with some of their data.
+
+The procedure for determining the parent is not declarative. For
+example, Cells have a cellorg which, if it is NULL, indicates that the
+cell does NOT belong to an organization, so it is self-rooted.
+
+Classes may be found in multiple places. For example, a mailing list
+may be owned by a cell or a region. Since the owner of a mailing list
+determines its parent, this means that mailing lists may be found
+at different levels in the hierarchy.
+
+The OID of an object in a root class is its set of distinguishing
+data.  Objects in other classes have a set of data that determine the
+parent.  The OID of such objects is its set of distinguishing data,
+plus the OID of the parent.
+
+	OID Collapsing
+
+For many objects, the 'owner' field determines the parent. However,
+the owner might not be the highest usable parent.  For example, a
+user_login is owned by a region, but the name is unique in the
+organization.
+
+
+				BUGS
+
+u2_02b1
+
+Automount maps must be preloaded; automatic creation fails.
+Fixed load_users.tcl.
+
+Usage message for load_group_users was incorrect.
+Fixed load_groups_users.tcl.
+
+Load_users does not detect missing automount option.
+Fixed load_users.tcl.
+
+Load_aliases would blow up if it had to search up the tree looking for
+a mail_host. Fixed dump_common.tcl/get_mailhost.
+
+Load_users: hosts cannot be found for creating automounts if they are in cells
+which do not belong to organizations. Fixed dump_common.tcl/init_cell_data.
+
+Load_users was rejecting numerous automounts (with no hostname 
+listed in the error message).
+The automount file was being split on single spaces. Multiple spaces
+were being treated as multiple server entries, most of which had
+null hostnames. Fixed load_users.tcl.
+
+mailing lists were all being created circular.
+Also, needed to look up mailing lists using the split, canonicalized
+name, in the correct domain. Fixed load_aliases.tcl
+
+Load_hosts was trimming before stripping comments in the input file.
+This generated harmless but annoying messages about NULL names.
+Fixed load_hosts.
+
+
+		BUGS FOUND BUT ONLY FIXED IN NEW RELEASE
+
+Load_hosts would use the default domain for hosts in unknown domains, but it 
+would not treat aliases such as goofy-le1.elsewhere.com in the same way.
+This is fixed only in the new release.
+
+		BUGS FOUND AND FIXED IN u2_0_5p
+
+heap_to_dat would fail if no regions existed in the database.
+
+load_domains would fail if required to create an organization.
+
+parenthesized comments in mail aliases file were not being handled. This was
+a known but undocumented limitation. These comments are now being placed 
+into the comment field of the mailing list member.
+
+		Bugs and Enhancements in u2_1p
+
+user_group GIDs and names are checked for collisions at the org level.
+Fixed to be checked at the cell level. 1/21/95
+
+                Bugs and Enhancements in u2_2p
+ 
+subclasses of host were not being loaded before other classes. This caused
+the creation routine to blow up if a server_alias existed. Fixed in u2_2p.
+1/28/97
+
+if a new address were seen for a host-alias, an interface would be created
+with the host-alias as the owner. This violation of the schema would not
+be detected, and would cause load_generate to blow up. Fixed in u2_2p;
+now the entry will be rejected when loading hosts. 1/29/97
+
+VLSM with networks that have blank netmasks would cause load_hosts to die.
+Now the address is assumed to be okay; it may be rejected later by the
+server. Fixed in u2_2p 1/30/97
+
+Syntax errors involving illegal characters in attributes were not always
+detected by the load scripts for:
+	
+	host names
+	group names
+	user names
+Fixed in u2_2p 1/31/97
+
+
+
+

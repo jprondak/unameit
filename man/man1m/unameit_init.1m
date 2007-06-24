@@ -1,0 +1,39 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH UNAMEIT_INIT 1m
+unameit_init \- create the UName*It metaschema in the database
+.SH SYNOPSIS
+.BI unameit_init\  dbname
+.SH DESCRIPTION
+This command creates the UName*It metaschema in a newly created
+database. This command is called by
+.IR unameit_makedb (1m)
+and should not be called directly. The
+.IR unameit_makedb (1m)
+command
+creates a new UniSQL/X database initially with an empty schema and
+then calls this command to create the metaschema. The metaschema needs
+to be loaded before any user defined schema classes (such as Computer,
+User Login, etc.) can be loaded. This command essentially makes a
+large number of SQL calls to create the metaschema.
+.SH SEE ALSO
+unameit_makedb(1m)

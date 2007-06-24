@@ -1,0 +1,73 @@
+.\" $Id: $
+.\"
+.\" Copyright (c) 1997 Enterprise Systems Management Corp.
+.\"
+.\" This file is part of UName*It.
+.\"
+.\" UName*It is free software; you can redistribute it and/or modify it under
+.\" the terms of the GNU General Public License as published by the Free
+.\" Software Foundation; either version 2, or (at your option) any later
+.\" version.
+.\"
+.\" UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+.\" WARRANTY; without even the implied warranty of MERCHANTABILITY or
+.\" FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+.\" for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with UName*It; see the file COPYING.  If not, write to the Free
+.\" Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+.\" 02111-1307, USA.
+.\"
+.TH SCIDELETE 1
+.SH NAME
+scidelete, sciundelete - (un)delete UName*It database items
+.SH SYNOPSIS
+.B scidelete 
+[
+.I options
+] [
+.B -s
+] [
+.I uuid
+]...
+.SH DESCRIPTION
+.B scidelete 
+deletes the database item which is pointed to by
+the supplied 
+.IR uuid .  
+Multiple 
+.IR uuid 's
+are allowed to be given on
+the command line.  If the 
+.B -s
+(show) switch is given,
+.B scidelete 
+will print
+the item name on stdout upon deletion.
+.PP
+Warning:
+.B scidelete 
+is destructive. Caution is advised when 
+.B scimatch
+is utilized to return a list of 
+.I uuids
+as in the second example.
+.B sciundelete
+may be used to undelete an accidentally deleted item.
+The syntax of sciundelete is identical to that of scidelete.
+.SH EXAMPLES
+csh% \fIscidelete `scimatch user_login 'name jane'`\fR
+.br
+csh% \fIscidelete -s `scimatch user_login 'name ~ *smith*'`\fR
+.br
+jsmith esm.com
+.br
+smith esm.com
+.br
+goldsmith esm.com
+.br
+hsmithson esm.com
+.SH SEE ALSO
+scinewuuid(1), scicreate(1), sciupdate(1), scilistattrs(1),
+scishow(1), scimatch(1)

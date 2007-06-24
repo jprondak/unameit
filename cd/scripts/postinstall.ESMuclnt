@@ -1,0 +1,76 @@
+#! /bin/sh
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+# This script is used by both Solaris pkgadd and HP/UX swpackage.
+if [ -n "$SW_ROOT_DIRECTORY" ]; then
+    BASEDIR=$SW_ROOT_DIRECTORY/$SW_LOCATION
+    UNAMEIT=$BASEDIR
+fi
+cd $BASEDIR
+if [ -z "$SW_ROOT_DIRECTORY" ]; then
+    : > /tmp/installf$$
+fi
+
+## Create new wrapper with the name "unameit"
+cat > bin/unameit <<EOF
+#! /bin/sh
+UNAMEIT=$UNAMEIT; export UNAMEIT
+UNAMEIT_ETC=/etc/unameit; export UNAMEIT_ETC
+EOF
+cat install/wrapper.sh >> bin/unameit
+cat >> bin/unameit <<'EOF'
+exec "`dirname $0`/exe/`basename $0`" "$@"
+EOF
+chmod 755 bin/unameit
+
+## Link all the files to the same wrapper, but only record the bin/*,
+## sbin/upulld, lbin/* and lsbin/* files in the package using installf.
+for dir in bin sbin lbin lsbin; do
+    # Make links
+    for f in $dir/exe/*; do
+	if [ -x $f ]; then
+	    basename=`basename $f`
+	    if [ $f != bin/exe/unameit ]; then
+	        rm -f $dir/$basename
+	        ln bin/unameit $dir/$basename
+	    fi
+	    case $f in
+	        bin/* | sbin/exe/upulld | lbin/* | lsbin/*)
+	            if [ -z "$SW_ROOT_DIRECTORY" ]; then
+	        	echo $BASEDIR/$dir/$basename f 0755 root bin \
+			    >> /tmp/installf$$
+	    	    else
+	        	echo 'NOTE:    \c'
+	    	    fi
+	    	    echo "Adding wrapper for $basename"
+		    ;;
+	    esac
+	fi
+    done
+done
+if [ -z "$SW_ROOT_DIRECTORY" ]; then
+    installf $PKGINST - < /tmp/installf$$
+    installf -f $PKGINST
+    rm /tmp/installf$$
+fi
+exit 0

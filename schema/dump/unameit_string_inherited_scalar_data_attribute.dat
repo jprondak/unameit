@@ -1,0 +1,86 @@
+5sTIfi5L2QyUsUU.65b.VU 5sTIfi5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sTEHi5L2QyUsUU.65b.VU 1 255 lower {} Name Error Yes UName*It 0.0.0 {} 848707761}
+5sTVgC5L2QyUsUU.65b.VU 5sTVgC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sTRKi5L2QyUsUU.65b.VU 1 255 lower {} Name Error Yes UName*It 0.0.0 {} 848707761}
+5sTijC5L2QyUsUU.65b.VU 5sTijC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sTeLC5L2QyUsUU.65b.VU 1 39 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} Name Error Yes UName*It 0.0.0 {} 848707761}
+5sU.3C5L2QyUsUU.65b.VU 5sU.3C5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sTvhC5L2QyUsUU.65b.VU 1 63 Mixed {{regexp ENOTPRINT "^[^\001-\037\177-\377]*$"}} Name Error Yes UName*It 0.0.0 {} 848707761}
+5sUJnC5L2QyUsUU.65b.VU 5sUJnC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sUFUC5L2QyUsUU.65b.VU 1 255 lower {{code {switch -- $value . {return .}}} {regsub {\.+$} {}} {regexp E1STNOTALNUM {^[a-z0-9]}} {regexp ENOTFQDN {\.}} {regexp ENOTDNSLABEL {^(\.?([a-z0-9]([-]?[a-z0-9]+)*)+)+$}}} {Full Name} Error Yes UName*It 0.0.0 {} 848707761}
+5sUjvi5L2QyUsUU.65b.VU 5sUjvi5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sUfXi5L2QyUsUU.65b.VU 1 255 lower {{code {switch -- $value . {return .}}} {regsub {\.+$} {}} {regexp E1STNOTALNUM {^[a-z0-9]}} {regexp ENOTFQDN {\.}} {regexp ENOTDNSLABEL {^(\.?([a-z0-9]([-]?[a-z0-9]+)*)+)+$}}} {Full Name} Error Yes UName*It 0.0.0 {} 848707761}
+5sV/IC5L2QyUsUU.65b.VU 5sV/IC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sUwyi5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} Name Error Yes UName*It 0.0.0 {} 848707761}
+5sWy3C5L2QyUsUU.65b.VU 5sWy3C5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sWthC5L2QyUsUU.65b.VU 1 39 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} Name Error Yes UName*It 0.0.0 {} 848707761}
+5sX0RC5L2QyUsUU.65b.VU 5sX0RC5L2QyUsUU.65b.VU {5sVgpC5L2QyUsUU.65b.VU 5sWthC5L2QyUsUU.65b.VU 2 16 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} {Interface Name} NULL Yes UName*It 0.0.0 {} 848707761}
+5sXZMC5L2QyUsUU.65b.VU 5sXZMC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sXV0i5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} Name Error Yes UName*It 0.0.0 {} 848707761}
+5sXdmi5L2QyUsUU.65b.VU 5sXdmi5L2QyUsUU.65b.VU {5sVgpC5L2QyUsUU.65b.VU 5sXV0i5L2QyUsUU.65b.VU 2 16 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} {Interface Name} NULL Yes UName*It 0.0.0 {} 848707761}
+5sXzZi5L2QyUsUU.65b.VU 5sXzZi5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sXvEC5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} Name Error Yes UName*It 0.0.0 {} 848707761}
+5sY2.C5L2QyUsUU.65b.VU 5sY2.C5L2QyUsUU.65b.VU {5sVgpC5L2QyUsUU.65b.VU 5sXvEC5L2QyUsUU.65b.VU 2 16 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} {Interface Name} NULL Yes UName*It 0.0.0 {} 848707761}
+5sYb.C5L2QyUsUU.65b.VU 5sYb.C5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sYWcC5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5sYfMC5L2QyUsUU.65b.VU 5sYfMC5L2QyUsUU.65b.VU {5sVgpC5L2QyUsUU.65b.VU 5sYWcC5L2QyUsUU.65b.VU 2 16 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} {Interface Name} NULL Yes UName*It 0.0.0 {} 848707762}
+5sZpaC5L2QyUsUU.65b.VU 5sZpaC5L2QyUsUU.65b.VU {5sZY6i5L2QyUsUU.65b.VU 5sZlCC5L2QyUsUU.65b.VU 0 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} Release Error No UName*It 0.0.0 {} 848707762}
+5sag.i5L2QyUsUU.65b.VU 5sag.i5L2QyUsUU.65b.VU {5saOmC5L2QyUsUU.65b.VU 5sabhi5L2QyUsUU.65b.VU 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} {ABI (uname -p)} Error No UName*It 0.0.0 {} 848707762}
+5sb88i5L2QyUsUU.65b.VU 5sb88i5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sb/WC5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTALNUM {^[a-z0-9]}} {regexp EDOT {^[^.]*$}} {regexp ENOTDNSLABEL {^([-]?[a-z0-9])*$}}} {Type Alias} Error No UName*It 0.0.0 {} 848707762}
+5scbTC5L2QyUsUU.65b.VU 5scbTC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5scX5C5L2QyUsUU.65b.VU 1 63 Mixed {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTDASHGENALNUM {^([-_]?[0-9A-Za-z])*$}}} {Map Name} Error Yes UName*It 0.0.0 {} 848707762}
+5sdGxi5L2QyUsUU.65b.VU 5sdGxi5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5sd8EC5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {Remote Directory} Error Yes UName*It 2.0.0 {} 851048651}
+5sdcfi5L2QyUsUU.65b.VU 5sdcfi5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sdYKC5L2QyUsUU.65b.VU 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5sdlKi5L2QyUsUU.65b.VU 5sdlKi5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5sdYKC5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {File Name} Error Yes UName*It 2.0.0 {} 851048651}
+5se55C5L2QyUsUU.65b.VU 5se55C5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5sdyQC5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {File Name} Error Yes UName*It 2.0.0 {} 851048651}
+5sfs8C5L2QyUsUU.65b.VU 5sfs8C5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sfnmC5L2QyUsUU.65b.VU 1 8 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5sgKZi5L2QyUsUU.65b.VU 5sgKZi5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5sfnmC5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {Home Directory} Error Yes UName*It 2.0.0 {} 851048651}
+5sgbyC5L2QyUsUU.65b.VU 5sgbyC5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5sgTEi5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {Home Directory} Error Yes UName*It 2.0.0 {} 851048651}
+5sgkdC5L2QyUsUU.65b.VU 5sgkdC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sggHi5L2QyUsUU.65b.VU 1 8 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5sgtKi5L2QyUsUU.65b.VU 5sgtKi5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5sggHi5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {Home Directory} Error Yes UName*It 2.0.0 {} 851048651}
+5sh8jC5L2QyUsUU.65b.VU 5sh8jC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sh4Ni5L2QyUsUU.65b.VU 1 8 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5shLmC5L2QyUsUU.65b.VU 5shLmC5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5sh4Ni5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {Home Directory} Error Yes UName*It 2.0.0 {} 851048651}
+5shlsC5L2QyUsUU.65b.VU 5shlsC5L2QyUsUU.65b.VU {5sg.pC5L2QyUsUU.65b.VU 5shdBC5L2QyUsUU.65b.VU 1 32 Mixed {{code {
+    if {![cequal $value *]} {
+	if {[clength $value] < 6} {
+	    regsub -all {.} $value {*} value
+	    unameit_error ETOOSHORT $uuid $attr $value 6
+	}
+	regsub {^\*+} $value {} tmp
+	if {[clength $tmp] != 13 ||
+		![regexp {^[./0-9A-Za-z]+[.26AEIMQUYcgkosw]$} $tmp]} {
+	    set value [unameit_crypt $value]
+	}
+    }
+}}} Password NULL Yes UName*It 2.0.0 {} 851048651}
+5shyvC5L2QyUsUU.65b.VU 5shyvC5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5shdBC5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regexp ECOLON {^[^:]*$}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {Home Directory} NULL Yes UName*It 2.0.0 {} 851048651}
+5siN/C5L2QyUsUU.65b.VU 5siN/C5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5siIfi5L2QyUsUU.65b.VU 1 8 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5simJC5L2QyUsUU.65b.VU 5simJC5L2QyUsUU.65b.VU {5sd3ui5L2QyUsUU.65b.VU 5siIfi5L2QyUsUU.65b.VU 1 255 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^/}} {regsuball {/+} {/}} {regsub {(.)/$} {\1}}} {Remote Directory} Error Yes UName*It 2.0.0 {} 851048651}
+5skGZC5L2QyUsUU.65b.VU 5skGZC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5skCBC5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5skY5i5L2QyUsUU.65b.VU 5skY5i5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5skTji5L2QyUsUU.65b.VU 1 64 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5slVOC5L2QyUsUU.65b.VU 5slVOC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5slR0C5L2QyUsUU.65b.VU 1 64 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707762}
+5snHDC5L2QyUsUU.65b.VU 5snHDC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5snCrC5L2QyUsUU.65b.VU 1 255 lower {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp EMAILCHARS {^[^][:,;@<>\(\)"\\!#/]*$}}} Name Error Yes UName*It 0.0.0 {} 848707763}
+5sp4mC5L2QyUsUU.65b.VU 5sp4mC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sp0OC5L2QyUsUU.65b.VU 1 63 Mixed {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"}} Name Error Yes UName*It 0.0.0 {} 848707763}
+5ssHXC5L2QyUsUU.65b.VU 5ssHXC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5ssDEC5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707763}
+5sslti5L2QyUsUU.65b.VU 5sslti5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sshYC5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707763}
+5stIcC5L2QyUsUU.65b.VU 5stIcC5L2QyUsUU.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5stEEC5L2QyUsUU.65b.VU 1 63 lower {{regexp E1STNOTLETTER {^[a-zA-Z]}} {regexp ENOTALNUM {^[a-zA-Z0-9]*$}}} Name Error Yes UName*It 0.0.0 {} 848707763}
+oE7qddg92R0C.EU.65b.VU oE7qddg92R0C.EU.65b.VU {eJmJwYyj2R0BWUU.65b.VU oE7ovdg92R0C.EU.65b.VU 1 63 lower {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp EMAILCHARS {^[^][:,;@<>\(\)"\\!#/]*$}}} Alias Error Yes UName*It 4.0.0 {} 859243380}
+oE7vl7g92R0C.EU.65b.VU oE7vl7g92R0C.EU.65b.VU {eJmJwYyj2R0BWUU.65b.VU oE7uSdg92R0C.EU.65b.VU 1 63 lower {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp EMAILCHARS {^[^][:,;@<>\(\)"\\!#/]*$}}} {Mailbox Name} Error Yes UName*It 4.0.0 {} 859243380}
+rD69m7zF2R0pcEU.65b.VU rD69m7zF2R0pcEU.65b.VU {5sd3ui5L2QyUsUU.65b.VU oE7uSdg92R0C.EU.65b.VU 1 255 Mixed {{regsub {^ *:include: *(.*)} {:include:\1}} {regexp ENOTGRAPH "^(:include:)?[^\001-\040\177-\377]*$"} {regexp E1STNOTSLASH {^(:include:)?/}} {regsuball {//+} {/}}} {File Name} Error Yes UName*It 4.0.0 {} 859243380}
+oE8.C7g92R0C.EU.65b.VU oE8.C7g92R0C.EU.65b.VU {5sd3ui5L2QyUsUU.65b.VU oE7yvdg92R0C.EU.65b.VU 1 255 Mixed {{regexp E1STNOTSLASH {^/}} {regexp ENOTPRINT "^[^\001-\037\177-\377]*$"} {regsuball {//+} {/}}} {Program & Args} Error Yes UName*It 4.0.0 {} 859243380}
+oE86P7g92R0C.EU.65b.VU oE86P7g92R0C.EU.65b.VU {eJmJwYyj2R0BWUU.65b.VU oE7yvdg92R0C.EU.65b.VU 1 63 lower {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp EMAILCHARS {^[^][:,;@<>\(\)"\\!#/]*$}}} {Mailbox Name} Error Yes UName*It 4.0.0 {} 859243380}
+oE87f7g92R0C.EU.65b.VU oE87f7g92R0C.EU.65b.VU {eJmJwYyj2R0BWUU.65b.VU oE83q7g92R0C.EU.65b.VU 1 255 lower {{regexp ENOTPRINT "^[^\001-\037\177-\377]*$"} {regexp EBACKSLASH {^[^\\]*$}} {code {
+    #
+    # Partial rfc822 support, does not allow entries which require
+    # quoting in the "aliases" file, or other "exotic" constructs.
+    #
+    switch -regexp -- $value {
+	{^[A-Za-z][A-Za-z0-9='_+.-]+$} {
+	    #
+	    # Support indirect (i.e. string) local recipients
+	    #
+	}
+	{^@?[a-zA-Z0-9/='!%_.:-]+@[A-Za-z][A-Za-z0-9_.-]+$} {
+	    #
+	    # Support domain addresses possibly source routed
+	    #
+	}
+	{^[a-zA-Z0-9.-]+![a-zA-Z0-9.!-]+$} {
+	    #
+	    # Support UUCP addresses
+	    #
+	}
+	default {
+	    unameit_error EBADMLADDR $uuid $attr $value
+	}
+    }
+}}} {Forwarding Address} Error Yes UName*It 5.0.0 {} 863644297}
+NhXhidh/2R0f1.U.65b.VU NhXhidh/2R0f1.U.65b.VU {eJmJwYyj2R0BWUU.65b.VU 5sjNei5L2QyUsUU.65b.VU 1 63 lower {{regexp ENOTGRAPH "^[^\001-\040\177-\377]*$"} {regexp EMAILCHARS {^[^][:,;@<>\(\)"\\!#/]*$}}} {Mail Handle} Error Yes UName*It 4.0.0 {} 859243380}

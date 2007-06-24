@@ -1,0 +1,7 @@
+o3btp3702R073kU.65b.VU o3btp3702R073kU.65b.VU {dba {} {} {} {} UName*It 0.0.0 {} 850190811}
+oAK4aZ702R073kU.65b.VU oAK4aZ702R073kU.65b.VU {rootadmin o3btp3702R073kU.65b.VU {os_family os abi machine server_type} {os_family os abi machine server_type} {os_family os abi machine server_type} UName*It 0.0.0 {} 850190811}
+oB12R3702R073kU.65b.VU oB12R3702R073kU.65b.VU {celladmin o3btp3702R073kU.65b.VU {organization cell} {organization cell} {organization cell} UName*It 0.0.0 {} 850190811}
+oBTbQZ702R073kU.65b.VU oBTbQZ702R073kU.65b.VU {netadmin oB12R3702R073kU.65b.VU {ipv4_network hub terminal_server router} {ipv4_network hub terminal_server router} {ipv4_network hub terminal_server router} UName*It 0.0.0 {} 850190811}
+oBuoF3702R073kU.65b.VU oBuoF3702R073kU.65b.VU {regionadmin oB12R3702R073kU.65b.VU {region server_alias} {region server_alias} {region server_alias} UName*It 0.0.0 {} 850190811}
+oCNN73702R073kU.65b.VU oCNN73702R073kU.65b.VU {sysadmin oBuoF3702R073kU.65b.VU principal principal principal UName*It 0.0.0 {} 850190812}
+oDDCJZ702R073kU.65b.VU oDDCJZ702R073kU.65b.VU {hostadmin oCNN73702R073kU.65b.VU {host_alias computer host_principal} {host_alias computer host_principal} {host_alias computer host_principal} UName*It 0.0.0 {} 850190812}

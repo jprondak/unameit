@@ -1,0 +1,5 @@
+5sY6MC5L2QyUsUU.65b.VU 5sY6MC5L2QyUsUU.65b.VU {5sXvEC5L2QyUsUU.65b.VU lines {Number of Lines} Error Yes UName*It 0.0.0 {} 848707759 1 1024 Decimal}
+5sYAmi5L2QyUsUU.65b.VU 5sYAmi5L2QyUsUU.65b.VU {5sXvEC5L2QyUsUU.65b.VU base_tcp_port {Base TCP Port} Error Yes UName*It 0.0.0 {} 848707759 1 65535 Decimal}
+5sZ7xi5L2QyUsUU.65b.VU 5sZ7xi5L2QyUsUU.65b.VU {5sYwpi5L2QyUsUU.65b.VU line {Line Number} Error Yes UName*It 0.0.0 {} 848707759 1 4096 Decimal}
+sd.R.12U2R4AxEU.65b.VU sd.R.12U2R4AxEU.65b.VU {5sUwyi5L2QyUsUU.65b.VU ipv4_net_bits {Prefix Bits} NULL Yes UName*It 8.0.0 {} 875315090 0 30 Decimal}
+sd.pEX2U2R4AxEU.65b.VU sd.pEX2U2R4AxEU.65b.VU {sd.jk12U2R4AxEU.65b.VU ipv4_lease_length {Lease Duration (seconds)} NULL Yes UName*It 8.0.0 {} 875315091 60 {} Decimal}

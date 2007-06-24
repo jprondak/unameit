@@ -1,0 +1,3 @@
+# $Id: depend.ESMusrv,v 1.2.12.1 1997/08/28 18:26:03 viktor Exp $
+P ESMuclnt	UName*It Name Space Management Client Software
+    %version%

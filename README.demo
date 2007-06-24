@@ -1,0 +1,142 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+	Installing the UName*It Downloadable Demo
+
+UName*It is a name space management system for Unix and Windows
+machines. I generates name space data for all the machines within an
+organization.
+    This document describes how to install the downloadable demo under
+Solaris 2.X and HP/UX 10.X.
+
+
+Installing the Solaris 2.X (SunOS 5.X) Version of UName*It
+----------------------------------------------------------
+The Solaris version of UName*It is supported for Solaris 2.4 and
+later. The distribution consists of three pkgadd(1m) packages:
+
+	ESMtcl			The ESM distribution of Tcl (needed by
+				UName*It at runtime)
+	ESMuclnt		The UName*It client (UI programs, etc.)
+	ESMusrv 		The UName*It server (only needed on single
+				UName*It server machine)
+
+The default installation path for all the packages is
+/opt/unameit. To install the packages, type
+
+	pkgadd -d . ESMtcl ESMuclnt ESMusrv
+
+and the packages will be installed in /opt/unameit. To install the
+packages somewhere else, type
+
+	pkgadd -d . -a none ESMtcl ESMuclnt ESMusrv
+
+Now skip to the section "Continuing Installation" below.
+
+
+Installing the HP/UX 10.X Version of UName*It
+----------------------------------------
+The HP/UX version of UName*It consists of three swinstall(1m)
+products:
+
+	ESMTcl			The ESM distribution of Tcl (needed by
+				UName*It at runtime)
+	UNameItClient		The UName*It client (UI programs, etc.)
+	UNameItServer		The UName*It server (only needed on single
+				UName*It server machine)
+
+The default installation path is /opt/unameit. You can change the
+default installation path in swinstall if you wish. Once everything is
+installed, continue to the section "Continuing Installation" below.
+
+Continuing Installation
+-----------------------
+You will now need to get a license file from ESM by calling 
+(714) 505-7686 x6 or sending mail to support@esm.com. You will need to
+give ESM both the MAC address of your machine and the machine's
+primary IP address. You will get back a file like
+
+license_start		1/1/1997
+license_end		9/15/1997
+license_type		eval
+license_host_units	64
+license_user_units	64
+license_key		4A21-3FFF-783B-8AD1-63F5-792B-B75E-6941
+
+which you will need to put in /etc/unameit/license. You will also get
+a UniSQL/X database key that looks like
+
+AEFADQFCGDCBIQDBFIGGFSEHIVDABZAOEFAEALALABAPACAJAE
+
+You will need to put this key in /etc/unameit/unisqlx_keys.
+	Next, run the script
+
+    <unameit_install_dir>/install/unameit_setup_demo
+
+This script will ask you a couple of questions. The questions it
+will ask you and possible responses are
+
+Where did you install UName*It? /local/unameit
+
+Where would you like to put the database files (50 meg needed)? /var/unameit
+
+It is recommended that the system you install it on have 64 megabytes
+of main memory. You can install it on a 32 meg machine, but it will
+thrash a lot.
+	The UName*It daemon "unameitd" and UName*It pull daemon
+"upulld" were started by the above script. To connect to the UName*It
+daemon, set the UNAMEIT_MODE variable to "demo" with
+	
+	setenv UNAMEIT_MODE demo
+
+or
+	UNAMEIT_MODE=demo; export UNAMEIT_MODE
+
+and run
+
+	<install_dir>/bin/unameit
+
+You are connected to the UName*It test database and can now make
+changes. Next, run the backend by typing
+
+	<install_dir>/sbin/ubackend
+
+You'll need to run the backend each time you make updates if you want
+to see your updates when you run "upull". To run a pull on a machine, type
+
+	<install_dir>/bin/upull <hostname>
+
+where <hostname> is one of the machines in the UName*It database. The
+configuration files for <hostname> will be put in
+/var/unameit/<hostname> (or whatever directory you gave to the second
+question above).  Run upull on the same machine as you just ran the
+setup script on.
+	Manual pages are in <install_dir>/man. To shutdown "unameitd",
+run "unameit_shutdown". You will have to send a kill signal to "upulld"
+to kill it.
+
+Removing UName*It
+-----------------
+To remove UName*It, remove the package under Solaris with pkgrm or the
+product under HP/UX with swremove. You will also need to trash the
+database directory when you ran the above script. Lastly, delete the
+directory /etc/unameit. You are done.

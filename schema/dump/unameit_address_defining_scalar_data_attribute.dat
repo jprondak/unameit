@@ -1,0 +1,7 @@
+5sSd8i5L2QyUsUU.65b.VU 5sSd8i5L2QyUsUU.65b.VU {5sSQ3C5L2QyUsUU.65b.VU ipv4_address {IP Address} NULL Yes 4 IP UName*It 0.0.0 {} 848707758}
+5sVlBC5L2QyUsUU.65b.VU 5sVlBC5L2QyUsUU.65b.VU {5sVcTi5L2QyUsUU.65b.VU ifaddress {MAC Address} NULL Yes 6 MAC UName*It 0.0.0 {} 848707758}
+sd.KNX2U2R4AxEU.65b.VU sd.KNX2U2R4AxEU.65b.VU {5sUwyi5L2QyUsUU.65b.VU ipv4_net_start {Network Address} NULL Yes 4 IP UName*It 8.0.0 {} 875315090}
+sd.O012U2R4AxEU.65b.VU sd.O012U2R4AxEU.65b.VU {5sUwyi5L2QyUsUU.65b.VU ipv4_net_end {Last Address} NULL Yes 4 IP UName*It 8.0.0 {} 875315090}
+sd.PV12U2R4AxEU.65b.VU sd.PV12U2R4AxEU.65b.VU {5sUwyi5L2QyUsUU.65b.VU ipv4_net_mask {Subnet Mask} NULL Yes 4 IP UName*It 8.0.0 {} 875315090}
+sd.XT12U2R4AxEU.65b.VU sd.XT12U2R4AxEU.65b.VU {sd.VxX2U2R4AxEU.65b.VU ipv4_range_start {Range Start} Error Yes 4 IP UName*It 8.0.0 {} 875315090}
+sd.av12U2R4AxEU.65b.VU sd.av12U2R4AxEU.65b.VU {sd.VxX2U2R4AxEU.65b.VU ipv4_range_end {Range End} Error Yes 4 IP UName*It 8.0.0 {} 875315090}

@@ -1,0 +1,91 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+SRCS	= main.c
+OBJS	= $(SRCS:%.c=%.o)
+
+# -DINTERACTIVE Interactive debugging support
+CPPFLAGS += $(UCONN_CPPFLAGS) $(TK_XINCLUDES)
+LDFLAGS += $(UCONN_LDFLAGS) \
+	-L$(TOP)/libcache_mgr -L$(TOP)/libschema_mgr -L$(TOP)/libcanon \
+	-L$(TOP)/libordered_list
+
+LDLIBS   += -lcache_mgr -lschema_mgr -lcanon -lordered_list \
+	$(UCONN_LDLIBS) \
+	$(TKX_LIB_SPEC) $(TCLX_LIB_SPEC) $(TK_LIB_SPEC) $(TCL_LIB_SPEC) \
+	$(TK_LIBS) $(TCL_LIBS) $(TK_XLIBSW)
+
+LDDEPS += $(UCONN_LDDEPS) \
+	$(TOP)/libcache_mgr/libcache_mgr.a\
+	$(TOP)/libschema_mgr/libschema_mgr.a\
+	$(TOP)/libcanon/libcanon.a\
+	$(TOP)/libordered_list/libordered_list.a
+
+MENUBAR = menubar@TK_MAJOR_VERSION@.tcl
+UFILES = bootstrap.tcl $(MENUBAR)
+
+.KEEP_STATE:
+
+all:	client server
+
+client: unameit toi
+
+server: 
+
+unameit: $(OBJS) $(LDDEPS)
+	$(LINK.c) -o $@ $(OBJS) $(LDLIBS)
+
+toi:	toi.tcl
+	$(TOP)/util/dumpprocs toi.tcl > $@.tmp
+	$(FRINK) -Wm $@.tmp > $@.tmp1
+	mv $@.tmp1 $@
+	$(RM) $@.tmp
+
+main.o : bootstrap.h
+
+bootstrap.h : $(UFILES)
+	$(TCL_EXEC_PREFIX)/bin/tcl $(TOP)/util/dumpprocs $(UFILES) > \
+		bootstrap.tmp1
+	$(FRINK) -W -m bootstrap.tmp1 > bootstrap.tmp
+	$(TCL_EXEC_PREFIX)/bin/tcl $(TOP)/util/tcl2c bootstrap bootstrap.tmp \
+		> bootstrap.tmp1
+	mv bootstrap.tmp1 $@
+	$(RM) bootstrap.tmp
+
+#
+#
+# Menus have changed with Tk 8.0 and later.
+# Sourcing at this point (build-time) assumes that the client will
+# NOT be downloading this code (i.e. this is a client build), and that
+# the client will be using the same version of Tcl/Tk that is being
+# used to build it.
+#
+
+clean::
+	$(RM) unameit bootstrap.h toi
+
+install-client::
+	$(INSTALL_PROGRAM) unameit $(UNAMEIT_BIN)/exe/unameit
+	$(INSTALL_DATA) fancylb.tcl $(UNAMEIT_TCLLIB)/fancylb.tcl
+	$(INSTALL_DATA) toi $(UNAMEIT_TOILIB)/toi.tcl
+
+
