@@ -1,0 +1,474 @@
+# $Id: $
+#
+# Copyright (c) 1997 Enterprise Systems Management Corp.
+#
+# This file is part of UName*It.
+#
+# UName*It is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2, or (at your option) any later
+# version.
+#
+# UName*It is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UName*It; see the file COPYING.  If not, write to the Free
+# Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+#
+
+UName*It is a name space management system for Unix and Windows
+machines. It generates name space data for all the machines within an
+organization. UName*It also comes with the Internet Software Consortium
+DHCP server and it manages the data used by this DHCP server. 
+	It is highly recommended that you read all the sections
+pertaining to your operating system before beginning
+installation. This will save you time and trouble.
+	This document describes how to extract the information off the
+CD and install UName*It for both the regular production version and
+the demo version of UName*It. For the demo version, you will mostly
+have to follow the directions for installing the regular version of
+UName*It. The differences will be noted. Demo users will get a limited
+license key.
+	UName*It is currently supported for five operating systems:
+SunOS 4.X, SunOS 5.X, HP/UX 10.X, Linux 2.0 and Windows NT. The
+UName*It server is supported on SunOS 5.X and HP/UX 10.X. It is not
+supported on SunOS 4.X, Linux 2.0 or Windows NT.  The client portion
+of UName*It (i.e., the user interface) is supported on all the
+operating systems. The demo version of UName*It is currently supported
+only on SunOS 5.X and HP/UX 10.X.
+	To install UName*It on a specific operating system, please see 
+the section in this document for that operating system.
+
+
+Installing the Solaris 2.X (SunOS 5.X) Version of UName*It
+------------------------------------------
+The Solaris version of UName*It is supported for Solaris 2.4 and
+later. The distribution consists of five pkgadd(1m) packages:
+
+	ESMtcl			The ESM distribution of Tcl (needed by
+				UName*It at runtime)
+	ESMkrb5 		The ESM Kerberos 5 distribution (needed
+				by UName*It at runtime and also contains
+				the software for the Kerberos server)
+	ESMuclnt		The UName*It client (UI programs, etc.)
+	ESMusrv 		The UName*It server (only needed on single
+				UName*It server machine)
+	ESMdhcp			The Internet Software Consortium DHCP
+				server.
+
+	The ESMdhcp package is somewhat separate from the other
+packages. That is, it is not contained in a cluster (discussed below)
+and users need not install it if they are not using UName*It to manage
+DHCP. Also, this package does not depend on any other package and no
+other package depends on it being installed.
+	Demo users should just install the ESMtcl, ESMkrb5, ESMuclnt
+and ESMusrv packages on the same machine.
+	Production users should install the ESMtcl, ESMkrb5, ESMuclnt
+and ESMusrv packages on the UName*It server machine, the ESMtcl,
+ESMkrb5 and ESMuclnt packages on UName*It client binary NFS servers
+and only the ESMkrb5 package on the Kerberos server
+machine. Production users need only install the ESMdhcp package if
+they want to use UName*It to manage DHCP.  They should install this
+package on the machine they want to run the DHCP server on.  The
+default installation path for the ESMtcl, ESMkrb5, ESMuclnt and
+ESMusrv packages is /opt/unameit.  The default installation path for
+the ESMdhcp package is /opt/dhcp.  You can change this installation
+path as described below if you wish.
+	Solaris allows you to group multiple packages into "clusters".
+When you install a cluster, you install all the packages in the
+cluster at once. The four packages ESMtcl, ESMkrb5, ESMuclnt and
+ESMusrv are contained in a cluster named "ESMunamit". Demo users or
+production users on the UName*It server machine can just install the
+cluster and the four packages above will get automatically installed.
+	Demo users and production users installing the software on the
+UName*It server should just install the cluster ESMunamit. Production
+users installing a subset of the above packages (such as when
+installing on a binary NFS server or the Kerberos server machine)
+should simply use pkgadd(1m) to add each package individually.
+
+
+Here is how to add the cluster under Solaris 2.4:
+
+Run swmtool. When it comes up, click on the "Props..." button and
+select "Source Media" as the Category. Set the Source Media to the
+location of the CD and hit "Apply". This will automatically load the
+cluster and show you an icon with "UName*It <version>" next to it. If
+you wish to install the software in /opt/unameit, simply hit the
+"Begin Installation" button. This will install the ESMtcl, ESMkrb5,
+ESMuclnt and ESMusrv packages.  If you wish to install the cluster
+somewhere else, right mouse click on the icon and select "Set Base
+Directory...". Changing the base directory changes the installation
+directory for all packages in the cluster.  Once you hit the "Begin
+Installation" button, a cmdtool window will open up which allows you
+to interact with pkgadd(1m).
+    Note: Solaris 2.4 allows you to add a set of packages as a cluster
+but does not allow you to remove a set of packages as a cluster. You
+should remove packages in the following order: ESMusrv, ESMuclnt and
+then ESMtcl or ESMkrb5.
+
+
+Here is how to add the cluster under Solaris 2.5:
+
+Run admintool. Select "Software" from the "Browse" menubutton. Select
+"Add..." from the "Edit" menubutton. Set the Software Location to the
+location of the CD. You will then get a form showing you a label named
+"UName*It" with a checkbox next to it. Select the checkbox. If you
+wish to install the UName*It software in /opt/unameit, then simply
+select "Add" and the packages ESMtcl, ESMkrb5, ESMuclnt and ESMusrv
+will be installed. If you wish to install the software somewhere else,
+then you have to get around some admintool bugs.
+	Admintool has a couple of annoying bugs. The first is that the
+path set up for adding a cluster is ignored, so setting the
+installation path for a cluster has no effect on the underlying
+packages it installs.  Secondly, when you select the "Customize..."
+button to change the installation directory of the packages, using
+mouse button 1 doesn't apply your changes. You must use the Tab
+key. To install the software in a different directory, you will have
+hit the "Customize..." button, hit the right expansion arrow next to
+the "UName*It Distribution" label and set each package installation
+directory one at a time committing your changes with the Tab key. Make
+sure you install all the packages in the same directory. Hit "Add"
+when done.
+	Like Solaris 2.4's swmtool, admintool doesn't know how to
+remove clusters. Remove the packages in the following order: ESMusrv,
+ESMuclnt and then ESMtcl and ESMkrb5.
+
+
+Installing packages individually (not as a cluster):
+
+To install packages using pkgadd(1m), change directory to
+<cd_mount_dir>/SunOS.5.4. Then run "pkgadd -d. <package>..." as usual.
+
+
+	When you install the ESMkrb5 package, you will be asked the
+question
+
+    Is this package being installed as part of UName*It?
+
+Answer yes if you are installing this package because it is required
+by UName*It (installing the cluster fits this requirement). Answer no
+if you are installing this package on the Kerberos server machine and
+you aren't installing any other packages.
+	When you install the ESMuclnt and ESMusrv packages, you will be
+asked
+
+    Enter path UName*It will be used by?
+
+Enter the automount path if it is different than the path where you
+installed the software. For example, you may have installed the
+software in /local/0/unameit but you may have it automounted as
+/opt/unameit. In this case, you told pkgadd to install the software in
+/local/0/unameit but you should answer /opt/unameit to the above
+question.
+	You should now skip to the section on configuring UName*It below.
+
+
+
+Installing the SunOS 4.X or Linux 2.0 version of UName*It
+--------------------------------------------
+SunOS 4.X is a BSD based Unix and it has no installation program like
+pkgadd(1m) under Solaris 2.X. Linux comes in a number of distributions
+and there is no agreed upon package format (although RPM is quite
+popular).  Therefore, the UName*It distribution is simply distributed
+as a big directory hierarchy. Change directory to
+<cd_mount_dir>/SunOS.4.1.3_U1/client or
+<cd_mount_dir>/Linux.2.0.18/client and tar or cpio the files to the
+location you want them. The server portion of UName*It is not
+supported under these two operating systems. The DHCP server for these
+systems is stored in <cd_mount_dir>/SunOS.4.1.3_U1/dhcp and
+<cd_mount_dir>/Linux.2.0.18/dhcp.
+	Next, to continue the UName*It installation, run the command
+
+	<unameit_install_dir>/install/unameit_setup <unameit_install_dir>
+
+where <unameit_install_dir> is the location where you have copied the
+files.  The argument to the above script should be the automount path
+if the automount path and the installation path are different. For
+example, if you installed the software in /local/0/unameit but have
+automounted it on /opt/unameit, use /opt/unameit as the argument to
+the above script.
+	You should now skip to the section on configuring UName*It below.
+
+
+
+Installing the HP/UX 10.X version of UName*It
+---------------------------------------------
+The HP/UX version of UName*It is supported for HP/UX 10.X and later. The
+distribution consists of five swinstall(1m) products:
+
+	ESMTcl			The ESM distribution of Tcl (needed by
+				UName*It at runtime)
+	ESMKerberos5		The ESM Kerberos 5 distribution (needed
+				by UName*It at runtime and also contains
+				the software for the Kerberos server)
+	UNameItClient		The UName*It client (UI programs, etc.)
+	UNameItServer		The UName*It server (only needed on single
+				UName*It server machine)
+	ESMDHCP			The Internet Software Consortium DHCP 
+				server.
+
+	The ESMDHCP product is somewhat separate from the other
+products. That is, it does not have any dependencies on it and it does
+not depend on any other product. Also, users need not install it if
+they are not using UName*It to manage DHCP.
+	Demo users should install the products ESMTcl, ESMKerberos5,
+UNameItClient and UNameItServer on the same machine. 
+	Production users should install the products ESMTcl,
+ESMKerberos5, UNameItClient and UNameItServer on the UName*It server
+machine, the ESMTcl, ESMKerberos5 and UNameItClient products on
+UName*It client binary NFS servers and only the ESMKerberos5 product
+on the Kerberos server machine.  Production users need only install
+the ESMDHCP product if they are using UName*It to manage DHCP.  The
+default installation path for ESMTcl, UNameItClient and UNameItServer
+products is /opt/unameit. The default installation path for
+ESMKerberos5 is /opt/unameit/lib/krb5. The default installation path
+for the ESMDHCP product is /opt/dhcp. You can change these
+installation paths as described below if you wish.
+	HP/UX groups software distributions into "products" and
+"filesets".  Each product can contain a number of filesets. Each
+fileset contains a number of files that you must install as a
+group. You can install a whole product and all its filesets or you can
+install an individual fileset within a product but you cannot install
+individual files from a fileset.  All the five products above have two
+filesets; one for the binaries and one for the manual pages. You can
+skip installing the manual pages if you wish to save space, but the
+binaries must be installed.
+	For demo users and production users on the UName*It server
+machine, you will need to install the first four products. To do this,
+run swinstall.  Swinstall will ask for the source location when it
+comes up. Set the source location to
+"<cd_mount_dir>/HP-UX.B.10.20". This will show you the five products
+in a window. Highlight UNameItServer and select "Mark For Install"
+from the "Actions" window. This will automatically mark the products
+UNameItClient and ESMKerberos5 and ESMTcl too since UNameItServer
+depends on UNameItClient and UNameItClient depends on both ESMTcl and
+ESMKerberos5. The ESMDHCP product is not marked since nothing depends
+on it (and vice-versa).  If you simply want to install the software in
+/opt/unameit, select "Install (analysis)" from the "Actions" menu and
+everything will be installed.
+	If you wish to install the software in another location,
+things get more complicated. You will need to install the ESMTcl,
+UNameItClient and UNameItServer products in your new location and you
+will need to install the ESMKerberos5 product in the new location with
+"lib/krb5" appended.  That is, if your new location is /foobar, then
+the new installation locations should be
+
+	ESMTcl		/foobar
+	ESMKerberos5	/foobar/lib/krb5
+	UNameItClient	/foobar
+	UNameItServer	/foobar
+
+You can change each products location by selecting it (one at a time)
+and picking "Change Product Location..." from the "Action" menu.
+	Production users installing the ESMKerberos5 product on the
+Kerberos server machine can ignore the "lib/krb5" comment above. If
+you are not installing ESMKerberos5 as part of UName*It, just set the
+Product Location to the location you want to put the Kerberos 5
+software.  Demo users can ignore this paragraph since they won't be
+installing a Kerberos server.
+	Note: If you install the UNameItClient and UNameItServer
+products in a directory different from the automount path, you can run
+into problems.  That is, if you install the software in
+/local/0/unameit but you automount the software as /opt/unameit, you
+will run into problems. When the software is installed, it creates
+wrappers with the installation path in them.  Machines that NFS mount
+those wrappers will see the wrong paths (i.e., they will see
+/local/0/unameit in the wrappers and they won't have that
+filesystem). The solution to this is to either install the software at
+/opt/unameit or to install the software at /local/0/unameit and then
+edit the wrapper afterward. (There is only one wrapper and a bunch of
+files are hard linked to it). The wrapper file to edit is
+<install_dir>/bin/unameit.  Edit the wrapper with vi since it has a
+bunch of hard links to it. Emacs doesn't preserve the same inode
+number and will break the wrapper.
+	You need to install the ESMDHCP product on the machine
+containing the DHCP server. This product doesn't have any special
+conditions like the products discussed above, so just install it
+anywhere you wish. See the notes on the ISC DHCP server below though.
+	You should now skip to the section on configuring UName*It below.
+
+
+
+Installing the Windows NT version of UName*It
+---------------------------------------------
+The Windows NT version of UName*It only exists as a UI client. The
+UName*It server does not run under Windows NT. Also, upull doesn't run
+under Windows NT. That is, we don't manage the Windows NT registry.
+    To install on Windows NT, run SETUP.EXE in the WinNT
+directory. You will be asked which directory to install the files.
+Finish installing the files.
+	After the files are installed, run SETUP.EXE in the newly
+installed file's "bin" directory.  (That is, you need to run the
+SETUP.EXE on the CD ROM first and then the SETUP.EXE that gets created
+after the software is installed). The SETUP.EXE program has two modes:
+Wizard and Advanced Setup. Choose Wizard. Next, verify the location
+where you want to install the software and hit Next.
+    Next verify where you want to put the configuration files used by
+UName*It and hit Next. 
+    The next form determines whether you want to add the UName*It
+folder to the Start menu. This folder contains some various UName*It
+commands that are useful but it does not contain the command to
+actually start the UName*It GUI client that talks to the server. The
+command to start the UName*It GUI client is mode specific and we will
+add it later when we create a mode below. Pick a radio button and hit
+Next.
+    Next you must configure Kerberos 5. Create a new configuration and
+fill in the fields
+
+	Kerberos Realm		(Usually something like XYZ.COM)
+	Default domain		(The default DNS domain for your long 
+				 host names. Maps host names to the
+				 Kerberos realm for the host. Usually
+				 something like xyz.com)
+	KDC Server Host
+	KDC Server Port
+	KDC Admin Host		(Host running kadmind)
+	KDC Admin Port
+	Administrator Principal (Principal in UName*It that can modify
+				 the Kerberos master database)
+
+The next form shows the configuration. At this point, all the files
+are installed but not necessarily configured correctly. The next form
+allows you to edit a UName*It configuration file for a mode you
+select. Type in a new mode configuration name (it should be 8 letters
+or less and lower case). Go to the Mode menu and select UNameIt Client
+-> Create Site File and Host File. Fill in the fields
+
+	Local FQDN		(Matches Kerberos instance in Kerberos
+				 database).
+	UNameIt Service
+	UNameIt Server
+	UNameIt Server FQDN	(Matches Kerberos instance in Kerberos
+				 database).
+
+Hit Okay. Now from the Start Menu menu, select Add to Start Menu to
+add the UName*It GUI client that talks to the UName*It server to the
+Start menu for the mode you selected.
+    Lastly, you currently need to manually add the services for
+unameitd(1m) and upulld(1m) to the
+\winnt\system32\drivers\etc\services file.
+
+
+
+Configuring UName*It If You Are A Demo User
+-------------------------------------------
+You will now need to get a license file from ESM by calling 
+(714) 505-7686 x6 or sending mail to support@esm.com. You will need to
+give ESM both the MAC address of your machine and the machine's
+primary IP address. You will get back a file like
+
+license_start		1/1/1997
+license_end		9/15/1997
+license_type		eval
+license_host_units	64
+license_user_units	64
+license_key		4A21-3FFF-783B-8AD1-63F5-792B-B75E-6941
+
+which you will need to put in /etc/unameit/license. You will also get
+a UniSQL/X database key that looks like
+
+AEFADQFCGDCBIQDBFIGGFSEHIVDABZAOEFAEALALABAPACAJAE
+
+You will need to put this key in /etc/unameit/unisqlx_keys.
+	Next run the script
+
+    <unameit_install_dir>/install/unameit_setup_demo
+
+This script will ask you a couple of questions. The questions it
+will ask you and possible responses are
+
+Where did you install UName*It? /local/unameit
+
+Where would you like to put the database files (50 meg needed)? /var/unameit
+
+It is recommended that the system you install it on have 64 megabytes
+of main memory. You can install it on a 32 meg machine, but it will
+thrash a lot.
+	The UName*It daemon "unameitd" and UName*It pull daemon
+"upulld" were started by the above script. To connect to the UName*It
+daemon, set the UNAMEIT_MODE variable to "demo" with
+	
+	setenv UNAMEIT_MODE demo
+
+or
+	UNAMEIT_MODE=demo; export UNAMEIT_MODE
+
+and run
+
+	<install_dir>/bin/unameit
+
+You are connected to the UName*It test database and can now make
+changes. Next, run the backend by typing
+
+	<install_dir>/sbin/ubackend
+
+You'll need to run the backend each time you make updates if you want
+to see your updates when you run "upull". To run a pull on a machine, type
+
+	<install_dir>/bin/upull <hostname>
+
+where <hostname> is one of the machines in the UName*It database. The
+configuration files for <hostname> will be put in
+/var/unameit/<hostname> (or whatever directory you gave to the second
+question above).  Run upull on the same machine as you just ran the
+setup script on.
+	Manual pages are in <install_dir>/man. To shutdown "unameitd",
+run "unameit_shutdown". You will have to send a kill signal to "upulld"
+to kill it.
+
+
+
+Configuring UName*It for Production Users
+-----------------------------------------
+Production users will now need to make sure the UniSQL/X database key
+is in /etc/unameit/unisqlx_keys, the license key information is in
+/etc/unameit/license and set and export the environment variable
+UNAMEIT_MODE to the mode that you wish to run UName*It in. Then run
+the "unameit_mode" command if installing the UName*It software on a
+server or UName*It binary NFS server; otherwise, run the "upull_mode"
+command if installing the UName*It software on a regular client
+machine. See the documentation for more details.
+
+
+
+Notes on the ISC DHCP Server
+----------------------------
+The ISC DHCP server will not run correctly until you have installed
+the file /etc/dhcpd.conf. This file is generated automatically by
+UName*It's backend. Also, if the file /etc/dhcpd.leases does not
+exist, you will need to create it with "touch /etc/dhcpd.leases" or
+dhcpd won't start. The dhcpd server will maintain this file
+automatically after you create it.
+	When pull runs on the DHCP server machine, UName*It
+regenerates the dhcpd.conf file. Unfortunately, to get the dhcpd
+daemon to reread this file, the DHCP server must be killed and
+restarted. Therefore, upull will kill the DHCP server and restart it
+when it runs. You should also set up your system to start the dhcp
+server automatically at boot time. How to do this varies from system
+to system, but most system use scripts in /etc/rc2.d or /sbin/rc2.d.
+	Currently the ISC DHCP server doesn't work well on multi-homed
+hosts. Try to put the DHCP server on a host with a single interface
+if possible.
+
+
+
+The UName*It Mailing List
+-------------------------
+There is a mailing list dedicated to UName*It. It is called
+unameit-users@esm.com. To subscribe to this list, send a message to
+lists@esm.com with the text "subscribe unameit-users [alt-address]" in
+the body of the message. [alt-address] can be omitted if you just want
+to use your regular mail address. If you want to use a different
+address than the mail address you send the message from, fill it in.
+	To unsubscribe from the list, send the message "unsubscribe
+unameit-users [alt-address]" to lists@esm.com. Again, fill in
+[alt-address] only if the address you wish to unsubscribe from is
+different than the account you mail the message from.
+	To post to the list, send mail to unameit-users@esm.com. The
+Subject line is ignored in subscribe and unsubscribe messages. This
+list is a Majordomo list. For help on using majordomo, send a mail
+message with the body "help" to lists@esm.com.
