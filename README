@@ -11,3 +11,6 @@ Perry Metzger.
 Currently, the software does not yet build and run -- most
 importantly, the code needs to be ported from UniSQL/X to an open
 source database management system.
+
+Project home page: http://www.run-it.org/
+Source repository: http://git.run-it.org/
