@@ -1,3 +1,6 @@
+Introduction
+------------
+
 UName*It is a name space management system for Unix and Windows
 machines. It generates name space data for all the machines within an
 organization. It was developed by Enterprise Systems Management Corp.,
@@ -12,5 +15,27 @@ Currently, the software does not yet build and run -- most
 importantly, the code needs to be ported from UniSQL/X to an open
 source database management system.
 
+Getting Information
+-------------------
+
 Project home page: http://www.run-it.org/
-Source repository: http://git.run-it.org/
+Mailing Lists: TBA
+
+Getting the Code
+----------------
+
+A git repository is maintained at http://git.run-it.org/
+
+Going to http://git.run-it.org/ will give you "gitweb" access to the
+code online. To do an actual checkout of the code, you can execute the
+following git command
+
+   git clone http://git.run-it.org/proj/run-it.git/
+
+After that,
+
+   git pull origin
+
+will allow you to update your local repository.
+
+See http://git.or.cz/ for more information on git.
